@@ -141,7 +141,7 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
                      grid-cols-[32px_1fr_60px_60px_50px_50px_32px_84px] 
                      sm:grid-cols-[36px_1fr_70px_90px_70px_70px_100px_96px] 
                      lg:grid-cols-[40px_1fr_80px_100px_80px_70px_120px_120px]
-                     xl:grid-cols-[40px_1fr_80px_100px_80px_70px_120px_130px]">
+                     xl:grid-cols-[40px_1fr_80px_100px_80px_70px_200px_130px]">
         {/* Product Icon */}
         <div className="flex items-center justify-center">
           <ProductImage name={product.name} />
