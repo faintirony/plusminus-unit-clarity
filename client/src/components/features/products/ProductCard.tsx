@@ -137,10 +137,10 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
 
       <div className="bg-white hover:bg-gray-50 transition-colors duration-200 border-b border-gray-100 last:border-b-0">
       {/* Main card content - fixed grid layout */}
-      <div className="px-4 py-3 grid gap-4 items-center min-h-[52px] 
+      <div className="px-4 py-3 grid gap-3 items-center min-h-[52px] 
                      grid-cols-[32px_1fr_60px_60px_50px_28px_84px] 
-                     sm:grid-cols-[36px_1fr_70px_90px_70px_60px_32px_96px] 
-                     lg:grid-cols-[40px_1fr_80px_100px_80px_70px_120px_120px]">
+                     sm:grid-cols-[36px_1fr_70px_90px_70px_60px_140px_96px] 
+                     lg:grid-cols-[40px_1fr_80px_100px_80px_70px_160px_120px]">
         {/* Product Icon */}
         <div className="flex items-center justify-center">
           <ProductImage name={product.name} />
@@ -270,7 +270,7 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
           ) : (
             <span 
               className={cn(
-                "px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide whitespace-nowrap",
+                "px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide whitespace-nowrap inline-block text-center min-w-max",
                 isProfitable 
                   ? "bg-green-100 text-green-700" 
                   : "bg-red-100 text-red-700"
