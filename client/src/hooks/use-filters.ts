@@ -5,13 +5,20 @@ export function useFilters() {
   const [columnVisibility, setColumnVisibility] = useState<ColumnVisibility>({
     name: true,
     marketplace: true,
+    category: false,
+    brand: false,
+    subject: false,
+    sku: true,
+    barcode: false,
     currentPrice: true,
     costPrice: true,
     commission: true,
     logisticsCost: true,
-    advertisingCost: false, // По умолчанию скрыта
+    advertisingCost: false,
+    totalExpenses: true,
     marginRub: true,
     marginPercent: true,
+    isProfitable: true,
     lastSyncedAt: true,
   });
 

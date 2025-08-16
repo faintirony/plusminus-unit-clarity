@@ -145,6 +145,51 @@ export default function ProductsTable({
                 </TableHead>
               )}
               
+              {columnVisibility.category && (
+                <TableHead>
+                  <div className="flex items-center cursor-pointer" onClick={() => handleSort('category')}>
+                    Категория
+                    <SortIcon field="category" />
+                  </div>
+                </TableHead>
+              )}
+              
+              {columnVisibility.brand && (
+                <TableHead>
+                  <div className="flex items-center cursor-pointer" onClick={() => handleSort('brand')}>
+                    Бренд
+                    <SortIcon field="brand" />
+                  </div>
+                </TableHead>
+              )}
+              
+              {columnVisibility.subject && (
+                <TableHead>
+                  <div className="flex items-center cursor-pointer" onClick={() => handleSort('subject')}>
+                    Предмет
+                    <SortIcon field="subject" />
+                  </div>
+                </TableHead>
+              )}
+              
+              {columnVisibility.sku && (
+                <TableHead>
+                  <div className="flex items-center cursor-pointer" onClick={() => handleSort('sku')}>
+                    SKU
+                    <SortIcon field="sku" />
+                  </div>
+                </TableHead>
+              )}
+              
+              {columnVisibility.barcode && (
+                <TableHead>
+                  <div className="flex items-center cursor-pointer" onClick={() => handleSort('barcode')}>
+                    Штрихкод
+                    <SortIcon field="barcode" />
+                  </div>
+                </TableHead>
+              )}
+              
               {columnVisibility.currentPrice && (
                 <TableHead>
                   <div className="flex items-center cursor-pointer" onClick={() => handleSort('currentPrice')}>
@@ -175,6 +220,15 @@ export default function ProductsTable({
                 <TableHead>Реклама</TableHead>
               )}
               
+              {columnVisibility.totalExpenses && (
+                <TableHead>
+                  <div className="flex items-center cursor-pointer" onClick={() => handleSort('totalExpenses')}>
+                    Все расходы
+                    <SortIcon field="totalExpenses" />
+                  </div>
+                </TableHead>
+              )}
+              
               {columnVisibility.marginRub && (
                 <TableHead>
                   <div className="flex items-center cursor-pointer" onClick={() => handleSort('marginRub')}>
@@ -189,6 +243,15 @@ export default function ProductsTable({
                   <div className="flex items-center cursor-pointer" onClick={() => handleSort('marginPercent')}>
                     Маржа %
                     <SortIcon field="marginPercent" />
+                  </div>
+                </TableHead>
+              )}
+              
+              {columnVisibility.isProfitable && (
+                <TableHead>
+                  <div className="flex items-center cursor-pointer" onClick={() => handleSort('isProfitable')}>
+                    Прибыльный
+                    <SortIcon field="isProfitable" />
                   </div>
                 </TableHead>
               )}
@@ -246,6 +309,36 @@ export default function ProductsTable({
                   </TableCell>
                 )}
                 
+                {columnVisibility.category && (
+                  <TableCell className="text-gray-600" data-testid={`product-category-${product.id}`}>
+                    {product.category || '-'}
+                  </TableCell>
+                )}
+                
+                {columnVisibility.brand && (
+                  <TableCell className="text-gray-600" data-testid={`product-brand-${product.id}`}>
+                    {product.brand || '-'}
+                  </TableCell>
+                )}
+                
+                {columnVisibility.subject && (
+                  <TableCell className="text-gray-600" data-testid={`product-subject-${product.id}`}>
+                    {product.subject || '-'}
+                  </TableCell>
+                )}
+                
+                {columnVisibility.sku && (
+                  <TableCell className="font-mono text-sm text-gray-600" data-testid={`product-sku-display-${product.id}`}>
+                    {product.sku}
+                  </TableCell>
+                )}
+                
+                {columnVisibility.barcode && (
+                  <TableCell className="font-mono text-sm text-gray-600" data-testid={`product-barcode-${product.id}`}>
+                    {product.barcode || '-'}
+                  </TableCell>
+                )}
+                
                 {columnVisibility.currentPrice && (
                   <TableCell className="font-medium" data-testid={`product-price-${product.id}`}>
                     {formatPrice(product.currentPrice)}
@@ -280,6 +373,12 @@ export default function ProductsTable({
                   </TableCell>
                 )}
                 
+                {columnVisibility.totalExpenses && (
+                  <TableCell className="font-medium text-red-600" data-testid={`product-total-expenses-${product.id}`}>
+                    {formatPrice(product.totalExpenses)}
+                  </TableCell>
+                )}
+                
                 {columnVisibility.marginRub && (
                   <TableCell className={`font-medium ${
                     (product.marginRub || 0) > 0 ? 'text-green-600' : 'text-red-600'
@@ -300,6 +399,17 @@ export default function ProductsTable({
                     ) : (
                       '—'
                     )}
+                  </TableCell>
+                )}
+                
+                {columnVisibility.isProfitable && (
+                  <TableCell data-testid={`product-profitability-${product.id}`}>
+                    <div className="flex items-center">
+                      <div className={`w-3 h-3 rounded-full mr-2 ${product.isProfitable ? 'bg-green-500' : 'bg-red-500'}`}></div>
+                      <span className={`text-sm font-medium ${product.isProfitable ? 'text-green-700' : 'text-red-700'}`}>
+                        {product.isProfitable ? 'Да' : 'Нет'}
+                      </span>
+                    </div>
                   </TableCell>
                 )}
                 

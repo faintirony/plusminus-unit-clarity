@@ -13,14 +13,21 @@ interface ColumnCustomizerProps {
 
 const columnLabels: Record<keyof ColumnVisibility, string> = {
   name: "Товар",
-  marketplace: "Площадка",
+  marketplace: "Площадка", 
+  category: "Категория",
+  brand: "Бренд",
+  subject: "Предмет",
+  sku: "SKU",
+  barcode: "Штрихкод",
   currentPrice: "Цена продажи",
   costPrice: "Себестоимость",
   commission: "Комиссия",
   logisticsCost: "Логистика",
   advertisingCost: "Реклама",
+  totalExpenses: "Все расходы",
   marginRub: "Маржа ₽",
   marginPercent: "Маржа %",
+  isProfitable: "Прибыльный",
   lastSyncedAt: "Обновлено",
 };
 

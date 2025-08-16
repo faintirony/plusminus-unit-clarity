@@ -19,6 +19,15 @@ export interface Product {
   lastSyncedAt: string;
   createdAt: string;
   updatedAt: string;
+  // Новые поля
+  category?: string;
+  brand?: string;
+  subject?: string;
+  barcode?: string;
+  totalExpenses?: number; // все расходы в копейках
+  ordersCount?: number; // количество заказов
+  purchasesCount?: number; // количество выкупов
+  revenue?: number; // доходы в копейках
 }
 
 export interface ProductFilters {
@@ -27,18 +36,28 @@ export interface ProductFilters {
   profitability: 'all' | 'profitable' | 'unprofitable';
   marginFrom?: number;
   marginTo?: number;
+  dateFrom?: string;
+  dateTo?: string;
+  selectedPeriod?: 'day' | 'week' | '2weeks' | 'month' | '2months' | 'custom';
 }
 
 export interface ColumnVisibility {
   name: boolean;
   marketplace: boolean;
+  category: boolean;
+  brand: boolean;
+  subject: boolean;
+  sku: boolean;
+  barcode: boolean;
   currentPrice: boolean;
   costPrice: boolean;
   commission: boolean;
   logisticsCost: boolean;
   advertisingCost: boolean;
+  totalExpenses: boolean;
   marginRub: boolean;
   marginPercent: boolean;
+  isProfitable: boolean;
   lastSyncedAt: boolean;
 }
 
@@ -47,4 +66,9 @@ export interface ProductStats {
   profitableProducts: number;
   unprofitableProducts: number;
   displayedCount: number;
+  totalOrders: number;
+  totalPurchases: number;
+  totalRevenue: number;
+  totalExpenses: number;
+  totalMargin: number;
 }

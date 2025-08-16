@@ -3,7 +3,7 @@ import { Product } from "@/types/products";
 // Функция для конвертации рублей в копейки
 const toKopecks = (rubles: number) => Math.round(rubles * 100);
 
-// Функция для расчета маржи
+// Функция для расчета маржи и дополнительных полей
 const calculateMargin = (product: Partial<Product>) => {
   const price = product.currentPrice || 0;
   const cost = product.costPrice || 0;
@@ -11,13 +11,18 @@ const calculateMargin = (product: Partial<Product>) => {
   const logistics = product.logisticsCost || 0;
   const advertising = product.advertisingCost || 0;
   
-  const marginRub = price - cost - commission - logistics - advertising;
+  const totalExpenses = cost + commission + logistics + advertising;
+  const marginRub = price - totalExpenses;
   const marginPercent = price > 0 ? (marginRub / price) * 100 : 0;
   
   return {
     marginRub,
-    marginPercent: Math.round(marginPercent * 100) / 100, // округляем до 2 знаков
-    isProfitable: marginRub > 0
+    marginPercent: Math.round(marginPercent * 100) / 100,
+    isProfitable: marginRub > 0,
+    totalExpenses,
+    ordersCount: Math.floor(Math.random() * 50) + 1,
+    purchasesCount: Math.floor(Math.random() * 40) + 1,
+    revenue: price * (Math.floor(Math.random() * 30) + 1)
   };
 };
 
@@ -29,6 +34,10 @@ export const mockProducts: Product[] = [
     sku: "WB123456789",
     name: "Кроссовки Nike Air Max 270",
     imageUrl: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=80&h=80&fit=crop",
+    category: "Спорт",
+    brand: "Nike",
+    subject: "Кроссовки",
+    barcode: "2000000123456",
     currentPrice: toKopecks(5990),
     costPrice: toKopecks(3500),
     commission: toKopecks(899),
@@ -53,6 +62,10 @@ export const mockProducts: Product[] = [
     sku: "OZ987654321",
     name: "Футболка базовая хлопок",
     imageUrl: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=80&h=80&fit=crop",
+    category: "Одежда",
+    brand: "BasicWear",
+    subject: "Футболка",
+    barcode: "2000000987654",
     currentPrice: toKopecks(890),
     costPrice: toKopecks(650),
     commission: toKopecks(133),
@@ -77,6 +90,13 @@ export const mockProducts: Product[] = [
     sku: "WB456789123",
     name: "Чехол iPhone 14 силиконовый",
     imageUrl: "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=80&h=80&fit=crop",
+    category: "Электроника",
+    brand: "TechCase",
+    subject: "Чехол",
+    barcode: "2000000456789",
+    ordersCount: 8,
+    purchasesCount: 6,
+    revenue: toKopecks(7740),
     currentPrice: toKopecks(1290),
     costPrice: toKopecks(800),
     commission: toKopecks(194),
@@ -101,6 +121,13 @@ export const mockProducts: Product[] = [
     sku: "OZ555444333",
     name: "Рюкзак городской 30L",
     imageUrl: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=80&h=80&fit=crop",
+    category: "Спорт",
+    brand: "UrbanPack",
+    subject: "Рюкзак",
+    barcode: "2000000555444",
+    ordersCount: 12,
+    purchasesCount: 10,
+    revenue: toKopecks(28900),
     currentPrice: toKopecks(2890),
     costPrice: toKopecks(1800),
     commission: toKopecks(434),
@@ -125,6 +152,13 @@ export const mockProducts: Product[] = [
     sku: "WB789456123",
     name: "Крем для лица антивозрастной",
     imageUrl: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=80&h=80&fit=crop",
+    category: "Красота",
+    brand: "BeautyLux",
+    subject: "Крем",
+    barcode: "2000000789456",
+    ordersCount: 25,
+    purchasesCount: 20,
+    revenue: toKopecks(69800),
     currentPrice: toKopecks(3490),
     costPrice: toKopecks(900),
     commission: toKopecks(524),

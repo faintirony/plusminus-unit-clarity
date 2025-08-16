@@ -10,6 +10,9 @@ export function useProducts() {
     profitability: "all",
     marginFrom: undefined,
     marginTo: undefined,
+    dateFrom: undefined,
+    dateTo: undefined,
+    selectedPeriod: "2weeks",
   });
 
   const filteredProducts = useMemo(() => {
@@ -49,11 +52,22 @@ export function useProducts() {
     const profitableProducts = filteredProducts.filter(p => p.isProfitable).length;
     const unprofitableProducts = filteredProducts.filter(p => !p.isProfitable).length;
     
+    const totalOrders = filteredProducts.reduce((sum, p) => sum + (p.ordersCount || 0), 0);
+    const totalPurchases = filteredProducts.reduce((sum, p) => sum + (p.purchasesCount || 0), 0);
+    const totalRevenue = filteredProducts.reduce((sum, p) => sum + (p.revenue || 0), 0);
+    const totalExpenses = filteredProducts.reduce((sum, p) => sum + (p.totalExpenses || 0), 0);
+    const totalMargin = filteredProducts.reduce((sum, p) => sum + (p.marginRub || 0), 0);
+    
     return {
       totalProducts: products.length,
       profitableProducts,
       unprofitableProducts,
       displayedCount: filteredProducts.length,
+      totalOrders,
+      totalPurchases,
+      totalRevenue,
+      totalExpenses,
+      totalMargin,
     };
   }, [products, filteredProducts]);
 
@@ -81,10 +95,13 @@ export function useProducts() {
   const resetFilters = () => {
     setFilters({
       search: "",
-      marketplace: "",
+      marketplace: "all",
       profitability: "all",
       marginFrom: undefined,
       marginTo: undefined,
+      dateFrom: undefined,
+      dateTo: undefined,
+      selectedPeriod: "2weeks",
     });
   };
 

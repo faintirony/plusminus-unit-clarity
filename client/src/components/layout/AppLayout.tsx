@@ -1,4 +1,6 @@
 import Header from "./Header";
+import DatePicker from "@/components/features/products/DatePicker";
+import MetricsSummary from "@/components/features/products/MetricsSummary";
 import ProductFiltersComponent from "@/components/features/products/ProductFilters";
 import ProductsTable from "@/components/features/products/ProductsTable";
 import InlineEditor from "@/components/features/products/InlineEditor";
@@ -20,6 +22,17 @@ export default function AppLayout() {
           setFilters={setFilters}
           onSync={() => console.log("Sync triggered")}
           onExport={() => console.log("Export triggered")}
+        />
+        
+        <DatePicker 
+          filters={filters}
+          setFilters={setFilters}
+        />
+        
+        <MetricsSummary 
+          stats={stats}
+          profitableCount={stats.profitableProducts}
+          unprofitableCount={stats.unprofitableProducts}
         />
         
         <ProductFiltersComponent
