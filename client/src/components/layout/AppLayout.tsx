@@ -33,6 +33,7 @@ export default function AppLayout() {
           <ProductsList
             products={products}
             onEdit={setEditingProduct}
+            onUpdateProduct={updateProduct}
           />
         </div>
       </div>

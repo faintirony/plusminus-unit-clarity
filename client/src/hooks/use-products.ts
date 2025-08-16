@@ -3,7 +3,7 @@ import { Product, ProductFilters } from "@/types/products";
 import { allMockProducts } from "@/lib/mock-data";
 
 export function useProducts() {
-  const [products] = useState<Product[]>(allMockProducts);
+  const [products, setProducts] = useState<Product[]>(allMockProducts);
   const [filters, setFilters] = useState<ProductFilters>({
     search: "",
     marketplace: "all",
@@ -72,8 +72,13 @@ export function useProducts() {
   }, [products, filteredProducts]);
 
   const updateProduct = (id: string, updates: Partial<Product>) => {
-    // В реальном приложении здесь был бы API вызов
-    console.log("Updating product:", id, updates);
+    setProducts(prevProducts => 
+      prevProducts.map(product => 
+        product.id === id 
+          ? { ...product, ...updates }
+          : product
+      )
+    );
   };
 
   const applyPreset = (preset: string) => {

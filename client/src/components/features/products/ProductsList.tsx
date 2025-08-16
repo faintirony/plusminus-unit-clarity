@@ -4,10 +4,11 @@ import ProductCard from "./ProductCard";
 interface ProductsListProps {
   products: Product[];
   onEdit: (productId: string) => void;
+  onUpdateProduct?: (productId: string, updates: Partial<Product>) => void;
   columnVisibility?: Record<string, boolean>;
 }
 
-export default function ProductsList({ products, onEdit, columnVisibility = {} }: ProductsListProps) {
+export default function ProductsList({ products, onEdit, onUpdateProduct, columnVisibility = {} }: ProductsListProps) {
   if (products.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-12 text-gray-500">
@@ -25,6 +26,7 @@ export default function ProductsList({ products, onEdit, columnVisibility = {} }
           key={product.id}
           product={product}
           onEdit={onEdit}
+          onUpdateProduct={onUpdateProduct}
           columnVisibility={columnVisibility}
         />
       ))}

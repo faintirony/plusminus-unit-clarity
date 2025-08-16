@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 interface ProductCardProps {
   product: Product;
   onEdit: (productId: string) => void;
+  onUpdateProduct?: (productId: string, updates: Partial<Product>) => void;
   columnVisibility?: Record<string, boolean>;
 }
 
@@ -28,7 +29,7 @@ const ProductImage = ({ name }: { name: string }) => {
   );
 };
 
-export default function ProductCard({ product, onEdit, columnVisibility = {} }: ProductCardProps) {
+export default function ProductCard({ product, onEdit, onUpdateProduct, columnVisibility = {} }: ProductCardProps) {
   const [activeTab, setActiveTab] = useState<string | null>(null);
   const [isEditingCostPrice, setIsEditingCostPrice] = useState(false);
   const [costPriceValue, setCostPriceValue] = useState(((product.costPrice || 0) / 100).toString());
@@ -70,12 +71,27 @@ export default function ProductCard({ product, onEdit, columnVisibility = {} }: 
       return;
     }
 
-    // Here you would normally call an API to update the product
-    // For now, we'll just simulate the update
-    setIsEditingCostPrice(false);
+    // Calculate new margin values
+    const salePrice = product.currentPrice || 0;
+    const fees = (product.commission || 0) + (product.logisticsCost || 0) + (product.advertisingCost || 0);
+    const marginRub = salePrice - newValue - fees;
+    const marginPercent = salePrice > 0 ? (marginRub / salePrice) * 100 : 0;
     
-    // Don't call onEdit which opens the modal
-    // onEdit(product.id);
+    // Update the product data
+    if (onUpdateProduct) {
+      onUpdateProduct(product.id, {
+        costPrice: newValue,
+        marginRub,
+        marginPercent,
+        isProfitable: marginRub > 0,
+      });
+      
+      const oldFormatted = formatPrice(oldValue);
+      const newFormatted = formatPrice(newValue);
+      showNotificationMessage(`Себестоимость обновлена: ${oldFormatted} → ${newFormatted}`);
+    }
+    
+    setIsEditingCostPrice(false);
   };
 
   const handleCostPriceCancel = () => {
