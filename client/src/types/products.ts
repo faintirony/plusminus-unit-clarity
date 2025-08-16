@@ -8,7 +8,7 @@ export interface Product {
   name: string;
   imageUrl?: string;
   currentPrice?: number; // в копейках
-  costPrice?: number; // в копейках
+  costPrice?: number | null; // в копейках
   commission?: number; // в копейках
   logisticsCost?: number; // в копейках
   advertisingCost?: number; // в копейках

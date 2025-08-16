@@ -37,7 +37,7 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
   const [notificationMessage, setNotificationMessage] = useState('');
   const [notificationType, setNotificationType] = useState<'success' | 'error'>('success');
 
-  const isProfitable = (product.marginRub || 0) > 0;
+  const isProfitable = product.isProfitable;
 
   const toggleTab = (tab: string) => {
     setActiveTab(activeTab === tab ? null : tab);
@@ -271,13 +271,13 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
             <span 
               className={cn(
                 "px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide whitespace-nowrap inline-block text-center min-w-max",
-                isProfitable 
+                product.isProfitable === true
                   ? "bg-green-100 text-green-700" 
                   : "bg-red-100 text-red-700"
               )}
               data-testid={`product-profitability-${product.id}`}
             >
-              {isProfitable ? 'ПРИБЫЛЬНЫЙ' : 'УБЫТОЧНЫЙ'}
+              {product.isProfitable === true ? 'ПРИБЫЛЬНЫЙ' : 'УБЫТОЧНЫЙ'}
             </span>
           )}
         </div>
