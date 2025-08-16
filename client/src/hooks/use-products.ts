@@ -12,7 +12,7 @@ export function useProducts() {
     marginTo: undefined,
     dateFrom: undefined,
     dateTo: undefined,
-    selectedPeriod: "2weeks",
+    selectedPeriod: "month",
   });
 
   const filteredProducts = useMemo(() => {
@@ -106,7 +106,7 @@ export function useProducts() {
       marginTo: undefined,
       dateFrom: undefined,
       dateTo: undefined,
-      selectedPeriod: "2weeks",
+      selectedPeriod: "month",
     });
   };
 

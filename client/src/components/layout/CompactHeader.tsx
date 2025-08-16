@@ -59,6 +59,7 @@ export default function CompactHeader({
 
     setFilters({
       ...filters,
+      selectedPeriod: period as 'today' | 'yesterday' | 'week' | 'month' | 'custom',
       dateFrom,
       dateTo,
     });
@@ -78,7 +79,7 @@ export default function CompactHeader({
             {/* Period Selector */}
             <div className="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-md border">
               <CalendarIcon className="w-4 h-4 text-gray-500" />
-              <Select value="month" onValueChange={handlePeriodChange}>
+              <Select value={filters.selectedPeriod} onValueChange={handlePeriodChange}>
                 <SelectTrigger className="border-0 bg-transparent p-0 h-auto font-medium text-sm min-w-[80px]">
                   <SelectValue />
                 </SelectTrigger>
@@ -215,7 +216,7 @@ export default function CompactHeader({
               <div className="col-span-2">
                 <div className="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-md border">
                   <CalendarIcon className="w-4 h-4 text-gray-500" />
-                  <Select value="month" onValueChange={handlePeriodChange}>
+                  <Select value={filters.selectedPeriod} onValueChange={handlePeriodChange}>
                     <SelectTrigger className="border-0 bg-transparent p-0 h-auto font-medium text-sm">
                       <SelectValue />
                     </SelectTrigger>

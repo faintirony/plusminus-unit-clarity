@@ -1,12 +1,26 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, integer, decimal, boolean, timestamp, pgEnum } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  text,
+  varchar,
+  integer,
+  decimal,
+  boolean,
+  timestamp,
+  pgEnum,
+} from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const marketplaceEnum = pgEnum('marketplace_type', ['wildberries', 'ozon']);
+export const marketplaceEnum = pgEnum("marketplace_type", [
+  "wildberries",
+  "ozon",
+]);
 
 export const users = pgTable("users", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  id: varchar("id")
+    .primaryKey()
+    .default(sql`gen_random_uuid()`),
   email: text("email").notNull().unique(),
   name: text("name"),
   isActive: boolean("is_active").default(true),
@@ -15,8 +29,12 @@ export const users = pgTable("users", {
 });
 
 export const products = pgTable("products", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  userId: varchar("user_id").notNull().references(() => users.id),
+  id: varchar("id")
+    .primaryKey()
+    .default(sql`gen_random_uuid()`),
+  userId: varchar("user_id")
+    .notNull()
+    .references(() => users.id),
   marketplace: marketplaceEnum("marketplace").notNull(),
   sku: text("sku").notNull(),
   name: text("name").notNull(),

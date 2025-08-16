@@ -43,7 +43,7 @@ export interface ProductFilters {
   marginTo?: number;
   dateFrom?: string;
   dateTo?: string;
-  selectedPeriod?: 'day' | 'week' | '2weeks' | 'month' | '2months' | 'custom';
+  selectedPeriod?: 'today' | 'yesterday' | 'week' | 'month' | 'custom';
 }
 
 export interface ColumnVisibility {
