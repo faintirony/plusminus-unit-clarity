@@ -2,7 +2,7 @@ import Header from "./Header";
 import Toolbar1 from "@/components/features/products/Toolbar1";
 import MetricsSummary from "@/components/features/products/MetricsSummary";
 import Toolbar2 from "@/components/features/products/Toolbar2";
-import ProductsTable from "@/components/features/products/ProductsTable";
+import ProductsList from "@/components/features/products/ProductsList";
 import InlineEditor from "@/components/features/products/InlineEditor";
 import ColumnCustomizer from "@/components/features/products/ColumnCustomizer";
 import { Toaster } from "@/components/ui/toaster";
@@ -55,14 +55,11 @@ export default function AppLayout() {
           stats={stats}
         />
         
-        {/* 5. Products Table */}
-        <div className="flex-1 overflow-hidden bg-white">
-          <ProductsTable
+        {/* 5. Products List */}
+        <div className="flex-1 overflow-auto bg-gray-50 p-6">
+          <ProductsList
             products={products}
-            columnVisibility={columnVisibility}
-            stats={stats}
-            onToggleColumnCustomizer={toggleColumnCustomizer}
-            onEditProduct={setEditingProduct}
+            onEdit={setEditingProduct}
           />
         </div>
       </div>
