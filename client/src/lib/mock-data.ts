@@ -120,9 +120,6 @@ export const mockProducts: Product[] = [
     brand: "TechCase",
     subject: "Чехол",
     barcode: "2000000456789",
-    ordersCount: 8,
-    purchasesCount: 6,
-    revenue: toKopecks(7740),
     currentPrice: toKopecks(1290),
     costPrice: toKopecks(800),
     commission: toKopecks(194),
@@ -161,9 +158,6 @@ export const mockProducts: Product[] = [
     brand: "UrbanPack",
     subject: "Рюкзак",
     barcode: "2000000555444",
-    ordersCount: 12,
-    purchasesCount: 10,
-    revenue: toKopecks(28900),
     currentPrice: toKopecks(2890),
     costPrice: toKopecks(1800),
     commission: toKopecks(434),
@@ -202,9 +196,6 @@ export const mockProducts: Product[] = [
     brand: "BeautyLux",
     subject: "Крем",
     barcode: "2000000789456",
-    ordersCount: 25,
-    purchasesCount: 20,
-    revenue: toKopecks(69800),
     currentPrice: toKopecks(3490),
     costPrice: toKopecks(900),
     commission: toKopecks(524),
@@ -274,6 +265,11 @@ export const generateMoreProducts = (count: number = 50): Product[] => {
     const commission = toKopecks(Math.floor(basePrice * (0.12 + Math.random() * 0.08))); // 12-20% комиссия
     const logisticsCost = toKopecks(Math.floor(50 + Math.random() * 300)); // 50-350 рублей
     const advertisingCost = toKopecks(Math.floor(Math.random() * 500)); // 0-500 рублей
+    const acquiringCost = toKopecks(Math.floor(Math.random() * 100)); // 0-100 рублей
+    const returnCost = toKopecks(Math.floor(Math.random() * 200)); // 0-200 рублей
+    const disposalCost = toKopecks(Math.floor(Math.random() * 50)); // 0-50 рублей
+    const penaltyCost = toKopecks(Math.floor(Math.random() * 100)); // 0-100 рублей
+    const otherCosts = toKopecks(Math.floor(Math.random() * 50)); // 0-50 рублей
     
     const margins = calculateMargin({
       currentPrice,
@@ -281,6 +277,11 @@ export const generateMoreProducts = (count: number = 50): Product[] => {
       commission,
       logisticsCost,
       advertisingCost,
+      acquiringCost,
+      returnCost,
+      disposalCost,
+      penaltyCost,
+      otherCosts,
     });
     
     return {
@@ -295,6 +296,11 @@ export const generateMoreProducts = (count: number = 50): Product[] => {
       commission,
       logisticsCost,
       advertisingCost,
+      acquiringCost,
+      returnCost,
+      disposalCost,
+      penaltyCost,
+      otherCosts,
       ...margins,
       isActive: Math.random() > 0.1, // 90% активных товаров
       lastSyncedAt: new Date(Date.now() - Math.floor(Math.random() * 24 * 60 * 60 * 1000)).toISOString(),

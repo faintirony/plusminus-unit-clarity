@@ -5,14 +5,21 @@ import Toolbar2 from "@/components/features/products/Toolbar2";
 import ProductsTable from "@/components/features/products/ProductsTable";
 import InlineEditor from "@/components/features/products/InlineEditor";
 import ColumnCustomizer from "@/components/features/products/ColumnCustomizer";
+import { Toaster } from "@/components/ui/toaster";
 import { useProducts } from "@/hooks/use-products";
 import { useFilters } from "@/hooks/use-filters";
+import { useExport } from "@/hooks/use-export";
 import { useState } from "react";
 
 export default function AppLayout() {
   const { products, filters, setFilters, stats, updateProduct, resetFilters } = useProducts();
   const { columnVisibility, toggleColumnVisibility, isColumnCustomizerOpen, toggleColumnCustomizer, closeColumnCustomizer } = useFilters();
+  const { exportProducts, isExporting } = useExport();
   const [editingProduct, setEditingProduct] = useState<string | null>(null);
+
+  const handleExport = () => {
+    exportProducts(products);
+  };
 
   return (
     <div className="flex h-screen bg-gray-50">
@@ -21,7 +28,9 @@ export default function AppLayout() {
         <Header 
           filters={filters}
           setFilters={setFilters}
-          onExport={() => console.log("Export triggered")}
+          products={products}
+          onExport={handleExport}
+          isExporting={isExporting}
         />
         
         {/* 2. Toolbar 1 (Period & Indicators) */}
@@ -72,6 +81,8 @@ export default function AppLayout() {
         onToggleColumn={toggleColumnVisibility}
         onClose={closeColumnCustomizer}
       />
+      
+      <Toaster />
     </div>
   );
 }
