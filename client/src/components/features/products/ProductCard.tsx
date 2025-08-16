@@ -257,8 +257,8 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
         </div>
 
         {/* Profitability Badge */}
-        <div className="flex justify-center items-center w-full bg-red-500 text-white font-bold">
-          TEST-STATUS
+        <div className="bg-red-500 sm:bg-blue-500 lg:bg-green-500 xl:bg-purple-500 text-white p-2">
+          СТАТУС
           {product.costPrice === null || product.costPrice === undefined ? (
             <div className="relative group">
               <div className="w-8 h-8 bg-gray-50 border border-gray-300 rounded-full flex items-center justify-center text-base font-bold text-gray-600 cursor-help hover:bg-gray-100 hover:border-gray-400 transition-colors">
