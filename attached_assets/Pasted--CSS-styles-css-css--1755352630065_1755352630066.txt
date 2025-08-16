@@ -1,0 +1,459 @@
+код для компактных карточек с горизонтальными табами:
+
+CSS (обновления для styles.css)
+css
+
+Копировать код
+/* Компактные карточки товаров */
+.products-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 40px;
+}
+
+.product-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    transition: all 0.2s;
+    overflow: hidden;
+}
+
+.product-card:hover {
+    border-color: #cbd5e0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Основное содержимое карточки */
+.card-content {
+    padding: 12px 16px;
+}
+
+/* Заголовок товара */
+.product-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.product-image {
+    width: 40px;
+    height: 40px;
+    background: #f7fafc;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.product-main-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.product-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 2px;
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.product-marketplace {
+    font-size: 12px;
+    color: #718096;
+}
+
+.product-actions {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.profitability-badge {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.profitability-badge.profitable {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.profitability-badge.unprofitable {
+    background: #fed7d7;
+    color: #742a2a;
+}
+
+.edit-btn {
+    background: none;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    padding: 4px 6px;
+    font-size: 12px;
+    cursor: pointer;
+    color: #718096;
+    transition: all 0.2s;
+}
+
+.edit-btn:hover {
+    border-color: #cbd5e0;
+    color: #4a5568;
+}
+
+/* Ключевые метрики */
+.product-metrics {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 12px;
+}
+
+.metric-item {
+    text-align: left;
+}
+
+.metric-value {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2d3748;
+    line-height: 1.2;
+}
+
+.metric-value.positive {
+    color: #38a169;
+}
+
+.metric-value.negative {
+    color: #e53e3e;
+}
+
+.metric-label {
+    font-size: 11px;
+    color: #a0aec0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 1px;
+}
+
+/* Горизонтальные табы */
+.product-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 0;
+}
+
+.tab-button {
+    padding: 6px 12px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #4a5568;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.tab-button:hover {
+    background: #edf2f7;
+    border-color: #cbd5e0;
+}
+
+.tab-button.active {
+    background: #4299e1;
+    color: white;
+    border-color: #4299e1;
+}
+
+.tab-icon {
+    font-size: 12px;
+}
+
+/* Детали табов */
+.tab-content {
+    display: none;
+    padding: 16px;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    margin: 0 -16px -12px -16px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+}
+
+.detail-label {
+    font-size: 13px;
+    color: #718096;
+}
+
+.detail-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.detail-value.editable {
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.detail-value.editable:hover {
+    background: #edf2f7;
+}
+
+/* Адаптивность для карточек */
+@media (max-width: 768px) {
+    .product-header {
+        gap: 8px;
+    }
+
+    .product-image {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+
+    .product-title {
+        font-size: 14px;
+    }
+
+    .product-metrics {
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .metric-value {
+        font-size: 15px;
+    }
+
+    .product-tabs {
+        gap: 2px;
+        flex-wrap: wrap;
+    }
+
+    .tab-button {
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+
+    .tab-details {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-content {
+        padding: 10px 12px;
+    }
+
+    .product-metrics {
+        gap: 12px;
+    }
+
+    .profitability-badge {
+        padding: 2px 6px;
+        font-size: 10px;
+    }
+}
+HTML (обновления структуры карточки)
+html
+
+Копировать код
+<!-- Обновленная структура в index.html остается той же, 
+     только меняем контейнер для товаров -->
+
+<div class="products-list" id="productsList">
+    <!-- Карточки товаров будут генерироваться JS -->
+</div>
+JavaScript (обновления для script.js)
+javascript
+
+Копировать код
+// Обновляем метод renderProducts в классе ProductManager
+
+renderProducts() {
+    const container = document.getElementById('productsList');
+
+    if (this.filteredProducts.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state">
+                <h3>Товары не найдены</h3>
+                <p>Попробуйте изменить параметры поиска или фильтры</p>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = this.filteredProducts.map(product => `
+        <div class="product-card" data-product-id="${product.id}">
+            <div class="card-content">
+                <!-- Заголовок товара -->
+                <div class="product-header">
+                    <div class="product-image">
+                        ${this.getProductIcon(product.category)}
+                    </div>
+                    <div class="product-main-info">
+                        <div class="product-title" title="${product.name}">
+                            ${product.name}
+                        </div>
+                        <div class="product-marketplace">
+                            ${product.marketplace}
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <span class="profitability-badge ${product.isProfitable ? 'profitable' : 'unprofitable'}">
+                            ${product.isProfitable ? 'ПРИБЫЛЬНЫЙ' : 'УБЫТОЧНЫЙ'}
+                        </span>
+                        <button class="edit-btn" onclick="editProduct('${product.id}')">
+                            ✏️
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Ключевые метрики -->
+                <div class="product-metrics">
+                    <div class="metric-item">
+                        <div class="metric-value">${this.formatCurrency(product.salePrice)}</div>
+                        <div class="metric-label">Цена</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value ${product.marginRub >= 0 ? 'positive' : 'negative'}">
+                            ${this.formatCurrency(product.marginRub)}
+                        </div>
+                        <div class="metric-label">Маржа ₽</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value ${product.marginPercent >= 0 ? 'positive' : 'negative'}">
+                            ${product.marginPercent.toFixed(1)}%
+                        </div>
+                        <div class="metric-label">Маржа %</div>
+                    </div>
+                </div>
+
+                <!-- Горизонтальные табы -->
+                <div class="product-tabs">
+                    <button class="tab-button" data-tab="finances" data-product="${product.id}">
+                        <span class="tab-icon">💰</span>
+                        Финансы
+                    </button>
+                    <button class="tab-button" data-tab="expenses" data-product="${product.id}">
+                        <span class="tab-icon">📊</span>
+                        Расходы
+                    </button>
+                    <button class="tab-button" data-tab="product" data-product="${product.id}">
+                        <span class="tab-icon">📦</span>
+                        О товаре
+                    </button>
+                </div>
+
+                <!-- Контент табов -->
+                <div class="tab-content" id="finances-${product.id}">
+                    <div class="tab-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Себестоимость</span>
+                            <span class="detail-value editable" onclick="editCostPrice('${product.id}')">
+                                ${this.formatCurrency(product.costPrice)}
+                            </span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Все расходы</span>
+                            <span class="detail-value">${this.formatCurrency(product.totalExpenses)}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Комиссия МП</span>
+                            <span class="detail-value">${this.formatCurrency(product.marketplaceCommission)}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Маржа руб</span>
+                            <span class="detail-value ${product.marginRub >= 0 ? 'positive' : 'negative'}">
+                                ${this.formatCurrency(product.marginRub)}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="expenses-${product.id}">
+                    <div class="tab-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Логистика</span>
+                            <span class="detail-value">${this.formatCurrency(product.logistics)}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Эквайринг</span>
+                            <span class="detail-value">${this.formatCurrency(product.acquiring)}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Стоимость возвратов</span>
+                            <span class="detail-value">${this.formatCurrency(product.returnsCost)}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Утилизация</span>
+                            <span class="detail-value">${this.formatCurrency(product.utilization)}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Штрафы от МП</span>
+                            <span class="detail-value">${this.formatCurrency(product.fines)}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Прочие расходы</span>
+                            <span class="detail-value">${this.formatCurrency(product.otherExpenses)}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Реклама</span>
+                            <span class="detail-value">${this.formatCurrency(product.advertising)}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="product-${product.id}">
+                    <div class="tab-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Артикул продавца</span>
+                            <span class="detail-value">${product.sellerSku}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Категория</span>
+                            <span class="detail-value">${product.category}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Бренд</span>
+                            <span class="detail-value">${product.brand}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Предмет</span>
+                            <span class="detail-value">${product.subject}</span>
+                        </div>
+
+
+
