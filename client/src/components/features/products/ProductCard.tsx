@@ -137,11 +137,11 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
 
       <div className="bg-white hover:bg-gray-50 transition-colors duration-200 border-b border-gray-100 last:border-b-0">
       {/* Main card content - fixed grid layout */}
-      <div className="px-4 py-3 grid gap-3 items-center min-h-[52px] 
+      <div className="px-2 py-3 grid gap-2 items-center min-h-[52px] 
                      grid-cols-[32px_1fr_60px_60px_50px_28px_84px] 
-                     sm:grid-cols-[36px_1fr_70px_90px_70px_60px_80px_96px] 
-                     lg:grid-cols-[40px_1fr_80px_100px_80px_70px_90px_120px]
-                     xl:grid-cols-[45px_1fr_90px_110px_90px_75px_100px_140px]">
+                     sm:grid-cols-[36px_1fr_70px_90px_70px_60px_120px_96px] 
+                     lg:grid-cols-[40px_1fr_80px_100px_80px_70px_140px_120px]
+                     xl:grid-cols-[45px_1fr_90px_110px_90px_75px_160px_140px]">
         {/* Product Icon */}
         <div className="flex items-center justify-center">
           <ProductImage name={product.name} />
@@ -278,9 +278,9 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
                     : "bg-red-100 text-red-700"
                 )}
                 data-testid={`product-profitability-${product.id}`}
-                style={{ fontSize: '10px', minWidth: '50px' }}
+                style={{ fontSize: '8px', padding: '2px 6px', lineHeight: '1.2' }}
               >
-                {product.isProfitable === true ? 'ПРИБ' : 'УБЫТ'}
+                {product.isProfitable === true ? 'ПРИБЫЛЬНЫЙ' : 'УБЫТОЧНЫЙ'}
               </span>
             </div>
           )}
