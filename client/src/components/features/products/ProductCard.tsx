@@ -71,14 +71,11 @@ export default function ProductCard({ product, onEdit, columnVisibility = {} }: 
     }
 
     // Here you would normally call an API to update the product
-    // For now, we'll just simulate the update and show success
+    // For now, we'll just simulate the update
     setIsEditingCostPrice(false);
     
-    const oldFormatted = formatPrice(oldValue);
-    const newFormatted = formatPrice(newValue);
-    showNotificationMessage(`Себестоимость обновлена: ${oldFormatted} → ${newFormatted}`);
-    
-    onEdit(product.id);
+    // Don't call onEdit which opens the modal
+    // onEdit(product.id);
   };
 
   const handleCostPriceCancel = () => {
