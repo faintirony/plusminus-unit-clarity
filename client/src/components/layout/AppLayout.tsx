@@ -1,4 +1,3 @@
-import Sidebar from "./Sidebar";
 import Header from "./Header";
 import ProductFiltersComponent from "@/components/features/products/ProductFilters";
 import ProductsTable from "@/components/features/products/ProductsTable";
@@ -15,8 +14,6 @@ export default function AppLayout() {
 
   return (
     <div className="flex h-screen bg-gray-50">
-      <Sidebar />
-      
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header 
           filters={filters}
