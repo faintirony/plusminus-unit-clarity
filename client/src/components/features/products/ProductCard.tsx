@@ -23,7 +23,7 @@ const ProductImage = ({ name }: { name: string }) => {
   };
 
   return (
-    <div className="w-9 h-9 bg-gray-100 rounded-md flex items-center justify-center text-lg flex-shrink-0">
+    <div className="w-8 h-8 bg-gray-100 rounded-md flex items-center justify-center text-base flex-shrink-0">
       {getIcon()}
     </div>
   );
@@ -136,13 +136,18 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
       )}
 
       <div className="bg-white hover:bg-gray-50 transition-colors duration-200 border-b border-gray-100 last:border-b-0">
-      {/* Main card content - single row */}
-      <div className="px-4 py-3 flex items-center gap-4 min-h-[52px]">
+      {/* Main card content - fixed grid layout */}
+      <div className="px-4 py-3 grid gap-4 items-center min-h-[52px] 
+                     grid-cols-[32px_1fr_60px_60px_50px_28px_84px] 
+                     sm:grid-cols-[36px_1fr_70px_90px_70px_60px_32px_96px] 
+                     lg:grid-cols-[40px_1fr_80px_100px_80px_70px_120px_120px]">
         {/* Product Icon */}
-        <ProductImage name={product.name} />
+        <div className="flex items-center justify-center">
+          <ProductImage name={product.name} />
+        </div>
 
         {/* Product Info */}
-        <div className="flex-1 min-w-0">
+        <div className="min-w-0">
           <h3 
             className="text-sm font-semibold text-gray-900 mb-0.5 truncate leading-tight" 
             title={product.name}
@@ -156,7 +161,7 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
         </div>
 
         {/* Price Column */}
-        <div className="flex flex-col items-center justify-center text-center min-w-[85px] flex-shrink-0">
+        <div className="flex flex-col items-center justify-center text-center">
           <div className="text-sm font-bold text-gray-900" data-testid={`product-price-${product.id}`}>
             {formatPrice(product.currentPrice)}
           </div>
@@ -164,7 +169,7 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
         </div>
 
         {/* Cost Price Column with Enhanced Inline Editing */}
-        <div className="flex flex-col items-center justify-center text-center min-w-[85px] flex-shrink-0 relative">
+        <div className="hidden sm:flex flex-col items-center justify-center text-center relative">
           {isEditingCostPrice ? (
             <div className={`flex items-center gap-1 border-2 rounded px-2 py-1 shadow-sm ${
               product.costPrice === null || product.costPrice === undefined 
@@ -221,11 +226,11 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
         </div>
 
         {/* Margin Rub Column */}
-        <div className="flex flex-col items-center justify-center text-center min-w-[75px] flex-shrink-0">
+        <div className="flex flex-col items-center justify-center text-center">
           <div 
             className={cn(
               "text-sm font-bold", 
-              product.marginRub === null ? "text-gray-400" :
+              product.marginRub === null || product.marginRub === undefined ? "text-gray-400" :
               (product.marginRub >= 0 ? "text-green-600" : "text-red-600")
             )} 
             data-testid={`product-margin-rub-${product.id}`}
@@ -236,22 +241,22 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
         </div>
 
         {/* Margin Percent Column */}
-        <div className="flex flex-col items-center justify-center text-center min-w-[65px] flex-shrink-0">
+        <div className="flex flex-col items-center justify-center text-center">
           <div 
             className={cn(
               "text-sm font-bold", 
-              product.marginPercent === null ? "text-gray-400" :
+              product.marginPercent === null || product.marginPercent === undefined ? "text-gray-400" :
               (product.marginPercent >= 0 ? "text-green-600" : "text-red-600")
             )} 
             data-testid={`product-margin-percent-${product.id}`}
           >
-            {product.marginPercent === null ? "—" : `${product.marginPercent.toFixed(1)}%`}
+            {product.marginPercent === null || product.marginPercent === undefined ? "—" : `${product.marginPercent.toFixed(1)}%`}
           </div>
           <div className="text-[9px] text-gray-400 uppercase tracking-wide font-medium">МАРЖА %</div>
         </div>
 
         {/* Profitability Badge */}
-        <div className="flex-shrink-0 mx-2 hidden sm:block">
+        <div className="flex justify-center items-center">
           {product.isProfitable === null ? (
             <div className="relative group">
               <div className="w-7 h-7 bg-gray-50 border border-gray-300 rounded-full flex items-center justify-center text-sm font-bold text-gray-600 cursor-help hover:bg-gray-100 hover:border-gray-400 transition-colors">
@@ -278,7 +283,7 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
         </div>
 
         {/* Tab Buttons */}
-        <div className="flex gap-1 flex-shrink-0">
+        <div className="flex gap-1 justify-end">
           <button
             className={cn(
               "px-2 py-1.5 border rounded text-xs font-medium transition-all flex items-center gap-1 relative group",
