@@ -31,7 +31,10 @@ const ProductImage = ({ name }: { name: string }) => {
 export default function ProductCard({ product, onEdit, columnVisibility = {} }: ProductCardProps) {
   const [activeTab, setActiveTab] = useState<string | null>(null);
   const [isEditingCostPrice, setIsEditingCostPrice] = useState(false);
-  const [costPriceValue, setCostPriceValue] = useState((product.costPrice || 0).toString());
+  const [costPriceValue, setCostPriceValue] = useState(((product.costPrice || 0) / 100).toString());
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState('');
+  const [notificationType, setNotificationType] = useState<'success' | 'error'>('success');
 
   const isProfitable = (product.marginRub || 0) > 0;
 
@@ -44,14 +47,38 @@ export default function ProductCard({ product, onEdit, columnVisibility = {} }: 
     setCostPriceValue(((product.costPrice || 0) / 100).toString());
   };
 
+  const showNotificationMessage = (message: string, type: 'success' | 'error' = 'success') => {
+    setNotificationMessage(message);
+    setNotificationType(type);
+    setShowNotification(true);
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 3000);
+  };
+
   const handleCostPriceSave = () => {
     const newValue = parseFloat(costPriceValue) * 100;
-    if (!isNaN(newValue) && newValue >= 0) {
-      // Here you would normally call an update function
-      // For now, we'll just close the editor
-      setIsEditingCostPrice(false);
-      onEdit(product.id);
+    const oldValue = product.costPrice || 0;
+    
+    if (isNaN(newValue) || newValue < 0) {
+      showNotificationMessage('Введите корректную стоимость', 'error');
+      return;
     }
+
+    if (oldValue === newValue) {
+      setIsEditingCostPrice(false);
+      return;
+    }
+
+    // Here you would normally call an API to update the product
+    // For now, we'll just simulate the update and show success
+    setIsEditingCostPrice(false);
+    
+    const oldFormatted = formatPrice(oldValue);
+    const newFormatted = formatPrice(newValue);
+    showNotificationMessage(`Себестоимость обновлена: ${oldFormatted} → ${newFormatted}`);
+    
+    onEdit(product.id);
   };
 
   const handleCostPriceCancel = () => {
@@ -78,7 +105,24 @@ export default function ProductCard({ product, onEdit, columnVisibility = {} }: 
   };
 
   return (
-    <div className="bg-white hover:bg-gray-50 transition-colors duration-200 border-b border-gray-100 last:border-b-0">
+    <>
+      {/* Notification */}
+      {showNotification && (
+        <div className={`fixed top-20 right-5 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg text-white font-medium transform transition-all duration-300 ${
+          notificationType === 'success' ? 'bg-green-500' : 'bg-red-500'
+        } ${showNotification ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}>
+          <span className="text-base">{notificationType === 'success' ? '✓' : '⚠'}</span>
+          <span className="text-sm">{notificationMessage}</span>
+          <button
+            onClick={() => setShowNotification(false)}
+            className="ml-2 text-white hover:text-gray-200 transition-colors"
+          >
+            ✕
+          </button>
+        </div>
+      )}
+
+      <div className="bg-white hover:bg-gray-50 transition-colors duration-200 border-b border-gray-100 last:border-b-0">
       {/* Main card content - single row */}
       <div className="px-4 py-3 flex items-center gap-4 min-h-[52px]">
         {/* Product Icon */}
@@ -106,27 +150,45 @@ export default function ProductCard({ product, onEdit, columnVisibility = {} }: 
           <div className="text-[9px] text-gray-400 uppercase tracking-wide font-medium">ЦЕНА</div>
         </div>
 
-        {/* Cost Price Column with Inline Editing */}
-        <div className="flex flex-col items-center justify-center text-center min-w-[85px] flex-shrink-0">
+        {/* Cost Price Column with Enhanced Inline Editing */}
+        <div className="flex flex-col items-center justify-center text-center min-w-[85px] flex-shrink-0 relative">
           {isEditingCostPrice ? (
-            <input
-              type="number"
-              value={costPriceValue}
-              onChange={(e) => setCostPriceValue(e.target.value)}
-              onBlur={handleCostPriceSave}
-              onKeyDown={handleKeyDown}
-              className="w-16 text-sm font-bold text-center border border-blue-500 rounded px-1 py-0.5 bg-white"
-              autoFocus
-              step="0.01"
-              min="0"
-            />
+            <div className="flex items-center gap-1 bg-orange-50 border-2 border-orange-300 rounded px-2 py-1 shadow-sm">
+              <input
+                type="number"
+                value={costPriceValue}
+                onChange={(e) => setCostPriceValue(e.target.value)}
+                onKeyDown={handleKeyDown}
+                className="w-16 text-sm font-bold text-center border-none outline-none bg-transparent"
+                autoFocus
+                step="0.01"
+                min="0"
+              />
+              <div className="flex gap-1">
+                <button
+                  onClick={handleCostPriceSave}
+                  className="w-4 h-4 flex items-center justify-center bg-green-100 text-green-600 hover:bg-green-200 rounded text-xs transition-colors"
+                  title="Сохранить"
+                >
+                  ✓
+                </button>
+                <button
+                  onClick={handleCostPriceCancel}
+                  className="w-4 h-4 flex items-center justify-center bg-red-100 text-red-600 hover:bg-red-200 rounded text-xs transition-colors"
+                  title="Отменить"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
           ) : (
             <div 
-              className="text-sm font-bold text-gray-900 cursor-pointer hover:bg-gray-100 px-1 py-0.5 rounded transition-colors"
+              className="flex items-center gap-1 text-sm font-bold text-gray-900 cursor-pointer hover:bg-gray-100 px-2 py-1 rounded transition-colors border border-transparent hover:border-gray-200 group"
               onClick={handleCostPriceEdit}
               data-testid={`product-cost-price-${product.id}`}
             >
-              {formatPrice(product.costPrice || 0)}
+              <span>{formatPrice(product.costPrice || 0)}</span>
+              <span className="text-[10px] text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity">✏️</span>
             </div>
           )}
           <div className="text-[9px] text-gray-400 uppercase tracking-wide font-medium">СЕБЕСТОИМОСТЬ</div>
@@ -318,6 +380,7 @@ export default function ProductCard({ product, onEdit, columnVisibility = {} }: 
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </>
   );
 }
