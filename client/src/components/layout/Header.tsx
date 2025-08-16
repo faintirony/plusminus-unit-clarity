@@ -1,4 +1,4 @@
-import { SearchIcon, RefreshCwIcon, DownloadIcon } from "lucide-react";
+import { SearchIcon, DownloadIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ProductFilters } from "@/types/products";
@@ -6,11 +6,10 @@ import { ProductFilters } from "@/types/products";
 interface HeaderProps {
   filters: ProductFilters;
   setFilters: (filters: ProductFilters) => void;
-  onSync: () => void;
   onExport: () => void;
 }
 
-export default function Header({ filters, setFilters, onSync, onExport }: HeaderProps) {
+export default function Header({ filters, setFilters, onExport }: HeaderProps) {
   return (
     <header className="bg-white shadow-sm border-b border-gray-200 px-6 py-4">
       <div className="flex items-center justify-between">
@@ -34,17 +33,7 @@ export default function Header({ filters, setFilters, onSync, onExport }: Header
             />
           </div>
           
-          {/* Sync Button */}
-          <Button
-            variant="outline"
-            onClick={onSync}
-            data-testid="sync-button"
-            className="inline-flex items-center px-3 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-          >
-            <RefreshCwIcon className="w-4 h-4 mr-2" />
-            Синхронизация
-          </Button>
-          
+
           {/* Export Button */}
           <Button
             onClick={onExport}

@@ -20,7 +20,6 @@ export default function AppLayout() {
         <Header 
           filters={filters}
           setFilters={setFilters}
-          onSync={() => console.log("Sync triggered")}
           onExport={() => console.log("Export triggered")}
         />
         
