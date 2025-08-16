@@ -1,0 +1,471 @@
+CSS (обновления для styles.css)
+css
+
+Копировать код
+/* Обновленный header */
+.header {
+    background: #fff;
+    border-bottom: 1px solid #e1e5e9;
+    padding: 8px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 56px;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+}
+
+.header h1 {
+    color: #2d3748;
+    font-size: 20px;
+    font-weight: 700;
+    margin-right: 24px;
+}
+
+/* Компактная панель фильтров */
+.filters-compact {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+/* Период с датапикерами */
+.period-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f8fafc;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+.period-select {
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    padding: 0;
+    width: 80px;
+    outline: none;
+}
+
+.date-input {
+    border: none;
+    background: transparent;
+    font-size: 13px;
+    width: 110px;
+    outline: none;
+}
+
+.date-separator {
+    color: #718096;
+    font-size: 13px;
+    margin: 0 4px;
+}
+
+/* Компактный поиск */
+.search-input-compact {
+    padding: 6px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    width: 200px;
+    font-size: 14px;
+    outline: none;
+}
+
+.search-input-compact:focus {
+    border-color: #4299e1;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+}
+
+/* Компактные селекты */
+.filter-select-compact {
+    padding: 6px 8px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    background: white;
+    font-size: 14px;
+    min-width: 120px;
+    outline: none;
+}
+
+.filter-select-compact:focus {
+    border-color: #4299e1;
+}
+
+/* Кнопка экспорта */
+.export-btn-compact {
+    padding: 6px 16px;
+    background: #4299e1;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.export-btn-compact:hover {
+    background: #3182ce;
+}
+
+/* Счетчики товаров */
+.products-stats {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: #718096;
+    font-size: 14px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.stat-profitable {
+    color: #38a169;
+}
+
+.stat-unprofitable {
+    color: #e53e3e;
+}
+
+.products-count {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+/* Мобильное меню */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 6px 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.mobile-filters {
+    display: none;
+    position: absolute;
+    top: 56px;
+    left: 0;
+    right: 0;
+    background: white;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 16px;
+    z-index: 99;
+}
+
+.mobile-filters.open {
+    display: block;
+}
+
+.mobile-filters-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .search-input-compact {
+        width: 160px;
+    }
+
+    .filter-select-compact {
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 18px;
+        margin-right: 12px;
+    }
+
+    .filters-compact {
+        gap: 8px;
+    }
+
+    .period-group,
+    .filter-select-compact:not(.mobile-keep) {
+        display: none;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .search-input-compact {
+        width: 140px;
+    }
+
+    .products-stats {
+        gap: 8px;
+        font-size: 13px;
+    }
+
+    .stat-item:not(:last-child) {
+        display: none;
+    }
+}
+
+/* Убираем старые стили фильтров */
+.filters-bar {
+    display: none;
+}
+
+/* Обновляем отступ для products-grid */
+.main {
+    padding-top: 16px;
+}
+HTML (обновления для index.html)
+html
+
+Копировать код
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ПлюсМинус - Мониторинг юнит-экономики</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <div class="container">
+                <h1>ПлюсМинус</h1>
+
+                <div class="filters-compact">
+                    <!-- Период с датапикерами -->
+                    <div class="period-group">
+                        <select class="period-select" id="periodSelect">
+                            <option value="today">Сегодня</option>
+                            <option value="yesterday">Вчера</option>
+                            <option value="week">Неделя</option>
+                            <option value="month" selected>Месяц</option>
+                            <option value="custom">Кастомный</option>
+                        </select>
+                        <input type="date" class="date-input" id="dateFrom" value="2024-01-01">
+                        <span class="date-separator">до</span>
+                        <input type="date" class="date-input" id="dateTo" value="2024-12-31">
+                    </div>
+
+                    <!-- Поиск -->
+                    <input type="text" 
+                           placeholder="🔍 Поиск товаров..." 
+                           class="search-input-compact" 
+                           id="searchInput">
+
+                    <!-- Фильтр маркетплейса -->
+                    <select class="filter-select-compact" id="marketplaceFilter">
+                        <option value="all">Все площадки</option>
+                        <option value="wildberries">Wildberries</option>
+                        <option value="ozon">OZON</option>
+                    </select>
+
+                    <!-- Фильтр прибыльности -->
+                    <select class="filter-select-compact" id="profitabilityFilter">
+                        <option value="all">Все товары</option>
+                        <option value="profitable">Прибыльные</option>
+                        <option value="unprofitable">Убыточные</option>
+                    </select>
+
+                    <!-- Экспорт -->
+                    <button class="export-btn-compact" id="exportBtn">
+                        Экспорт
+                    </button>
+
+                    <!-- Мобильное меню -->
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                        ☰
+                    </button>
+                </div>
+
+                <!-- Счетчики товаров -->
+                <div class="products-stats">
+                    <div class="stat-item stat-profitable">
+                        <span>Прибыльные:</span>
+                        <span id="profitableCount">97</span>
+                    </div>
+                    <div class="stat-item stat-unprofitable">
+                        <span>Убыточные:</span>
+                        <span id="unprofitableCount">28</span>
+                    </div>
+                    <div class="stat-item products-count">
+                        <span id="totalCount">125</span>
+                        <span>товаров</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Мобильные фильтры -->
+            <div class="mobile-filters" id="mobileFilters">
+                <div class="mobile-filters-grid">
+                    <div class="period-group">
+                        <select class="period-select">
+                            <option value="today">Сегодня</option>
+                            <option value="yesterday">Вчера</option>
+                            <option value="week">Неделя</option>
+                            <option value="month" selected>Месяц</option>
+                            <option value="custom">Кастомный</option>
+                        </select>
+                    </div>
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                        <input type="date" class="date-input" value="2024-01-01">
+                        <span class="date-separator">до</span>
+                        <input type="date" class="date-input" value="2024-12-31">
+                    </div>
+                    <select class="filter-select-compact">
+                        <option value="all">Все площадки</option>
+                        <option value="wildberries">Wildberries</option>
+                        <option value="ozon">OZON</option>
+                    </select>
+                    <select class="filter-select-compact">
+                        <option value="all">Все товары</option>
+                        <option value="profitable">Прибыльные</option>
+                        <option value="unprofitable">Убыточные</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <main class="main">
+            <div class="container">
+                <div class="products-list" id="productsList">
+                    <!-- Товары будут генерироваться JS -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+JavaScript (обновления для script.js)
+javascript
+
+Копировать код
+// Добавляем в начало файла обработчики для новых элементов
+
+class ProductManager {
+    constructor() {
+        this.products = [...mockProducts];
+        this.filteredProducts = [...this.products];
+        this.currentFilters = {
+            period: 'month',
+            dateFrom: '2024-01-01',
+            dateTo: '2024-12-31',
+            search: '',
+            marketplace: 'all',
+            profitability: 'all'
+        };
+
+        this.init();
+    }
+
+    init() {
+        this.setupEventListeners();
+        this.updateStats();
+        this.render();
+    }
+
+    setupEventListeners() {
+        // Обработчик периода
+        const periodSelect = document.getElementById('periodSelect');
+        const dateFrom = document.getElementById('dateFrom');
+        const dateTo = document.getElementById('dateTo');
+
+        periodSelect.addEventListener('change', (e) => {
+            this.handlePeriodChange(e.target.value);
+        });
+
+        dateFrom.addEventListener('change', (e) => {
+            this.currentFilters.dateFrom = e.target.value;
+            this.currentFilters.period = 'custom';
+            periodSelect.value = 'custom';
+            this.applyFilters();
+        });
+
+        dateTo.addEventListener('change', (e) => {
+            this.currentFilters.dateTo = e.target.value;
+            this.currentFilters.period = 'custom';
+            periodSelect.value = 'custom';
+            this.applyFilters();
+        });
+
+        // Поиск
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (e) => {
+            this.currentFilters.search = e.target.value.toLowerCase();
+            this.applyFilters();
+        });
+
+        // Фильтр маркетплейса
+        const marketplaceFilter = document.getElementById('marketplaceFilter');
+        marketplaceFilter.addEventListener('change', (e) => {
+            this.currentFilters.marketplace = e.target.value;
+            this.applyFilters();
+        });
+
+        // Фильтр прибыльности
+        const profitabilityFilter = document.getElementById('profitabilityFilter');
+        profitabilityFilter.addEventListener('change', (e) => {
+            this.currentFilters.profitability = e.target.value;
+            this.applyFilters();
+        });
+
+        // Экспорт
+        const exportBtn = document.getElementById('exportBtn');
+        exportBtn.addEventListener('click', () => {
+            this.exportToExcel();
+        });
+
+        // Мобильное меню
+        const mobileToggle = document.getElementById('mobileMenuToggle');
+        const mobileFilters = document.getElementById('mobileFilters');
+
+        mobileToggle.addEventListener('click', () => {
+            mobileFilters.classList.toggle('open');
+        });
+
+        // Закрытие мобильного меню при клике вне его
+        document.addEventListener('click', (e) => {
+            if (!mobileToggle.contains(e.target) && !mobileFilters.contains(e.target)) {
+                mobileFilters.classList.remove('open');
+            }
+        });
+    }
+
+    handlePeriodChange(period) {
+        this.currentFilters.period = period;
+
+        const today = new Date();
+        const dateFrom = document.getElementById('dateFrom');
+        const dateTo = document.getElementById('dateTo');
+
+        switch(period) {
+            case 'today':
+                const todayStr = today.toISOString().split('T')[0];
+                dateFrom.value = todayStr;
+                dateTo.value = todayStr;
+                this.currentFilters.dateFrom = todayStr;
+                this.currentFilters.dateTo = todayStr;
+                break;
+
+            case 'yesterday':
+                const yesterday = new Date(today);
+                yesterday.setDate(yesterday.getDate() - 1);
+                const yesterdayStr = yesterday.
