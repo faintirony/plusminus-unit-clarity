@@ -138,8 +138,8 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
       <div className="bg-white hover:bg-gray-50 transition-colors duration-200 border-b border-gray-100 last:border-b-0">
       {/* Main card content - fixed grid layout */}
       <div className="px-4 py-3 grid gap-3 items-center min-h-[52px] 
-                     grid-cols-[32px_1fr_60px_60px_50px_32px_84px] 
-                     sm:grid-cols-[36px_1fr_70px_90px_70px_60px_100px_96px] 
+                     grid-cols-[32px_1fr_60px_60px_50px_50px_32px_84px] 
+                     sm:grid-cols-[36px_1fr_70px_90px_70px_70px_100px_96px] 
                      lg:grid-cols-[40px_1fr_80px_100px_80px_70px_120px_120px]
                      xl:grid-cols-[40px_1fr_80px_100px_80px_70px_120px_130px]">
         {/* Product Icon */}
@@ -170,7 +170,7 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
         </div>
 
         {/* Cost Price Column with Enhanced Inline Editing */}
-        <div className="hidden sm:flex flex-col items-center justify-center text-center relative">
+        <div className="flex flex-col items-center justify-center text-center relative">
           {isEditingCostPrice ? (
             <div className={`flex items-center gap-1 border-2 rounded px-2 py-1 shadow-sm ${
               product.costPrice === null || product.costPrice === undefined 
@@ -227,7 +227,7 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
         </div>
 
         {/* Margin Rub Column */}
-        <div className="flex flex-col items-center justify-center text-center">
+        <div className="hidden sm:flex flex-col items-center justify-center text-center">
           <div 
             className={cn(
               "text-sm font-bold", 
