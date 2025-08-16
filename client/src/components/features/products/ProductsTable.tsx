@@ -220,6 +220,26 @@ export default function ProductsTable({
                 <TableHead>Реклама</TableHead>
               )}
               
+              {columnVisibility.acquiringCost && (
+                <TableHead>Эквайринг/обработка платежей</TableHead>
+              )}
+              
+              {columnVisibility.returnCost && (
+                <TableHead>Стоимость возвратов</TableHead>
+              )}
+              
+              {columnVisibility.disposalCost && (
+                <TableHead>Утилизация товаров</TableHead>
+              )}
+              
+              {columnVisibility.penaltyCost && (
+                <TableHead>Штрафы от маркетплейса</TableHead>
+              )}
+              
+              {columnVisibility.otherCosts && (
+                <TableHead>Прочие расходы</TableHead>
+              )}
+              
               {columnVisibility.totalExpenses && (
                 <TableHead>
                   <div className="flex items-center cursor-pointer" onClick={() => handleSort('totalExpenses')}>
@@ -370,6 +390,36 @@ export default function ProductsTable({
                 {columnVisibility.advertisingCost && (
                   <TableCell className="text-gray-500">
                     {formatPrice(product.advertisingCost)}
+                  </TableCell>
+                )}
+                
+                {columnVisibility.acquiringCost && (
+                  <TableCell className="text-gray-500" data-testid={`product-acquiring-cost-${product.id}`}>
+                    {formatPrice(product.acquiringCost)}
+                  </TableCell>
+                )}
+                
+                {columnVisibility.returnCost && (
+                  <TableCell className="text-gray-500" data-testid={`product-return-cost-${product.id}`}>
+                    {formatPrice(product.returnCost)}
+                  </TableCell>
+                )}
+                
+                {columnVisibility.disposalCost && (
+                  <TableCell className="text-gray-500" data-testid={`product-disposal-cost-${product.id}`}>
+                    {formatPrice(product.disposalCost)}
+                  </TableCell>
+                )}
+                
+                {columnVisibility.penaltyCost && (
+                  <TableCell className="text-gray-500" data-testid={`product-penalty-cost-${product.id}`}>
+                    {formatPrice(product.penaltyCost)}
+                  </TableCell>
+                )}
+                
+                {columnVisibility.otherCosts && (
+                  <TableCell className="text-gray-500" data-testid={`product-other-costs-${product.id}`}>
+                    {formatPrice(product.otherCosts)}
                   </TableCell>
                 )}
                 

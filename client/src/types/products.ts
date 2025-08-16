@@ -12,6 +12,11 @@ export interface Product {
   commission?: number; // в копейках
   logisticsCost?: number; // в копейках
   advertisingCost?: number; // в копейках
+  acquiringCost?: number; // эквайринг/обработка платежей в копейках
+  returnCost?: number; // стоимость возвратов в копейках
+  disposalCost?: number; // утилизация товаров в копейках
+  penaltyCost?: number; // штрафы от маркетплейса в копейках
+  otherCosts?: number; // прочие расходы в копейках
   marginRub?: number; // рассчитываемое поле
   marginPercent?: number; // рассчитываемое поле
   isProfitable?: boolean; // рассчитываемое поле
@@ -54,6 +59,11 @@ export interface ColumnVisibility {
   commission: boolean;
   logisticsCost: boolean;
   advertisingCost: boolean;
+  acquiringCost: boolean;
+  returnCost: boolean;
+  disposalCost: boolean;
+  penaltyCost: boolean;
+  otherCosts: boolean;
   totalExpenses: boolean;
   marginRub: boolean;
   marginPercent: boolean;
