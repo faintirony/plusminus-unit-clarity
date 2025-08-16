@@ -257,7 +257,12 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
         </div>
 
         {/* Profitability Badge */}
-        <div className="flex justify-center items-center w-full">
+        <div className="flex flex-col justify-center items-center w-full bg-yellow-100 border-2 border-red-500 min-h-[40px]">
+          {/* DEBUG INFO */}
+          <div className="text-[8px] bg-blue-100 px-1 mb-1 rounded">
+            cost: {String(product.costPrice)} | profit: {String(product.isProfitable)}
+          </div>
+          
           {product.costPrice === null || product.costPrice === undefined ? (
             <div className="relative group">
               <div className="w-8 h-8 bg-gray-50 border border-gray-300 rounded-full flex items-center justify-center text-base font-bold text-gray-600 cursor-help hover:bg-gray-100 hover:border-gray-400 transition-colors">
@@ -270,12 +275,11 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
             </div>
           ) : (
             <span 
-              className={cn(
-                "px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide whitespace-nowrap text-center",
+              className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide whitespace-nowrap text-center ${
                 product.isProfitable === true
                   ? "bg-green-100 text-green-700" 
                   : "bg-red-100 text-red-700"
-              )}
+              }`}
               data-testid={`product-profitability-${product.id}`}
             >
               {product.isProfitable === true ? 'ПРИБЫЛЬ' : 'УБЫТОК'}
