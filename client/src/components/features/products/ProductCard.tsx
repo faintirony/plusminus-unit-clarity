@@ -140,7 +140,8 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
       <div className="px-4 py-3 grid gap-3 items-center min-h-[52px] 
                      grid-cols-[32px_1fr_60px_60px_50px_28px_84px] 
                      sm:grid-cols-[36px_1fr_70px_90px_70px_60px_140px_96px] 
-                     lg:grid-cols-[40px_1fr_80px_100px_80px_70px_160px_120px]">
+                     lg:grid-cols-[40px_1fr_80px_100px_80px_70px_180px_120px]
+                     xl:grid-cols-[45px_1fr_90px_110px_90px_75px_200px_140px]">
         {/* Product Icon */}
         <div className="flex items-center justify-center">
           <ProductImage name={product.name} />
@@ -256,7 +257,7 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
         </div>
 
         {/* Profitability Badge */}
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center w-full overflow-visible">
           {product.isProfitable === null ? (
             <div className="relative group">
               <div className="w-7 h-7 bg-gray-50 border border-gray-300 rounded-full flex items-center justify-center text-sm font-bold text-gray-600 cursor-help hover:bg-gray-100 hover:border-gray-400 transition-colors">
@@ -268,17 +269,20 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
               </div>
             </div>
           ) : (
-            <span 
-              className={cn(
-                "px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide whitespace-nowrap inline-block text-center min-w-max",
-                product.isProfitable === true
-                  ? "bg-green-100 text-green-700" 
-                  : "bg-red-100 text-red-700"
-              )}
-              data-testid={`product-profitability-${product.id}`}
-            >
-              {product.isProfitable === true ? 'ПРИБЫЛЬНЫЙ' : 'УБЫТОЧНЫЙ'}
-            </span>
+            <div className="flex justify-center items-center w-full">
+              <span 
+                className={cn(
+                  "px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wide whitespace-nowrap text-center flex items-center justify-center",
+                  product.isProfitable === true
+                    ? "bg-green-100 text-green-700" 
+                    : "bg-red-100 text-red-700"
+                )}
+                data-testid={`product-profitability-${product.id}`}
+                style={{ minWidth: 'fit-content' }}
+              >
+                {product.isProfitable === true ? 'ПРИБЫЛЬНЫЙ' : 'УБЫТОЧНЫЙ'}
+              </span>
+            </div>
           )}
         </div>
 
