@@ -19,7 +19,7 @@ export default function ProductsList({ products, onEdit, columnVisibility = {} }
   }
 
   return (
-    <div className="space-y-3" data-testid="products-list">
+    <div className="bg-gray-200 rounded-lg overflow-hidden" data-testid="products-list">
       {products.map((product) => (
         <ProductCard
           key={product.id}
