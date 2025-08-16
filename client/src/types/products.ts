@@ -17,9 +17,9 @@ export interface Product {
   disposalCost?: number; // утилизация товаров в копейках
   penaltyCost?: number; // штрафы от маркетплейса в копейках
   otherCosts?: number; // прочие расходы в копейках
-  marginRub?: number; // рассчитываемое поле
-  marginPercent?: number; // рассчитываемое поле
-  isProfitable?: boolean; // рассчитываемое поле
+  marginRub?: number | null; // рассчитываемое поле
+  marginPercent?: number | null; // рассчитываемое поле
+  isProfitable?: boolean | null; // рассчитываемое поле
   isActive: boolean;
   lastSyncedAt: string;
   createdAt: string;

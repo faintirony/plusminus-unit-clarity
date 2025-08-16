@@ -1,0 +1,360 @@
+Добавляем состояние "Себестоимость не указана" для товаров - это ключевая функция продукта, которая мотивирует селлеров заполнить критически важные данные для расчета прибыльности. Без себестоимости невозможно рассчитать маржу и определить прибыльность товара, поэтому нужно явно показать пользователю какие товары требуют внимания и дать простой способ заполнения данных.
+
+Код реализации:
+CSS (обновления для styles.css)
+css
+
+Копировать код
+/* Состояние "не указано" для себестоимости */
+.metric-value.not-specified {
+    color: #718096;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.metric-value.not-specified:hover {
+    background: #fff5d6;
+    border-color: #f59e0b;
+}
+
+/* Статус "Укажите себестоимость" */
+.profitability-badge.needs-cost {
+    background: #fef3c7;
+    color: #92400e;
+    animation: subtle-pulse 2s ease-in-out infinite;
+}
+
+@keyframes subtle-pulse {
+    0%, 100% { 
+        background-color: #fef3c7; 
+    }
+    50% { 
+        background-color: #fed7aa; 
+    }
+}
+
+/* Прочерки для неопределенных метрик */
+.metric-value.undefined {
+    color: #a0aec0;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+/* Счетчик товаров без себестоимости */
+.stat-needs-cost {
+    color: #f59e0b;
+    font-weight: 600;
+}
+
+/* Состояние редактирования "не указано" */
+.metric-value.editing.not-specified {
+    background: #fef3c7;
+    border-color: #f59e0b;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+}
+JavaScript (обновления для script.js)
+javascript
+
+Копировать код
+// Обновленные моковые данные с товарами без себестоимости
+const mockProducts = [
+    {
+        id: '1',
+        name: 'iPhone 14 Pro Max 256GB Space Black',
+        sellerSku: 'APL-IP14PM-256-SB',
+        marketplace: 'Wildberries',
+        category: 'Электроника',
+        brand: 'Apple',
+        subject: 'Смартфоны',
+        sku: '123456789',
+        barcode: '1234567890123',
+        salePrice: 89990,
+        costPrice: 75000, // Указана
+        totalExpenses: 12500,
+        marketplaceCommission: 4500,
+        logistics: 890,
+        acquiring: 900,
+        returnsCost: 1200,
+        utilization: 150,
+        fines: 0,
+        otherExpenses: 360,
+        advertising: 4500,
+        marginRub: 2490,
+        marginPercent: 2.8,
+        isProfitable: true
+    },
+    {
+        id: '2',
+        name: 'Кроссовки Nike Air Max 270 мужские черные 42',
+        sellerSku: 'NK-AM270-BLK-42',
+        marketplace: 'OZON',
+        category: 'Обувь',
+        brand: 'Nike',
+        subject: 'Кроссовки',
+        sku: '987654321',
+        barcode: '9876543210987',
+        salePrice: 8990,
+        costPrice: 4500, // Указана
+        totalExpenses: 2890,
+        marketplaceCommission: 1349,
+        logistics: 450,
+        acquiring: 90,
+        returnsCost: 300,
+        utilization: 50,
+        fines: 200,
+        otherExpenses: 150,
+        advertising: 650,
+        marginRub: 1600,
+        marginPercent: 17.8,
+        isProfitable: true
+    },
+    {
+        id: '3',
+        name: 'Платье женское летнее с цветочным принтом размер M',
+        sellerSku: 'DR-FL-SUM-M-01',
+        marketplace: 'Wildberries',
+        category: 'Одежда',
+        brand: 'NoName',
+        subject: 'Платья',
+        sku: '456789123',
+        barcode: '4567891234567',
+        salePrice: 2990,
+        costPrice: null, // НЕ УКАЗАНА
+        totalExpenses: 1850,
+        marketplaceCommission: 449,
+        logistics: 280,
+        acquiring: 30,
+        returnsCost: 180,
+        utilization: 20,
+        fines: 50,
+        otherExpenses: 90,
+        advertising: 750,
+        marginRub: null,
+        marginPercent: null,
+        isProfitable: null
+    },
+    {
+        id: '4',
+        name: 'Чехол для телефона силиконовый прозрачный iPhone 14',
+        sellerSku: 'CS-SIL-TR-IP14',
+        marketplace: 'OZON',
+        category: 'Аксессуары',
+        brand: 'Generic',
+        subject: 'Чехлы',
+        sku: '789123456',
+        barcode: '7891234567890',
+        salePrice: 590,
+        costPrice: null, // НЕ УКАЗАНА
+        totalExpenses: 385,
+        marketplaceCommission: 89,
+        logistics: 95,
+        acquiring: 6,
+        returnsCost: 30,
+        utilization: 5,
+        otherExpenses: 15,
+        advertising: 225,
+        marginRub: null,
+        marginPercent: null,
+        isProfitable: null
+    },
+    {
+        id: '5',
+        name: 'Наушники беспроводные TWS с кейсом зарядки',
+        sellerSku: 'HP-TWS-WL-001',
+        marketplace: 'Wildberries',
+        category: 'Электроника',
+        brand: 'TechBrand',
+        subject: 'Наушники',
+        sku: '321654987',
+        barcode: '3216549876543',
+        salePrice: 1490,
+        costPrice: 650, // Указана
+        totalExpenses: 1120,
+        marketplaceCommission: 223,
+        logistics: 180,
+        acquiring: 15,
+        returnsCost: 90,
+        utilization: 10,
+        otherExpenses: 25,
+        advertising: 577,
+        marginRub: -280,
+        marginPercent: -18.8,
+        isProfitable: false
+    }
+];
+
+// Обновляем класс ProductManager
+
+// Обновляем метод updateStats для подсчета товаров без себестоимости
+updateStats() {
+    const profitable = this.filteredProducts.filter(p => p.isProfitable === true).length;
+    const unprofitable = this.filteredProducts.filter(p => p.isProfitable === false).length;
+    const needsCost = this.filteredProducts.filter(p => p.costPrice === null).length;
+    const total = this.filteredProducts.length;
+
+    document.getElementById('profitableCount').textContent = profitable;
+    document.getElementById('unprofitableCount').textContent = unprofitable;
+    document.getElementById('needsCostCount').textContent = needsCost;
+    document.getElementById('totalCount').textContent = total;
+}
+
+// Обновляем метод renderProducts
+renderProducts() {
+    const container = document.getElementById('productsList');
+
+    if (this.filteredProducts.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state">
+                <h3>Товары не найдены</h3>
+                <p>Попробуйте изменить параметры поиска или фильтры</p>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = this.filteredProducts.map(product => `
+        <div class="product-card" data-product-id="${product.id}">
+            <div class="card-content">
+                <!-- Иконка товара -->
+                <div class="product-image">
+                    ${this.getProductIcon(product.category)}
+                </div>
+
+                <!-- Название + площадка -->
+                <div class="product-info">
+                    <div class="product-title" title="${product.name}">
+                        ${product.name}
+                    </div>
+                    <div class="product-marketplace">
+                        ${this.getMarketplaceName(product.marketplace)}
+                    </div>
+                </div>
+
+                <!-- Цена продажи -->
+                <div class="metric-column price">
+                    <div class="metric-value">${this.formatCurrency(product.salePrice)}</div>
+                    <div class="metric-label">Цена</div>
+                </div>
+
+                <!-- Себестоимость -->
+                <div class="metric-column cost-price-column">
+                    <div class="metric-value ${product.costPrice === null ? 'editable not-specified' : 'editable'}" 
+                         id="cost-${product.id}"
+                         onclick="productManager.startEditCostPrice('${product.id}')">
+                        ${product.costPrice === null ? 
+                            '<span class="cost-value">Не указано</span>' : 
+                            `<span class="cost-value">${this.formatCurrency(product.costPrice)}</span>`}
+                        <span class="edit-icon">✏️</span>
+                    </div>
+                    <div class="metric-label">Себестоимость</div>
+                </div>
+
+                <!-- Маржа в рублях -->
+                <div class="metric-column margin-rub">
+                    <div class="metric-value ${this.getMarginClass(product.marginRub)}" id="margin-rub-${product.id}">
+                        ${product.marginRub === null ? '—' : this.formatCurrency(product.marginRub)}
+                    </div>
+                    <div class="metric-label">Маржа ₽</div>
+                </div>
+
+                <!-- Маржа в процентах -->
+                <div class="metric-column margin-percent">
+                    <div class="metric-value ${this.getMarginClass(product.marginPercent)}" id="margin-percent-${product.id}">
+                        ${product.marginPercent === null ? '—' : `${product.marginPercent.toFixed(1)}%`}
+                    </div>
+                    <div class="metric-label">Маржа %</div>
+                </div>
+
+                <!-- Статус прибыльности -->
+                <div class="profitability-column">
+                    <span class="profitability-badge ${this.getProfitabilityClass(product)}" id="status-${product.id}">
+                        ${this.getProfitabilityText(product)}
+                    </span>
+                </div>
+
+                <!-- Табы -->
+                <div class="product-tabs">
+                    <button class="tab-button" onclick="productManager.toggleTab('${product.id}', 'finances')">
+                        <span class="tab-icon">💰</span>
+                        <span class="tab-text">Финансы</span>
+                        <div class="tooltip">Финансы</div>
+                    </button>
+                    <button class="tab-button" onclick="productManager.toggleTab('${product.id}', 'expenses')">
+                        <span class="tab-icon">📊</span>
+                        <span class="tab-text">Расходы</span>
+                        <div class="tooltip">Расходы</div>
+                    </button>
+                    <button class="tab-button" onclick="productManager.toggleTab('${product.id}', 'product')">
+                        <span class="tab-icon">📦</span>
+                        <span class="tab-text">О товаре</span>
+                        <div class="tooltip">О товаре</div>
+                    </button>
+                </div>
+            </div>
+
+            ${this.renderTabsContent(product)}
+        </div>
+    `).join('');
+}
+
+// Новые вспомогательные методы
+getMarginClass(margin) {
+    if (margin === null) return 'undefined';
+    return margin >= 0 ? 'positive' : 'negative';
+}
+
+getProfitabilityClass(product) {
+    if (product.costPrice === null) return 'needs-cost';
+    return product.isProfitable ? 'profitable' : 'unprofitable';
+}
+
+getProfitabilityText(product) {
+    if (product.costPrice === null) return 'УКАЖИТЕ СЕБЕСТОИМОСТЬ';
+    return product.isProfitable ? 'ПРИБЫЛЬНЫЙ' : 'УБЫТОЧНЫЙ';
+}
+
+// Обновляем метод recalculateProductMetrics
+recalculateProductMetrics(product) {
+    if (product.costPrice === null) {
+        product.marginRub = null;
+        product.marginPercent = null;
+        product.isProfitable = null;
+        return;
+    }
+
+    const totalCosts = product.costPrice + product.totalExpenses;
+    product.marginRub = product.salePrice - totalCosts;
+    product.marginPercent = product.salePrice > 0 ? (product.marginRub / product.salePrice) * 100 : 0;
+    product.isProfitable = product.marginRub > 0;
+}
+
+// Обновляем метод updateProductDisplay
+updateProductDisplay(productId) {
+    const product = this.products.find(p => p.id === productId);
+    if (!product) return;
+
+    // Обновляем себестоимость
+    const costElement = document.getElementById(`cost-${productId}`);
+    if (costElement) {
+        costElement.innerHTML = `
+            <span class="cost-value">${product.costPrice === null ? 'Не указано' : this.formatCurrency(product.costPrice)}</span>
+            <span class="edit-icon">✏️</span>
+        `;
+        costElement.classList.remove('editing', 'not-specified');
+        if (product.costPrice === null) {
+            costElement.classList.add('not-specified');
+        }
+    }
+
+    // Обновляем маржу в рублях
+    const marginRubElement = document.getElementById(`margin-rub-${productId}`);
+    if (marginRubElement) {
+        marginRubElement.textContent = product.marginRub === null ? '—' : this.formatCurrency(product.marginRub);
+        marginRubElement.className = `metric-value ${this.getMarginClass(product.marginRub)}`;
+    }
+
+    // Обновляем маржу в процентах
+    const marginPercentElement = document.getElementById(`margin-percent-${productId}`);
+    if (marginPercentElement)
+
+

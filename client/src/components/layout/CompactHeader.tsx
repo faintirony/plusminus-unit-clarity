@@ -13,9 +13,16 @@ interface CompactHeaderProps {
   onExport: () => void;
   isExporting?: boolean;
   stats: {
-    total: number;
-    profitable: number;
-    unprofitable: number;
+    totalProducts: number;
+    profitableProducts: number;
+    unprofitableProducts: number;
+    needsCostPrice: number;
+    displayedCount: number;
+    totalOrders: number;
+    totalPurchases: number;
+    totalRevenue: number;
+    totalExpenses: number;
+    totalMargin: number;
   };
 }
 
@@ -190,18 +197,26 @@ export default function CompactHeader({
             <div className="flex items-center gap-1">
               <span className="text-green-600 font-medium">Прибыльные:</span>
               <span className="font-semibold" data-testid="profitable-count">
-                {stats.profitable}
+                {stats.profitableProducts}
               </span>
             </div>
             <div className="flex items-center gap-1">
               <span className="text-red-600 font-medium">Убыточные:</span>
               <span className="font-semibold" data-testid="unprofitable-count">
-                {stats.unprofitable}
+                {stats.unprofitableProducts}
               </span>
             </div>
+            {stats.needsCostPrice > 0 && (
+              <div className="flex items-center gap-1 bg-yellow-50 px-2 py-1 rounded border border-yellow-200">
+                <span className="text-yellow-600 font-medium">Требуют себестоимость:</span>
+                <span className="font-semibold text-yellow-700 animate-pulse" data-testid="needs-cost-count">
+                  {stats.needsCostPrice}
+                </span>
+              </div>
+            )}
             <div className="flex items-center gap-1">
               <span className="font-bold text-gray-900" data-testid="total-count">
-                {stats.total}
+                {stats.displayedCount}
               </span>
               <span className="text-gray-600">товаров</span>
             </div>
@@ -294,13 +309,18 @@ export default function CompactHeader({
             {/* Mobile Stats */}
             <div className="flex items-center justify-center gap-4 text-sm mt-3 pt-2 border-t border-gray-100">
               <span className="text-green-600">
-                Прибыльные: <strong>{stats.profitable}</strong>
+                Прибыльные: <strong>{stats.profitableProducts}</strong>
               </span>
               <span className="text-red-600">
-                Убыточные: <strong>{stats.unprofitable}</strong>
+                Убыточные: <strong>{stats.unprofitableProducts}</strong>
               </span>
+              {stats.needsCostPrice > 0 && (
+                <span className="text-yellow-600">
+                  Без цены: <strong>{stats.needsCostPrice}</strong>
+                </span>
+              )}
               <span className="text-gray-900">
-                <strong>{stats.total}</strong> товаров
+                <strong>{stats.displayedCount}</strong> товаров
               </span>
             </div>
           </div>

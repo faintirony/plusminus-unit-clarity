@@ -166,7 +166,11 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
         {/* Cost Price Column with Enhanced Inline Editing */}
         <div className="flex flex-col items-center justify-center text-center min-w-[85px] flex-shrink-0 relative">
           {isEditingCostPrice ? (
-            <div className="flex items-center gap-1 bg-orange-50 border-2 border-orange-300 rounded px-2 py-1 shadow-sm">
+            <div className={`flex items-center gap-1 border-2 rounded px-2 py-1 shadow-sm ${
+              product.costPrice === null || product.costPrice === undefined 
+                ? 'bg-yellow-50 border-yellow-300' 
+                : 'bg-orange-50 border-orange-300'
+            }`}>
               <input
                 type="number"
                 value={costPriceValue}
@@ -196,11 +200,20 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
             </div>
           ) : (
             <div 
-              className="flex items-center gap-1 text-sm font-bold text-gray-900 cursor-pointer hover:bg-gray-100 px-2 py-1 rounded transition-colors border border-transparent hover:border-gray-200 group"
+              className={`flex items-center gap-1 text-sm font-bold cursor-pointer px-2 py-1 rounded transition-colors border group ${
+                product.costPrice === null || product.costPrice === undefined
+                  ? 'text-gray-500 italic hover:bg-yellow-50 border-transparent hover:border-yellow-300'
+                  : 'text-gray-900 hover:bg-gray-100 border-transparent hover:border-gray-200'
+              }`}
               onClick={handleCostPriceEdit}
               data-testid={`product-cost-price-${product.id}`}
             >
-              <span>{formatPrice(product.costPrice || 0)}</span>
+              <span>
+                {product.costPrice === null || product.costPrice === undefined 
+                  ? 'Не указано' 
+                  : formatPrice(product.costPrice)
+                }
+              </span>
               <span className="text-[10px] text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity">✏️</span>
             </div>
           )}
@@ -210,10 +223,14 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
         {/* Margin Rub Column */}
         <div className="flex flex-col items-center justify-center text-center min-w-[75px] flex-shrink-0">
           <div 
-            className={cn("text-sm font-bold", (product.marginRub || 0) >= 0 ? "text-green-600" : "text-red-600")} 
+            className={cn(
+              "text-sm font-bold", 
+              product.marginRub === null ? "text-gray-400" :
+              (product.marginRub >= 0 ? "text-green-600" : "text-red-600")
+            )} 
             data-testid={`product-margin-rub-${product.id}`}
           >
-            {formatPrice(product.marginRub || 0)}
+            {product.marginRub === null ? "—" : formatPrice(product.marginRub)}
           </div>
           <div className="text-[9px] text-gray-400 uppercase tracking-wide font-medium">МАРЖА ₽</div>
         </div>
@@ -221,10 +238,14 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
         {/* Margin Percent Column */}
         <div className="flex flex-col items-center justify-center text-center min-w-[65px] flex-shrink-0">
           <div 
-            className={cn("text-sm font-bold", (product.marginPercent || 0) >= 0 ? "text-green-600" : "text-red-600")} 
+            className={cn(
+              "text-sm font-bold", 
+              product.marginPercent === null ? "text-gray-400" :
+              (product.marginPercent >= 0 ? "text-green-600" : "text-red-600")
+            )} 
             data-testid={`product-margin-percent-${product.id}`}
           >
-            {(product.marginPercent || 0).toFixed(1)}%
+            {product.marginPercent === null ? "—" : `${product.marginPercent.toFixed(1)}%`}
           </div>
           <div className="text-[9px] text-gray-400 uppercase tracking-wide font-medium">МАРЖА %</div>
         </div>
@@ -234,13 +255,15 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
           <span 
             className={cn(
               "px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide whitespace-nowrap",
-              isProfitable 
-                ? "bg-green-100 text-green-700" 
-                : "bg-red-100 text-red-700"
+              product.isProfitable === null 
+                ? "bg-yellow-100 text-yellow-700 animate-pulse" 
+                : isProfitable 
+                  ? "bg-green-100 text-green-700" 
+                  : "bg-red-100 text-red-700"
             )}
             data-testid={`product-profitability-${product.id}`}
           >
-            {isProfitable ? 'ПРИБЫЛЬНЫЙ' : 'УБЫТОЧНЫЙ'}
+            {product.isProfitable === null ? 'УКАЖИТЕ СЕБЕСТОИМОСТЬ' : (isProfitable ? 'ПРИБЫЛЬНЫЙ' : 'УБЫТОЧНЫЙ')}
           </span>
         </div>
 

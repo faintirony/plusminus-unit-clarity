@@ -6,7 +6,7 @@ const toKopecks = (rubles: number) => Math.round(rubles * 100);
 // Функция для расчета маржи и дополнительных полей
 const calculateMargin = (product: Partial<Product>) => {
   const price = product.currentPrice || 0;
-  const cost = product.costPrice || 0;
+  const cost = product.costPrice;
   const commission = product.commission || 0;
   const logistics = product.logisticsCost || 0;
   const advertising = product.advertisingCost || 0;
@@ -16,6 +16,19 @@ const calculateMargin = (product: Partial<Product>) => {
   const disposal = product.disposalCost || 0;
   const penalty = product.penaltyCost || 0;
   const other = product.otherCosts || 0;
+  
+  // If cost price is not specified, return null values
+  if (cost === null || cost === undefined) {
+    return {
+      marginRub: null,
+      marginPercent: null,
+      isProfitable: null,
+      totalExpenses: commission + logistics + advertising + acquiring + returnCost + disposal + penalty + other,
+      ordersCount: Math.floor(Math.random() * 50) + 1,
+      purchasesCount: Math.floor(Math.random() * 40) + 1,
+      revenue: price * (Math.floor(Math.random() * 30) + 1)
+    };
+  }
   
   const totalExpenses = cost + commission + logistics + advertising + acquiring + returnCost + disposal + penalty + other;
   const marginRub = price - totalExpenses;
@@ -220,6 +233,83 @@ export const mockProducts: Product[] = [
     }),
     isActive: true,
     lastSyncedAt: new Date(Date.now() - 30 * 60 * 1000).toISOString(),
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  // Products without cost price specified
+  {
+    id: "6",
+    userId: "user1",
+    marketplace: "wildberries",
+    sku: "WB111222333",
+    name: "Платье женское летнее с цветочным принтом",
+    imageUrl: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=80&h=80&fit=crop",
+    category: "Одежда",
+    brand: "SummerStyle",
+    subject: "Платье",
+    barcode: "2000000111222",
+    currentPrice: toKopecks(2990),
+    costPrice: null, // НЕ УКАЗАНА
+    commission: toKopecks(449),
+    logisticsCost: toKopecks(280),
+    advertisingCost: toKopecks(750),
+    acquiringCost: toKopecks(30),
+    returnCost: toKopecks(180),
+    disposalCost: toKopecks(20),
+    penaltyCost: toKopecks(50),
+    otherCosts: toKopecks(90),
+    ...calculateMargin({
+      currentPrice: toKopecks(2990),
+      costPrice: null,
+      commission: toKopecks(449),
+      logisticsCost: toKopecks(280),
+      advertisingCost: toKopecks(750),
+      acquiringCost: toKopecks(30),
+      returnCost: toKopecks(180),
+      disposalCost: toKopecks(20),
+      penaltyCost: toKopecks(50),
+      otherCosts: toKopecks(90),
+    }),
+    isActive: true,
+    lastSyncedAt: new Date(Date.now() - 15 * 60 * 1000).toISOString(),
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
+    id: "7",
+    userId: "user1",
+    marketplace: "ozon",
+    sku: "OZ444555666",
+    name: "Чехол для телефона силиконовый прозрачный iPhone 14",
+    imageUrl: "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=80&h=80&fit=crop",
+    category: "Аксессуары",
+    brand: "ClearCase",
+    subject: "Чехол",
+    barcode: "2000000444555",
+    currentPrice: toKopecks(590),
+    costPrice: null, // НЕ УКАЗАНА
+    commission: toKopecks(89),
+    logisticsCost: toKopecks(95),
+    advertisingCost: toKopecks(225),
+    acquiringCost: toKopecks(6),
+    returnCost: toKopecks(30),
+    disposalCost: toKopecks(5),
+    penaltyCost: toKopecks(0),
+    otherCosts: toKopecks(15),
+    ...calculateMargin({
+      currentPrice: toKopecks(590),
+      costPrice: null,
+      commission: toKopecks(89),
+      logisticsCost: toKopecks(95),
+      advertisingCost: toKopecks(225),
+      acquiringCost: toKopecks(6),
+      returnCost: toKopecks(30),
+      disposalCost: toKopecks(5),
+      penaltyCost: toKopecks(0),
+      otherCosts: toKopecks(15),
+    }),
+    isActive: true,
+    lastSyncedAt: new Date(Date.now() - 45 * 60 * 1000).toISOString(),
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   }
