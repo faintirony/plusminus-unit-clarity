@@ -138,10 +138,10 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
       <div className="bg-white hover:bg-gray-50 transition-colors duration-200 border-b border-gray-100 last:border-b-0">
       {/* Main card content - fixed grid layout */}
       <div className="px-4 py-3 grid gap-3 items-center min-h-[52px] 
-                     grid-cols-[32px_1fr_60px_60px_50px_28px_84px] 
+                     grid-cols-[32px_1fr_60px_60px_50px_32px_84px] 
                      sm:grid-cols-[36px_1fr_70px_90px_70px_60px_140px_96px] 
-                     lg:grid-cols-[40px_1fr_80px_100px_80px_70px_auto_120px]
-                     xl:grid-cols-[45px_1fr_90px_110px_90px_75px_auto_140px]">
+                     lg:grid-cols-[40px_1fr_80px_100px_80px_70px_140px_120px]
+                     xl:grid-cols-[40px_1fr_80px_100px_80px_70px_150px_130px]">
         {/* Product Icon */}
         <div className="flex items-center justify-center">
           <ProductImage name={product.name} />
@@ -257,32 +257,29 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
         </div>
 
         {/* Profitability Badge */}
-        <div className="flex justify-center items-center w-full overflow-visible">
-          {product.isProfitable === null ? (
+        <div className="flex justify-center items-center w-full">
+          {product.costPrice === null || product.costPrice === undefined ? (
             <div className="relative group">
-              <div className="w-7 h-7 bg-gray-50 border border-gray-300 rounded-full flex items-center justify-center text-sm font-bold text-gray-600 cursor-help hover:bg-gray-100 hover:border-gray-400 transition-colors">
+              <div className="w-8 h-8 bg-gray-50 border border-gray-300 rounded-full flex items-center justify-center text-base font-bold text-gray-600 cursor-help hover:bg-gray-100 hover:border-gray-400 transition-colors">
                 ?
-                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none">
+                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-800 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none">
                   Укажите себестоимость
                   <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-800"></div>
                 </div>
               </div>
             </div>
           ) : (
-            <div className="flex justify-center items-center w-full">
-              <span 
-                className={cn(
-                  "px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wide whitespace-nowrap text-center flex items-center justify-center",
-                  product.isProfitable === true
-                    ? "bg-green-100 text-green-700" 
-                    : "bg-red-100 text-red-700"
-                )}
-                data-testid={`product-profitability-${product.id}`}
-                className="text-[10px] px-3 py-1"
-              >
-                {product.isProfitable === true ? 'ПРИБЫЛЬНЫЙ' : 'УБЫТОЧНЫЙ'}
-              </span>
-            </div>
+            <span 
+              className={cn(
+                "px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide whitespace-nowrap text-center min-w-fit",
+                product.isProfitable === true
+                  ? "bg-green-100 text-green-700" 
+                  : "bg-red-100 text-red-700"
+              )}
+              data-testid={`product-profitability-${product.id}`}
+            >
+              {product.isProfitable === true ? 'ПРИБЫЛЬНЫЙ' : 'УБЫТОЧНЫЙ'}
+            </span>
           )}
         </div>
 
