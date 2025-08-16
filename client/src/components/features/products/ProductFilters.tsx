@@ -52,68 +52,6 @@ export default function ProductFiltersComponent({ filters, setFilters, onApplyPr
           </Select>
         </div>
         
-        {/* Margin Filter */}
-        <div className="flex items-center space-x-2">
-          <label className="text-sm font-medium text-gray-700">Маржа:</label>
-          <Input
-            type="number"
-            placeholder="От"
-            className="w-20"
-            value={filters.marginFrom || ""}
-            onChange={(e) => setFilters({ ...filters, marginFrom: e.target.value ? Number(e.target.value) : undefined })}
-            data-testid="margin-from-input"
-          />
-          <span className="text-gray-500">-</span>
-          <Input
-            type="number"
-            placeholder="До"
-            className="w-20"
-            value={filters.marginTo || ""}
-            onChange={(e) => setFilters({ ...filters, marginTo: e.target.value ? Number(e.target.value) : undefined })}
-            data-testid="margin-to-input"
-          />
-          <span className="text-sm text-gray-500">%</span>
-        </div>
-        
-        {/* Filter Presets */}
-        <div className="flex items-center space-x-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => onApplyPreset("unprofitable")}
-            className={`px-3 py-1 text-xs font-medium rounded-full ${
-              filters.profitability === "unprofitable" 
-                ? "filter-active text-blue-600 bg-blue-50 border-blue-500" 
-                : "text-gray-600 bg-gray-100 hover:bg-gray-200"
-            }`}
-            data-testid="preset-unprofitable"
-          >
-            Убыточные
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => onApplyPreset("high-margin")}
-            className={`px-3 py-1 text-xs font-medium rounded-full ${
-              filters.marginFrom === 15 
-                ? "filter-active text-blue-600 bg-blue-50 border-blue-500" 
-                : "text-gray-600 bg-gray-100 hover:bg-gray-200"
-            }`}
-            data-testid="preset-high-margin"
-          >
-            Высокая маржа
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => onApplyPreset("new-products")}
-            className="px-3 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded-full hover:bg-gray-200"
-            data-testid="preset-new-products"
-          >
-            Новые товары
-          </Button>
-        </div>
-        
         {/* Reset Filters */}
         <Button
           variant="ghost"
@@ -126,23 +64,7 @@ export default function ProductFiltersComponent({ filters, setFilters, onApplyPr
           Сбросить фильтры
         </Button>
       </div>
-      
-      {/* Stats */}
-      <div className="mt-4 flex items-center space-x-6 text-sm text-gray-500">
-        <div>
-          Показано <span className="font-medium text-gray-900">{stats.displayedCount}</span> из <span className="font-medium text-gray-900">{stats.totalProducts}</span> товаров
-        </div>
-        <div className="flex items-center space-x-4 text-xs">
-          <div className="flex items-center">
-            <div className="w-3 h-3 bg-green-100 rounded-sm mr-1"></div>
-            <span>Прибыльных: <span className="font-medium">{stats.profitableProducts}</span></span>
-          </div>
-          <div className="flex items-center">
-            <div className="w-3 h-3 bg-red-100 rounded-sm mr-1"></div>
-            <span>Убыточных: <span className="font-medium">{stats.unprofitableProducts}</span></span>
-          </div>
-        </div>
-      </div>
+
     </div>
   );
 }
