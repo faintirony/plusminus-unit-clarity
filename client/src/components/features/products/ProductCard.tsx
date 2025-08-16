@@ -227,7 +227,7 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
         </div>
 
         {/* Margin Rub Column */}
-        <div className="hidden sm:flex flex-col items-center justify-center text-center">
+        <div className="flex flex-col items-center justify-center text-center">
           <div 
             className={cn(
               "text-sm font-bold", 
@@ -257,12 +257,7 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
         </div>
 
         {/* Profitability Badge */}
-        <div className="flex flex-col justify-center items-center w-full bg-yellow-100 border-2 border-red-500 min-h-[40px]">
-          {/* DEBUG INFO */}
-          <div className="text-[8px] bg-blue-100 px-1 mb-1 rounded">
-            cost: {String(product.costPrice)} | profit: {String(product.isProfitable)}
-          </div>
-          
+        <div className="flex justify-center items-center w-full">
           {product.costPrice === null || product.costPrice === undefined ? (
             <div className="relative group">
               <div className="w-8 h-8 bg-gray-50 border border-gray-300 rounded-full flex items-center justify-center text-base font-bold text-gray-600 cursor-help hover:bg-gray-100 hover:border-gray-400 transition-colors">
