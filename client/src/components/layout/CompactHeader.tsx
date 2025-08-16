@@ -207,9 +207,9 @@ export default function CompactHeader({
               </span>
             </div>
             {stats.needsCostPrice > 0 && (
-              <div className="flex items-center gap-1 bg-yellow-50 px-2 py-1 rounded border border-yellow-200">
-                <span className="text-yellow-600 font-medium">Требуют себестоимость:</span>
-                <span className="font-semibold text-yellow-700 animate-pulse" data-testid="needs-cost-count">
+              <div className="flex items-center gap-1">
+                <span className="text-gray-600 font-medium">Без себестоимости:</span>
+                <span className="font-semibold text-gray-600" data-testid="needs-cost-count">
                   {stats.needsCostPrice}
                 </span>
               </div>
@@ -315,8 +315,8 @@ export default function CompactHeader({
                 Убыточные: <strong>{stats.unprofitableProducts}</strong>
               </span>
               {stats.needsCostPrice > 0 && (
-                <span className="text-yellow-600">
-                  Без цены: <strong>{stats.needsCostPrice}</strong>
+                <span className="text-gray-600">
+                  Без себестоимости: <strong>{stats.needsCostPrice}</strong>
                 </span>
               )}
               <span className="text-gray-900">

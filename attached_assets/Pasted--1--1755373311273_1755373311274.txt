@@ -1,0 +1,185 @@
+Предлагаемые изменения:
+1. Статус без себестоимости:
+Вместо: [УКАЖИТЕ СЕБЕСТОИМОСТЬ]
+Делаем: [?] с тултипом "Укажите себестоимость"
+2. Счетчик в хедере (без выделения):
+
+Копировать код
+Прибыльные: 97    Убыточные: 28    Без себестоимости: 2    125 товаров
+                                    ↑ обычный цвет текста
+Код обновлений:
+CSS (обновления)
+css
+
+Копировать код
+/* Статус "?" для товаров без себестоимости */
+.profitability-badge.needs-cost {
+    background: #f7fafc;
+    color: #4a5568;
+    border: 1px solid #e2e8f0;
+    font-size: 14px;
+    font-weight: 700;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    position: relative;
+    cursor: help;
+}
+
+.profitability-badge.needs-cost:hover {
+    background: #edf2f7;
+    border-color: #cbd5e0;
+}
+
+/* Тултип для статуса */
+.profitability-badge.needs-cost .status-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2d3748;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    z-index: 10;
+    margin-bottom: 6px;
+}
+
+.profitability-badge.needs-cost .status-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #2d3748;
+}
+
+.profitability-badge.needs-cost:hover .status-tooltip {
+    opacity: 1;
+}
+
+/* Убираем анимацию пульса */
+.profitability-badge.needs-cost {
+    animation: none;
+}
+
+/* Счетчик без выделения */
+.stat-needs-cost {
+    color: #4a5568; /* Обычный цвет вместо желтого */
+    font-weight: 500;
+}
+
+/* Убираем пульсацию */
+@keyframes subtle-pulse {
+    /* Удаляем анимацию */
+}
+JavaScript (обновления)
+javascript
+
+Копировать код
+// Обновляем метод getProfitabilityText
+getProfitabilityText(product) {
+    if (product.costPrice === null) return '?';
+    return product.isProfitable ? 'ПРИБЫЛЬНЫЙ' : 'УБЫТОЧНЫЙ';
+}
+
+// Обновляем метод renderProducts (только секция статуса)
+// В секции статуса прибыльности:
+<!-- Статус прибыльности -->
+<div class="profitability-column">
+    <span class="profitability-badge ${this.getProfitabilityClass(product)}" id="status-${product.id}">
+        ${this.getProfitabilityText(product)}
+        ${product.costPrice === null ? '<div class="status-tooltip">Укажите себестоимость</div>' : ''}
+    </span>
+</div>
+
+// Обновляем renderTabsContent для консистентности в табе "Финансы"
+renderTabsContent(product) {
+    return `
+        <!-- Контент табов -->
+        <div class="tab-content" id="finances-${product.id}">
+            <div class="tab-details">
+                <div class="detail-item">
+                    <span class="detail-label">Себестоимость</span>
+                    <span class="detail-value ${product.costPrice === null ? 'editable not-specified' : 'editable'}" 
+                          onclick="productManager.startEditCostPrice('${product.id}')">
+                        ${product.costPrice === null ? 'Не указано ✏️' : `${this.formatCurrency(product.costPrice)} ✏️`}
+                    </span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Все расходы</span>
+                    <span class="detail-value">${this.formatCurrency(product.totalExpenses)}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Комиссия МП</span>
+                    <span class="detail-value">${this.formatCurrency(product.marketplaceCommission)}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Маржа руб</span>
+                    <span class="detail-value ${this.getMarginClass(product.marginRub)}">
+                        ${product.marginRub === null ? '—' : this.formatCurrency(product.marginRub)}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Остальные табы остаются без изменений -->
+    `;
+}
+
+// Обновляем updateProductDisplay для статуса
+updateProductDisplay(productId) {
+    const product = this.products.find(p => p.id === productId);
+    if (!product) return;
+
+    // ... существующий код для себестоимости и маржи ...
+
+    // Обновляем статус
+    const statusElement = document.getElementById(`status-${productId}`);
+    if (statusElement) {
+        statusElement.className = `profitability-badge ${this.getProfitabilityClass(product)}`;
+        statusElement.innerHTML = `
+            ${this.getProfitabilityText(product)}
+            ${product.costPrice === null ? '<div class="status-tooltip">Укажите себестоимость</div>' : ''}
+        `;
+    }
+}
+HTML (обновление в header)
+html
+
+Копировать код
+<!-- Счетчики товаров без желтого выделения -->
+<div class="products-stats">
+    <div class="stat-item stat-profitable">
+        <span>Прибыльные:</span>
+        <span id="profitableCount">97</span>
+    </div>
+    <div class="stat-item stat-unprofitable">
+        <span>Убыточные:</span>
+        <span id="unprofitableCount">28</span>
+    </div>
+    <div class="stat-item stat-needs-cost">
+        <span>Без себестоимости:</span>
+        <span id="needsCostCount">2</span>
+    </div>
+    <div class="stat-item products-count">
+        <span id="totalCount">125</span>
+        <span>товаров</span>
+    </div>
+</div>
+Результат:
+- Компактный знак ? в круге вместо длинного текста
+- Информативный тултип при ховере
+- Таблица не "едет"
+- Счетчик в хедере без яркого выделения
+- Консистентность во всех табах

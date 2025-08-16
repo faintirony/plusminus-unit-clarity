@@ -252,19 +252,29 @@ export default function ProductCard({ product, onEdit, onUpdateProduct, columnVi
 
         {/* Profitability Badge */}
         <div className="flex-shrink-0 mx-2 hidden sm:block">
-          <span 
-            className={cn(
-              "px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide whitespace-nowrap",
-              product.isProfitable === null 
-                ? "bg-yellow-100 text-yellow-700 animate-pulse" 
-                : isProfitable 
+          {product.isProfitable === null ? (
+            <div className="relative group">
+              <div className="w-7 h-7 bg-gray-50 border border-gray-300 rounded-full flex items-center justify-center text-sm font-bold text-gray-600 cursor-help hover:bg-gray-100 hover:border-gray-400 transition-colors">
+                ?
+                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none">
+                  Укажите себестоимость
+                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-800"></div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <span 
+              className={cn(
+                "px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide whitespace-nowrap",
+                isProfitable 
                   ? "bg-green-100 text-green-700" 
                   : "bg-red-100 text-red-700"
-            )}
-            data-testid={`product-profitability-${product.id}`}
-          >
-            {product.isProfitable === null ? 'УКАЖИТЕ СЕБЕСТОИМОСТЬ' : (isProfitable ? 'ПРИБЫЛЬНЫЙ' : 'УБЫТОЧНЫЙ')}
-          </span>
+              )}
+              data-testid={`product-profitability-${product.id}`}
+            >
+              {isProfitable ? 'ПРИБЫЛЬНЫЙ' : 'УБЫТОЧНЫЙ'}
+            </span>
+          )}
         </div>
 
         {/* Tab Buttons */}
