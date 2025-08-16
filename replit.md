@@ -10,6 +10,22 @@ The system is built as a modern full-stack web application that integrates with 
 
 Preferred communication style: Simple, everyday language.
 
+## Recent Changes (August 2025)
+
+**Cost Price Not Specified State Implementation:**
+- Successfully implemented "Cost Price Not Specified" state with null value support
+- Added compact "?" status indicator with tooltip instead of large yellow badges
+- Created responsive CSS Grid layout with fixed column widths to prevent layout shifting
+- Updated profitability calculations to handle null cost prices correctly
+- Added visual indicators in stats counters for products needing cost price specification
+
+**UI/UX Improvements:**
+- Replaced animated "УКАЖИТЕ СЕБЕСТОИМОСТЬ" badges with subtle "?" tooltips
+- Removed yellow highlighting from stats counters for cleaner appearance
+- Implemented fixed grid layout: Icon (32-45px), Name (flexible), Price (60-90px), Cost Price (90-110px), Margins (50-90px), Status (140-240px), Tabs (84-140px)
+- Added responsive breakpoints for mobile, tablet, and desktop screens
+- Fixed profitability status display issues on large screens (1280px+)
+
 ## System Architecture
 
 ### Full-Stack Architecture
