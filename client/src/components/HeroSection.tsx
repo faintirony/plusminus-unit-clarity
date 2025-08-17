@@ -40,14 +40,14 @@ const HeroSection = () => {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-primary opacity-20 rounded-2xl blur-3xl"></div>
               <img 
-                src="/attached_assets/Снимок экрана 2025-08-17 в 13.54.40_1755441160785.png" 
+                src="/attached_assets/Снимок экрана 2025-08-17 в 13.54.40_1755443947292.png" 
                 alt="ПлюсМинус интерфейс - список товаров" 
                 className="relative w-full rounded-lg shadow-lg border border-gray-200"
               />
             </div>
             <div className="relative">
               <img 
-                src="/attached_assets/Снимок экрана 2025-08-17 в 17.10.21_1755441160786.png" 
+                src="/attached_assets/Снимок экрана 2025-08-17 в 17.10.21_1755443947294.png" 
                 alt="ПлюсМинус интерфейс - детальная аналитика" 
                 className="w-full rounded-lg shadow-lg border border-gray-200"
               />
