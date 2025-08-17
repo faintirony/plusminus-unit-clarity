@@ -48,15 +48,15 @@ const HeroSection = () => {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-primary opacity-20 rounded-2xl blur-3xl"></div>
               <img 
-                src="/attached_assets/Снимок экрана 2025-08-17 в 13.54.40_1755444890095.png" 
-                alt="Интерфейс ПлюсМинус" 
+                src="/attached_assets/Снимок экрана 2025-08-17 в 13.54.40_1755445903336.png" 
+                alt="Интерфейс ПлюсМинус - детальная карточка товара" 
                 className="relative w-full rounded-lg shadow-lg border border-gray-200"
               />
             </div>
             <div className="relative">
               <img 
-                src="/attached_assets/Снимок экрана 2025-08-17 в 17.10.21_1755444885628.png" 
-                alt="Интерфейс ПлюсМинус" 
+                src="/attached_assets/Снимок экрана 2025-08-17 в 17.10.21_1755445898921.png" 
+                alt="Интерфейс ПлюсМинус - список товаров с прибыльностью" 
                 className="w-full rounded-lg shadow-lg border border-gray-200"
               />
             </div>
