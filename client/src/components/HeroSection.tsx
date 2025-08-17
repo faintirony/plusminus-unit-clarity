@@ -1,6 +1,8 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'wouter';
+import screenshot1 from "@assets/Снимок экрана 2025-08-17 в 13.54.40_1755445903336.png";
+import screenshot2 from "@assets/Снимок экрана 2025-08-17 в 17.10.21_1755445898921.png";
 
 const HeroSection = () => {
   return (
@@ -48,14 +50,14 @@ const HeroSection = () => {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-primary opacity-20 rounded-2xl blur-3xl"></div>
               <img 
-                src="/screenshot1.png" 
+                src={screenshot1} 
                 alt="Интерфейс ПлюсМинус - детальная карточка товара" 
                 className="relative w-full rounded-lg shadow-lg border border-gray-200"
               />
             </div>
             <div className="relative">
               <img 
-                src="/screenshot2.png" 
+                src={screenshot2} 
                 alt="Интерфейс ПлюсМинус - список товаров с прибыльностью" 
                 className="w-full rounded-lg shadow-lg border border-gray-200"
               />
