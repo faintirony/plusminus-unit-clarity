@@ -44,100 +44,184 @@ const HeroSection = () => {
           <div className="animate-slide-up lg:order-first lg:order-last">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-primary opacity-20 rounded-2xl blur-3xl"></div>
-              <div className="relative bg-card border border-border rounded-2xl shadow-lg w-full mx-auto p-6">
-                <div className="mb-4 flex items-center justify-between">
-                  <div className="text-lg font-semibold">ПлюсМинус</div>
-                  <div className="flex items-center gap-4 text-sm">
-                    <span><span className="text-success font-medium">Прибыльные: 97</span></span>
-                    <span><span className="text-destructive font-medium">Убыточные: 28</span></span>
-                    <span>Без себестоимости: 2</span>
-                    <span><span className="font-medium">127</span> товаров</span>
+              <div className="relative bg-white border border-gray-200 rounded-lg shadow-lg w-full mx-auto">
+                {/* Header with stats */}
+                <div className="px-4 py-3 border-b border-gray-200 flex items-center justify-between bg-gray-50">
+                  <div className="text-lg font-bold text-gray-900">ПлюсМинус</div>
+                  <div className="flex items-center gap-6 text-sm">
+                    <span className="text-green-600 font-medium">Прибыльные: 97</span>
+                    <span className="text-red-600 font-medium">Убыточные: 28</span>
+                    <span className="text-gray-600">Без себестоимости: 2</span>
+                    <span className="text-gray-900 font-medium">127 товаров</span>
                   </div>
                 </div>
+                
+                {/* Table */}
                 <div className="overflow-x-auto">
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="border-b border-border text-xs text-muted-foreground">
-                        <th className="text-left py-2 px-3 font-medium"></th>
-                        <th className="text-left py-2 px-3 font-medium">Название</th>
-                        <th className="text-center py-2 px-3 font-medium">ЦЕНА</th>
-                        <th className="text-center py-2 px-3 font-medium">СЕБЕСТОИМОСТЬ</th>
-                        <th className="text-center py-2 px-3 font-medium">МАРЖА ₽</th>
-                        <th className="text-center py-2 px-3 font-medium">МАРЖА %</th>
-                        <th className="text-center py-2 px-3 font-medium">Статус</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                        <td className="py-3 px-3">
-                          <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
+                  <table className="w-full">
+                    <tbody className="divide-y divide-gray-100">
+                      <tr className="hover:bg-gray-50">
+                        <td className="px-4 py-4">
+                          <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
                             👟
                           </div>
                         </td>
-                        <td className="py-3 px-3">
-                          <div className="font-medium">Кроссовки Nike Air Max 270</div>
-                          <div className="text-xs text-muted-foreground">WB</div>
+                        <td className="px-4 py-4">
+                          <div className="font-medium text-gray-900">Кроссовки Nike Air Max 270</div>
+                          <div className="text-sm text-gray-500">WB</div>
                         </td>
-                        <td className="py-3 px-3 text-center font-medium">₽5 990</td>
-                        <td className="py-3 px-3 text-center">₽3 500</td>
-                        <td className="py-3 px-3 text-center text-success font-medium">₽1 021</td>
-                        <td className="py-3 px-3 text-center text-success font-medium">17.1%</td>
-                        <td className="py-3 px-3 text-center">
-                          <span className="bg-success/10 text-success px-2 py-1 rounded text-xs font-medium">ПРИБЫЛЬНЫЙ</span>
+                        <td className="px-4 py-4 text-center">
+                          <div className="font-bold text-lg text-gray-900">₽5 990</div>
+                          <div className="text-xs text-gray-400 uppercase">ЦЕНА</div>
+                        </td>
+                        <td className="px-4 py-4 text-center">
+                          <div className="font-bold text-lg text-gray-900">₽3 500</div>
+                          <div className="text-xs text-gray-400 uppercase">СЕБЕСТОИМОСТЬ</div>
+                        </td>
+                        <td className="px-4 py-4 text-center">
+                          <div className="font-bold text-lg text-green-600">₽1 021</div>
+                          <div className="text-xs text-gray-400 uppercase">МАРЖА ₽</div>
+                        </td>
+                        <td className="px-4 py-4 text-center">
+                          <div className="font-bold text-lg text-green-600">17.1%</div>
+                          <div className="text-xs text-gray-400 uppercase">МАРЖА %</div>
+                        </td>
+                        <td className="px-4 py-4 text-center">
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            ПРИБЫЛЬНЫЙ
+                          </span>
                         </td>
                       </tr>
-                      <tr className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                        <td className="py-3 px-3">
-                          <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
+                      
+                      <tr className="hover:bg-gray-50">
+                        <td className="px-4 py-4">
+                          <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
                             👕
                           </div>
                         </td>
-                        <td className="py-3 px-3">
-                          <div className="font-medium">Футболка мужская</div>
-                          <div className="text-xs text-muted-foreground">OZON</div>
+                        <td className="px-4 py-4">
+                          <div className="font-medium text-gray-900">Футболка мужская</div>
+                          <div className="text-sm text-gray-500">OZON</div>
                         </td>
-                        <td className="py-3 px-3 text-center font-medium">₽890</td>
-                        <td className="py-3 px-3 text-center">₽650</td>
-                        <td className="py-3 px-3 text-center text-destructive font-medium">₽-94</td>
-                        <td className="py-3 px-3 text-center text-destructive font-medium">-10.6%</td>
-                        <td className="py-3 px-3 text-center">
-                          <span className="bg-destructive/10 text-destructive px-2 py-1 rounded text-xs font-medium">УБЫТОЧНЫЙ</span>
+                        <td className="px-4 py-4 text-center">
+                          <div className="font-bold text-lg text-gray-900">₽890</div>
+                          <div className="text-xs text-gray-400 uppercase">ЦЕНА</div>
+                        </td>
+                        <td className="px-4 py-4 text-center">
+                          <div className="font-bold text-lg text-gray-900">₽650</div>
+                          <div className="text-xs text-gray-400 uppercase">СЕБЕСТОИМОСТЬ</div>
+                        </td>
+                        <td className="px-4 py-4 text-center">
+                          <div className="font-bold text-lg text-red-600">₽-94</div>
+                          <div className="text-xs text-gray-400 uppercase">МАРЖА ₽</div>
+                        </td>
+                        <td className="px-4 py-4 text-center">
+                          <div className="font-bold text-lg text-red-600">-10.6%</div>
+                          <div className="text-xs text-gray-400 uppercase">МАРЖА %</div>
+                        </td>
+                        <td className="px-4 py-4 text-center">
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                            УБЫТОЧНЫЙ
+                          </span>
                         </td>
                       </tr>
-                      <tr className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                        <td className="py-3 px-3">
-                          <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
+                      
+                      <tr className="hover:bg-gray-50">
+                        <td className="px-4 py-4">
+                          <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
                             📱
                           </div>
                         </td>
-                        <td className="py-3 px-3">
-                          <div className="font-medium">Чехол iPhone 15</div>
-                          <div className="text-xs text-muted-foreground">WB</div>
+                        <td className="px-4 py-4">
+                          <div className="font-medium text-gray-900">Чехол iPhone 15</div>
+                          <div className="text-sm text-gray-500">WB</div>
                         </td>
-                        <td className="py-3 px-3 text-center font-medium">₽1 290</td>
-                        <td className="py-3 px-3 text-center">₽800</td>
-                        <td className="py-3 px-3 text-center text-destructive font-medium">₽-142</td>
-                        <td className="py-3 px-3 text-center text-destructive font-medium">-11.0%</td>
-                        <td className="py-3 px-3 text-center">
-                          <span className="bg-destructive/10 text-destructive px-2 py-1 rounded text-xs font-medium">УБЫТОЧНЫЙ</span>
+                        <td className="px-4 py-4 text-center">
+                          <div className="font-bold text-lg text-gray-900">₽1 290</div>
+                          <div className="text-xs text-gray-400 uppercase">ЦЕНА</div>
+                        </td>
+                        <td className="px-4 py-4 text-center">
+                          <div className="font-bold text-lg text-gray-900">₽800</div>
+                          <div className="text-xs text-gray-400 uppercase">СЕБЕСТОИМОСТЬ</div>
+                        </td>
+                        <td className="px-4 py-4 text-center">
+                          <div className="font-bold text-lg text-red-600">₽-142</div>
+                          <div className="text-xs text-gray-400 uppercase">МАРЖА ₽</div>
+                        </td>
+                        <td className="px-4 py-4 text-center">
+                          <div className="font-bold text-lg text-red-600">-11.0%</div>
+                          <div className="text-xs text-gray-400 uppercase">МАРЖА %</div>
+                        </td>
+                        <td className="px-4 py-4 text-center">
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                            УБЫТОЧНЫЙ
+                          </span>
                         </td>
                       </tr>
-                      <tr className="hover:bg-muted/30 transition-colors">
-                        <td className="py-3 px-3">
-                          <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
+                      
+                      <tr className="hover:bg-gray-50">
+                        <td className="px-4 py-4">
+                          <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
                             🎒
                           </div>
                         </td>
-                        <td className="py-3 px-3">
-                          <div className="font-medium">Крем для лица</div>
-                          <div className="text-xs text-muted-foreground">WB</div>
+                        <td className="px-4 py-4">
+                          <div className="font-medium text-gray-900">Рюкзак городской</div>
+                          <div className="text-sm text-gray-500">OZON</div>
                         </td>
-                        <td className="py-3 px-3 text-center font-medium">₽3 490</td>
-                        <td className="py-3 px-3 text-center">₽900</td>
-                        <td className="py-3 px-3 text-center text-success font-medium">₽1 401</td>
-                        <td className="py-3 px-3 text-center text-success font-medium">40.1%</td>
-                        <td className="py-3 px-3 text-center">
-                          <span className="bg-success/10 text-success px-2 py-1 rounded text-xs font-medium">ПРИБЫЛЬНЫЙ</span>
+                        <td className="px-4 py-4 text-center">
+                          <div className="font-bold text-lg text-gray-900">₽2 890</div>
+                          <div className="text-xs text-gray-400 uppercase">ЦЕНА</div>
+                        </td>
+                        <td className="px-4 py-4 text-center">
+                          <div className="font-bold text-lg text-gray-900">₽1 800</div>
+                          <div className="text-xs text-gray-400 uppercase">СЕБЕСТОИМОСТЬ</div>
+                        </td>
+                        <td className="px-4 py-4 text-center">
+                          <div className="font-bold text-lg text-green-600">₽8</div>
+                          <div className="text-xs text-gray-400 uppercase">МАРЖА ₽</div>
+                        </td>
+                        <td className="px-4 py-4 text-center">
+                          <div className="font-bold text-lg text-green-600">0.3%</div>
+                          <div className="text-xs text-gray-400 uppercase">МАРЖА %</div>
+                        </td>
+                        <td className="px-4 py-4 text-center">
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            ПРИБЫЛЬНЫЙ
+                          </span>
+                        </td>
+                      </tr>
+                      
+                      <tr className="hover:bg-gray-50">
+                        <td className="px-4 py-4">
+                          <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                            🧴
+                          </div>
+                        </td>
+                        <td className="px-4 py-4">
+                          <div className="font-medium text-gray-900">Крем для лица</div>
+                          <div className="text-sm text-gray-500">WB</div>
+                        </td>
+                        <td className="px-4 py-4 text-center">
+                          <div className="font-bold text-lg text-gray-900">₽3 490</div>
+                          <div className="text-xs text-gray-400 uppercase">ЦЕНА</div>
+                        </td>
+                        <td className="px-4 py-4 text-center">
+                          <div className="font-bold text-lg text-gray-900">₽900</div>
+                          <div className="text-xs text-gray-400 uppercase">СЕБЕСТОИМОСТЬ</div>
+                        </td>
+                        <td className="px-4 py-4 text-center">
+                          <div className="font-bold text-lg text-green-600">₽1 401</div>
+                          <div className="text-xs text-gray-400 uppercase">МАРЖА ₽</div>
+                        </td>
+                        <td className="px-4 py-4 text-center">
+                          <div className="font-bold text-lg text-green-600">40.1%</div>
+                          <div className="text-xs text-gray-400 uppercase">МАРЖА %</div>
+                        </td>
+                        <td className="px-4 py-4 text-center">
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            ПРИБЫЛЬНЫЙ
+                          </span>
                         </td>
                       </tr>
                     </tbody>
