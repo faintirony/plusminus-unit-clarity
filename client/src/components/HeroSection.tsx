@@ -6,7 +6,7 @@ import screenshot2 from "@assets/Снимок экрана 2025-08-17 в 18.57.0
 
 const HeroSection = () => {
   return (
-    <section className="pt-24 pb-12 lg:pt-32 lg:pb-20 bg-gradient-to-br from-background via-background to-primary/5">
+    <section className="section-spacing bg-gradient-hero">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
@@ -18,17 +18,17 @@ const HeroSection = () => {
               </span>
             </div>
             
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              <span className="text-foreground">Торгуете в</span>{' '}
-              <span className="text-green-600">плюс</span>{' '}
-              <span className="text-foreground">или</span>{' '}
-              <span className="text-red-600">минус</span>
-              <span className="text-foreground">?</span>
+            <h1 className="heading-section mb-6">
+              <span className="text-gray-900">Торгуете в</span>{' '}
+              <span style={{color: '#00AA5B'}}>плюс</span>{' '}
+              <span className="text-gray-900">или</span>{' '}
+              <span style={{color: '#FF4444'}}>минус</span>
+              <span className="text-gray-900">?</span>
               <br />
-              <span className="text-blue-600">Узнайте за 5 минут</span>
+              <span style={{color: '#0066FF'}}>Узнайте за 5 минут</span>
             </h1>
             
-            <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+            <p className="heading-sub mb-8">
               Простая юнит-экономика для селлеров Wildberries. Никаких сложных отчетов — только понятные ответы.
             </p>
             
@@ -36,7 +36,8 @@ const HeroSection = () => {
               <Link href="/register" data-testid="button-hero-register">
                 <Button 
                   size="lg"
-                  className="w-full sm:w-auto bg-gradient-primary hover:shadow-primary transition-all duration-300"
+                  className="w-full sm:w-auto text-white font-semibold transition-all duration-300"
+                  style={{backgroundColor: '#0066FF'}}
                 >
                   Попробовать бесплатно
                   <ArrowRight className="ml-2 w-4 h-4" />
