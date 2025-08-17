@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'wouter';
 
 const HeroSection = () => {
   const scrollToSection = (sectionId: string) => {
@@ -23,7 +24,7 @@ const HeroSection = () => {
               <span className="text-success">плюс</span> или{' '}
               <span className="text-danger">минус</span>?
               <br />
-              <span className="bg-gradient-primary bg-clip-text text-transparent">
+              <span className="text-primary">
                 Узнайте за 5 минут
               </span>
             </h1>
@@ -57,19 +58,32 @@ const HeroSection = () => {
           <div className="animate-slide-up lg:order-first lg:order-last">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-primary opacity-20 rounded-2xl blur-3xl"></div>
-              <img 
-                src="/lovable-uploads/7c511d17-56f0-4a0b-9bbb-d96e3a5fc992.png"
-                alt="Список товаров в сервисе ПлюсМинус с показателями прибыльности"
-                className="relative rounded-2xl shadow-lg w-4/5 mx-auto"
-              />
-              <div className="absolute -bottom-6 -right-6 bg-card border border-border rounded-xl p-4 shadow-lg">
-                <div className="flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-success rounded-full"></div>
-                  <span className="text-sm font-medium">90 товаров в плюсе</span>
-                </div>
-                <div className="flex items-center space-x-2 mt-2">
-                  <div className="w-3 h-3 bg-danger rounded-full"></div>
-                  <span className="text-sm font-medium">35 товаров в минусе</span>
+              <div className="relative bg-card border border-border rounded-2xl shadow-lg w-full mx-auto p-8">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-semibold">Кроссовки Nike Air Max 270</h3>
+                    <div className="flex space-x-2">
+                      <span className="bg-success/10 text-success px-3 py-1 rounded text-sm font-medium">ПРИБЫЛЬНЫЙ</span>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-4 gap-4 text-sm">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold">₽5 990</div>
+                      <div className="text-muted-foreground">ЦЕНА</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold">₽3 500</div>
+                      <div className="text-muted-foreground">СЕБЕСТОИМОСТЬ</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-success">₽1 021</div>
+                      <div className="text-muted-foreground">МАРЖА ₽</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-success">17.1%</div>
+                      <div className="text-muted-foreground">МАРЖА %</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -78,11 +92,37 @@ const HeroSection = () => {
             <div className="mt-8">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-success/10 rounded-xl blur-2xl"></div>
-                <img 
-                  src="/lovable-uploads/282e9a2d-2991-41a6-a52a-15b84543b633.png"
-                  alt="Детальная структура расходов по товару"
-                  className="relative rounded-xl shadow-md w-full border border-border/50"
-                />
+              <div className="relative bg-card border border-border/50 rounded-xl shadow-md w-full p-6">
+                <div className="space-y-4">
+                  <h4 className="font-semibold text-lg">Детальная структура расходов</h4>
+                  <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div className="flex justify-between">
+                      <span>Логистика</span>
+                      <span className="font-medium">₽200</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Эквайринг</span>
+                      <span className="font-medium">₽45</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Штрафы от МП</span>
+                      <span className="font-medium">₽0</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Прочие расходы</span>
+                      <span className="font-medium">₽25</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Стоимость возвратов</span>
+                      <span className="font-medium">₽120</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Реклама</span>
+                      <span className="font-medium">₽150</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
               </div>
             </div>
           </div>

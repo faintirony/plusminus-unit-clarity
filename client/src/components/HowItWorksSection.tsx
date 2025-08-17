@@ -1,73 +1,67 @@
+import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { Key, Send, FileSpreadsheet, DollarSign } from 'lucide-react';
+import { ArrowRight, Database, BarChart, Target } from 'lucide-react';
 
 const HowItWorksSection = () => {
   const steps = [
     {
-      number: "01",
-      icon: <Key className="w-6 h-6 text-primary" />,
-      title: "Регистрируетесь и создаёте API-ключи WB",
-      description: "Генерируете API-ключи в личном кабинете маркетплейса. Это займет 2 минуты."
+      icon: <Database className="w-8 h-8 text-primary" />,
+      title: "Подключение за 7 минут",
+      description: "Простой ввод API-ключа WB. Никакой больше ручной работы с данными и таблицами"
     },
     {
-      number: "02",
-      icon: <DollarSign className="w-6 h-6 text-primary" />,
-      title: "Заполняете себестоимость и видите прибыль",
-      description: "Указываете себестоимость товаров и сразу видите какие в плюсе, а какие в минусе."
+      icon: <BarChart className="w-8 h-8 text-primary" />,
+      title: "Автоматический расчёт юнит-экономики WB",
+      description: "Система рассчитывает все комиссии, логистику и реальную прибыль по каждому товару"
     },
     {
-      number: "03",
-      icon: <FileSpreadsheet className="w-6 h-6 text-primary" />,
-      title: "Получаете структуру расходов по каждому товару",
-      description: "В течение 5 минут видите, какие товары убыточные и почему и можете оперативно внести изменения."
+      icon: <Target className="w-8 h-8 text-primary" />,
+      title: "Понятные рекомендации на основе данных",
+      description: "Получаете конкретные советы: какие товары убрать, где поднять цены"
     }
   ];
 
   return (
-    <section id="how-it-works" className="py-16 lg:py-24 bg-background">
+    <section className="py-16 lg:py-24 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
+          <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/10">
+            Как это работает
+          </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            <span className="bg-gradient-primary bg-clip-text text-transparent">
-              Подключение за 7 минут
-            </span>
+            Подключение за 7 минут
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Простой процесс настройки без сложных интеграций и долгих ожиданий
+            Простой процесс настройки для получения полной картины вашего бизнеса
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 relative">
           {steps.map((step, index) => (
             <div key={index} className="relative">
-              {/* Connector Line */}
-              {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-12 right-0 w-full h-0.5 bg-gradient-to-r from-primary to-primary/30 transform translate-x-1/2 z-0"></div>
-              )}
-              
-              <Card className="relative z-10 border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-lg group">
-                <CardContent className="p-6 text-center">
-                  <div className="bg-primary/10 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+              <Card className="h-full border-primary/20 hover:border-primary/40 transition-all duration-300">
+                <CardContent className="p-8 text-center">
+                  <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
                     {step.icon}
                   </div>
-                  <div className="text-2xl font-bold text-primary mb-2">{step.number}</div>
-                  <h3 className="text-lg font-semibold mb-3 text-foreground">
+                  <h3 className="text-xl font-semibold mb-4">
                     {step.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed">
                     {step.description}
                   </p>
                 </CardContent>
               </Card>
+              
+              {index < steps.length - 1 && (
+                <div className="hidden md:flex absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
+                  <div className="bg-white rounded-full p-2 shadow-lg">
+                    <ArrowRight className="w-4 h-4 text-primary" />
+                  </div>
+                </div>
+              )}
             </div>
           ))}
-        </div>
-
-        <div className="mt-16 text-center">
-          <div className="inline-flex items-center px-6 py-3 rounded-full bg-success-light text-success font-medium">
-            <span className="w-2 h-2 bg-success rounded-full mr-3 animate-pulse"></span>
-            Среднее время подключения: 7 минут
-          </div>
         </div>
       </div>
     </section>

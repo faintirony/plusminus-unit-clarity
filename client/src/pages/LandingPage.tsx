@@ -5,7 +5,6 @@ import SolutionSection from "@/components/SolutionSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import PricingSection from "@/components/PricingSection";
 import FAQSection from "@/components/FAQSection";
-import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
 export default function LandingPage() {
@@ -19,7 +18,6 @@ export default function LandingPage() {
       <HowItWorksSection />
       <PricingSection />
       <FAQSection />
-      <CTASection />
       <Footer />
     </div>
   );

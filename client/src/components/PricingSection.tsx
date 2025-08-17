@@ -1,101 +1,80 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, Shield, BarChart, MessageSquare, RefreshCw } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { CheckCircle } from 'lucide-react';
+import { Link } from 'wouter';
 
 const PricingSection = () => {
-  const features = [
-    {
-      icon: <BarChart className="w-5 h-5 text-success" />,
-      text: "Мониторинг до 1000 SKU"
-    },
-    {
-      icon: <RefreshCw className="w-5 h-5 text-success" />,
-      text: "Ежедневное обновление данных"
-    },
-    {
-      icon: <MessageSquare className="w-5 h-5 text-success" />,
-      text: "Telegram-уведомления"
-    },
-    {
-      icon: <Shield className="w-5 h-5 text-success" />,
-      text: "Безопасное хранение API-ключей"
-    }
-  ];
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    element?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
-    <section id="pricing" className="py-16 lg:py-24 bg-primary/5">
+    <section className="py-16 lg:py-24 bg-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Простая и{' '}
-            <span className="bg-gradient-primary bg-clip-text text-transparent">
-              честная цена
-            </span>
+            Часто задаваемые{' '}
+            <span className="text-primary">вопросы</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            MVP-подход к ценообразованию. Один тариф, все включено, без скрытых платежей.
+            Ответы на главные вопросы о ПлюсМинус, функциональности и процессе подключения
           </p>
         </div>
 
-        <div className="max-w-md mx-auto">
-          <Card className="border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-lg relative overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-primary"></div>
-            
-            <CardHeader className="text-center pb-4">
-              <div className="inline-flex items-center justify-center px-3 py-1 rounded-full bg-success-light text-success text-sm font-medium mb-4">
-                Пилотный тариф
-              </div>
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <Badge className="mb-4 bg-success/10 text-success hover:bg-success/10">
+              🎉 Ограниченное предложение!
+            </Badge>
+          </div>
+          
+          <Card className="border-primary/20 shadow-lg">
+            <CardHeader className="text-center">
               <CardTitle className="text-2xl mb-2">
-                Юнит-экономика
+                Готовы узнать, торгуете ли вы в{' '}
+                <span className="text-success">плюс</span>?
               </CardTitle>
-              <div className="flex items-center justify-center">
-                <span className="text-4xl font-bold">1,000</span>
-                <span className="text-xl text-muted-foreground ml-1">₽/мес</span>
-              </div>
-            </CardHeader>
-
-            <CardContent className="pt-4">
-              <div className="space-y-4 mb-8">
-                {features.map((feature, index) => (
-                  <div key={index} className="flex items-center space-x-3">
-                    {feature.icon}
-                    <span className="text-foreground">{feature.text}</span>
-                  </div>
-                ))}
-              </div>
-
-
-              <Button 
-                onClick={() => scrollToSection('cta')}
-                className="w-full bg-gradient-primary hover:shadow-primary transition-all duration-300"
-                size="lg"
-              >
-                Начать бесплатный пилот
-              </Button>
-
-              <p className="text-sm text-muted-foreground text-center mt-4">
-                Отмена в любое время. Без обязательств.
+              <p className="text-muted-foreground">
+                Подключите API-ключи Wildberries и получите анализ прибыльности ваших товаров
               </p>
+            </CardHeader>
+            
+            <CardContent className="p-8">
+              <div className="grid md:grid-cols-3 gap-8 mb-8">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-primary mb-2">📋</div>
+                  <div className="text-sm text-muted-foreground">
+                    Проанализируем все товары WB
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-primary mb-2">⚡</div>
+                  <div className="text-sm text-muted-foreground">
+                    Быстро получите
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-primary mb-2">💰</div>
+                  <div className="text-sm text-muted-foreground">
+                    Понятная отчёт по каждому товару
+                  </div>
+                </div>
+              </div>
+
+              <div className="text-center">
+                <Link href="/register" data-testid="button-pricing-register">
+                  <Button 
+                    size="lg"
+                    className="w-full md:w-auto bg-gradient-primary hover:shadow-primary transition-all duration-300"
+                  >
+                    Зарегистрироваться в ПлюсМинус
+                  </Button>
+                </Link>
+                <p className="text-sm text-muted-foreground mt-4">
+                  ✅ Подключение API-ключи Wildberries<br/>
+                  ✅ Получите анализ за 5 минут<br/>
+                  ✅ Автоматический расчёт прибыльности товаров
+                </p>
+              </div>
             </CardContent>
           </Card>
-        </div>
-
-        <div className="mt-12 text-center">
-          <p className="text-muted-foreground">
-            Нужно больше 1000 SKU?{' '}
-            <button 
-              onClick={() => scrollToSection('contacts')}
-              className="text-primary hover:underline font-medium"
-            >
-              Напишите нам
-            </button>
-            {' '}для индивидуального предложения
-          </p>
         </div>
       </div>
     </section>

@@ -3,20 +3,20 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 const FAQSection = () => {
   const faqs = [
     {
-      question: "Безопасно ли передавать API-ключи?",
-      answer: "Да, абсолютно безопасно. Мы используем end-to-end шифрование для передачи и хранения ваших API-ключей. Ключи хранятся в зашифрованном виде и используются только для получения данных о ваших продажах. Мы не можем изменять ваши товары или настройки — только читать статистику."
+      question: "Безопасно ли подключение WB токенов?",
+      answer: "Да, абсолютно безопасно. Мы используем только токены для чтения данных, которые не дают доступа к изменению вашего аккаунта или товаров."
     },
     {
       question: "Какие маркетплейсы поддерживаются?",
-      answer: "В данный момент поддерживается Wildberries, а в ближайшее время будет добавлен и OZON. Это покрывает более 80% российского рынка маркетплейсов. В планах добавление Яндекс.Маркета и других популярных площадок."
+      answer: "Сейчас работаем с Wildberries. В планах добавить OZON, Яндекс.Маркет и другие популярные площадки."
     },
     {
       question: "Как быстро обновляются данные?",
-      answer: "Данные обновляются ежедневно в 6:00 утра по московскому времени. Это позволяет анализировать результаты продаж предыдущего дня и принимать быстрые решения. При критических изменениях (товар уходит в глубокий минус) отправляем уведомления в Telegram моментально (скоро)."
+      answer: "Данные обновляются автоматически каждые 24 часа. Вы всегда видите актуальную картину по вашим товарам."
     },
     {
-      question: "Что если у меня больше 1000 товаров?",
-      answer: "Нет проблем, мы поддерживаем загрузку любого количества товаров."
+      question: "Что если я торгую 500+ товаров?",
+      answer: "ПлюсМинус отлично работает с любым количеством товаров. Чем больше товаров, тем более ценной становится автоматизация расчетов."
     }
   ];
 
@@ -26,12 +26,10 @@ const FAQSection = () => {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Часто задаваемые{' '}
-            <span className="bg-gradient-primary bg-clip-text text-transparent">
-              вопросы
-            </span>
+            <span className="text-primary">вопросы</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Ответы на главные вопросы о безопасности, функциональности и условиях использования
+            Ответы на главные вопросы о ПлюсМинус, функциональности и процессе подключения
           </p>
         </div>
 
@@ -41,12 +39,12 @@ const FAQSection = () => {
               <AccordionItem 
                 key={index} 
                 value={`item-${index}`}
-                className="border border-border rounded-lg px-6 bg-card"
+                className="border border-border rounded-lg px-6"
               >
-                <AccordionTrigger className="text-left text-lg font-semibold py-6 hover:no-underline">
-                  {faq.question}
+                <AccordionTrigger className="text-left hover:no-underline">
+                  <span className="font-semibold">{faq.question}</span>
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
+                <AccordionContent className="text-muted-foreground pb-4">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
