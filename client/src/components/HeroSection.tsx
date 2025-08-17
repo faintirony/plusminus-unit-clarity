@@ -27,8 +27,7 @@ const HeroSection = () => {
             </h1>
             
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              Простой сервис мониторинга для селлеров Wildberries<br/>
-              Без сложной аналитики — только суть
+              Простая юнит-экономика для селлеров Wildberries. Никаких сложных отчетов — только понятные ответы.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
