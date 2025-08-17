@@ -1,5 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card';
-import { AlertTriangle, Clock, TrendingDown } from 'lucide-react';
+import { BarChart3, TrendingDown, Clock } from 'lucide-react';
 
 const ProblemSection = () => {
   return (
@@ -16,44 +16,44 @@ const ProblemSection = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          <Card className="text-center border-danger/20">
+          <Card className="text-center border-red-200">
             <CardContent className="p-8">
-              <div className="w-16 h-16 bg-danger/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <AlertTriangle className="w-8 h-8 text-danger" />
+              <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                <BarChart3 className="w-8 h-8 text-red-600" />
               </div>
               <h3 className="text-xl font-semibold mb-4">
-                95% селлеров сдают позиции в первые месяцы
+                45+ отчетов в сервисе аналитики, а простого ответа нет
               </h3>
               <p className="text-muted-foreground">
-                В погоне за оборотами забывают про затраты и торгуют в убыток
+                Теряетесь в море данных и не можете быстро понять какие товары приносят прибыль
               </p>
             </CardContent>
           </Card>
 
-          <Card className="text-center border-danger/20">
+          <Card className="text-center border-red-200">
             <CardContent className="p-8">
-              <div className="w-16 h-16 bg-danger/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Clock className="w-8 h-8 text-danger" />
+              <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                <TrendingDown className="w-8 h-8 text-red-600" />
               </div>
               <h3 className="text-xl font-semibold mb-4">
-                Тратят часы на аналитические дашборды
+                Теряете деньги на убыточных товарах
               </h3>
               <p className="text-muted-foreground">
-                Вместо одной метрики — десятки графиков и непонятных показателей
+                Продолжаете продвигать товары в минусе, не зная об этом до конца месяца
               </p>
             </CardContent>
           </Card>
 
-          <Card className="text-center border-danger/20">
+          <Card className="text-center border-red-200">
             <CardContent className="p-8">
-              <div className="w-16 h-16 bg-danger/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <TrendingDown className="w-8 h-8 text-danger" />
+              <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Clock className="w-8 h-8 text-red-600" />
               </div>
               <h3 className="text-xl font-semibold mb-4">
-                Тратят тысячи рублей на ненужный функционал
+                Тратите часы на анализ вместо продаж
               </h3>
               <p className="text-muted-foreground">
-                Платят за сложные системы, когда нужен простой ответ: плюс или минус
+                Вместо развития бизнеса сидите в Excel'е и пытаетесь разобраться в цифрах
               </p>
             </CardContent>
           </Card>
