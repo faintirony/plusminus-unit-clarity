@@ -1,5 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card';
-import { CheckCircle, Target, Zap } from 'lucide-react';
+import { Table2, Calculator, MessageSquare } from 'lucide-react';
 
 const SolutionSection = () => {
   return (
@@ -16,44 +16,44 @@ const SolutionSection = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          <Card className="text-center border-success/20">
+          <Card className="text-center border-green-200">
             <CardContent className="p-8">
-              <div className="w-16 h-16 bg-success/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <CheckCircle className="w-8 h-8 text-success" />
+              <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Table2 className="w-8 h-8 text-green-600" />
               </div>
               <h3 className="text-xl font-semibold mb-4">
-                Одна таблица вместо десятка отчетов
+                Один ответ вместо десятков отчётов
               </h3>
               <p className="text-muted-foreground">
-                Все ваши товары, их себестоимость и маржа в одном месте
+                Привычный интерфейс таблицы с понятными данными. Никаких сложных дашбордов.
               </p>
             </CardContent>
           </Card>
 
-          <Card className="text-center border-success/20">
+          <Card className="text-center border-green-200">
             <CardContent className="p-8">
-              <div className="w-16 h-16 bg-success/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Target className="w-8 h-8 text-success" />
+              <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Calculator className="w-8 h-8 text-green-600" />
               </div>
               <h3 className="text-xl font-semibold mb-4">
-                Автоматический расчет по всем SKU
+                Автоматический расчет по каждому SKU
               </h3>
               <p className="text-muted-foreground">
-                Учитываем комиссии WB, логистику и рекламные расходы автоматически
+                Мы считаем прибыль и убытки за вас. Вы только указываете себестоимость.
               </p>
             </CardContent>
           </Card>
 
-          <Card className="text-center border-success/20">
+          <Card className="text-center border-green-200">
             <CardContent className="p-8">
-              <div className="w-16 h-16 bg-success/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Zap className="w-8 h-8 text-success" />
+              <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                <MessageSquare className="w-8 h-8 text-green-600" />
               </div>
               <h3 className="text-xl font-semibold mb-4">
-                Понятность за 5 минут
+                Telegram-уведомления об убытках (скоро)
               </h3>
               <p className="text-muted-foreground">
-                Никаких сложных настроек — подключили API и сразу видите результат
+                Моментально узнавайте когда товар уходит в минус и принимайте быстрые решения.
               </p>
             </CardContent>
           </Card>
