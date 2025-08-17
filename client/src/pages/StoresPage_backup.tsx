@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -13,6 +13,7 @@ import { PlusIcon, StoreIcon, CheckCircleIcon, AlertCircleIcon } from 'lucide-re
 import { addStoreSchema, type AddStoreData, type Store } from '@shared/schema';
 import { useToast } from '@/hooks/use-toast';
 import { apiRequest } from '@/lib/queryClient';
+import { Link } from 'wouter';
 
 export default function StoresPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -85,134 +86,138 @@ export default function StoresPage() {
           </div>
 
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-            <DialogTrigger asChild>
-              <Button className="bg-blue-600 hover:bg-blue-700" data-testid="add-store-button">
-                <PlusIcon className="w-4 h-4 mr-2" />
-                Добавить магазин
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="max-w-2xl">
-              <DialogHeader>
-                <DialogTitle>Добавить новый магазин</DialogTitle>
-                <DialogDescription>
-                  Подключите ваш магазин на маркетплейсе для автоматической синхронизации данных
-                </DialogDescription>
-              </DialogHeader>
+              <DialogTrigger asChild>
+                <Button className="bg-blue-600 hover:bg-blue-700" data-testid="add-store-button">
+                  <PlusIcon className="w-4 h-4 mr-2" />
+                  Добавить магазин
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-2xl">
+                <DialogHeader>
+                  <DialogTitle>Добавить новый магазин</DialogTitle>
+                  <DialogDescription>
+                    Подключите ваш магазин на маркетплейсе для автоматической синхронизации данных
+                  </DialogDescription>
+                </DialogHeader>
 
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                {serverError && (
-                  <Alert variant="destructive">
-                    <AlertDescription>{serverError}</AlertDescription>
-                  </Alert>
-                )}
-
-                <div className="space-y-2">
-                  <Label htmlFor="name">Название магазина</Label>
-                  <Input
-                    id="name"
-                    placeholder="Мой магазин на Wildberries"
-                    {...form.register('name')}
-                    className={form.formState.errors.name ? 'border-red-500' : ''}
-                    data-testid="store-name-input"
-                  />
-                  {form.formState.errors.name && (
-                    <p className="text-sm text-red-600">{form.formState.errors.name.message}</p>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                  {serverError && (
+                    <Alert variant="destructive">
+                      <AlertDescription>{serverError}</AlertDescription>
+                    </Alert>
                   )}
-                </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="marketplace">Маркетплейс</Label>
-                  <select
-                    id="marketplace"
-                    {...form.register('marketplace')}
-                    className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                    data-testid="marketplace-select"
-                  >
-                    <option value="wildberries">Wildberries</option>
-                    <option value="ozon">OZON</option>
-                  </select>
-                </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Название магазина</Label>
+                    <Input
+                      id="name"
+                      placeholder="Мой магазин на Wildberries"
+                      {...form.register('name')}
+                      className={form.formState.errors.name ? 'border-red-500' : ''}
+                      data-testid="store-name-input"
+                    />
+                    {form.formState.errors.name && (
+                      <p className="text-sm text-red-600">
+                        {form.formState.errors.name.message}
+                      </p>
+                    )}
+                  </div>
 
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <Label htmlFor="apiToken">API токен</Label>
+                  <div className="space-y-2">
+                    <Label htmlFor="marketplace">Маркетплейс</Label>
+                    <select
+                      id="marketplace"
+                      {...form.register('marketplace')}
+                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                      data-testid="marketplace-select"
+                    >
+                      <option value="wildberries">Wildberries</option>
+                      <option value="ozon">OZON</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="apiToken">API Токен</Label>
+                    <div className="flex gap-2">
+                      <Input
+                        id="apiToken"
+                        type="password"
+                        placeholder="Например, eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9..."
+                        {...form.register('apiToken')}
+                        className={form.formState.errors.apiToken ? 'border-red-500' : ''}
+                        data-testid="api-token-input"
+                      />
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={handleValidateToken}
+                        disabled={validateTokenMutation.isPending}
+                        data-testid="validate-token-button"
+                      >
+                        {validateTokenMutation.isPending ? 'Проверка...' : 'Проверить'}
+                      </Button>
+                    </div>
+                    {form.formState.errors.apiToken && (
+                      <p className="text-sm text-red-600">
+                        {form.formState.errors.apiToken.message}
+                      </p>
+                    )}
+                    {validateTokenMutation.data && (
+                      <div className="flex items-center gap-2 text-sm text-green-600">
+                        <CheckCircleIcon className="w-4 h-4" />
+                        Токен действителен
+                      </div>
+                    )}
+                    {validateTokenMutation.error && (
+                      <div className="flex items-center gap-2 text-sm text-red-600">
+                        <AlertCircleIcon className="w-4 h-4" />
+                        {(validateTokenMutation.error as any)?.message || 'Ошибка проверки токена'}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Instructions */}
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-3">
+                    <h4 className="font-medium text-blue-900">📋 Как получить токен Wildberries:</h4>
+                    <ol className="text-sm text-blue-800 space-y-1 list-decimal list-inside">
+                      <li>Войдите в личный кабинет WB Партнеры</li>
+                      <li>Перейдите в раздел "Настройки" → "Доступ к API"</li>
+                      <li>Создайте токен с правами:
+                        <ul className="ml-4 mt-1 list-disc list-inside">
+                          <li>Контент</li>
+                          <li>Маркетплейс</li>
+                          <li>Статистика</li>
+                          <li>Аналитика</li>
+                        </ul>
+                      </li>
+                      <li>Скопируйте токен и вставьте в поле выше</li>
+                    </ol>
+                  </div>
+
+                  <div className="flex justify-end gap-3">
                     <Button
                       type="button"
                       variant="outline"
-                      size="sm"
-                      onClick={handleValidateToken}
-                      disabled={validateTokenMutation.isPending}
-                      data-testid="validate-token-button"
+                      onClick={() => setIsDialogOpen(false)}
                     >
-                      {validateTokenMutation.isPending ? (
-                        'Проверяем...'
-                      ) : validateTokenMutation.data?.valid ? (
-                        <>
-                          <CheckCircleIcon className="w-4 h-4 mr-1 text-green-600" />
-                          Валидный
-                        </>
-                      ) : validateTokenMutation.isError ? (
-                        <>
-                          <AlertCircleIcon className="w-4 h-4 mr-1 text-red-600" />
-                          Ошибка
-                        </>
-                      ) : (
-                        'Проверить'
-                      )}
+                      Отмена
+                    </Button>
+                    <Button
+                      type="submit"
+                      disabled={addStoreMutation.isPending}
+                      data-testid="submit-store-button"
+                    >
+                      {addStoreMutation.isPending ? 'Добавление...' : 'Добавить магазин'}
                     </Button>
                   </div>
-                  <Input
-                    id="apiToken"
-                    type="password"
-                    placeholder="Введите API токен"
-                    {...form.register('apiToken')}
-                    className={form.formState.errors.apiToken ? 'border-red-500' : ''}
-                    data-testid="api-token-input"
-                  />
-                  {form.formState.errors.apiToken && (
-                    <p className="text-sm text-red-600">{form.formState.errors.apiToken.message}</p>
-                  )}
-                </div>
-
-                <div className="bg-blue-50 p-4 rounded-lg">
-                  <h4 className="font-medium text-blue-900 mb-2">Как получить API токен:</h4>
-                  <ol className="text-sm text-blue-800 space-y-1 list-decimal list-inside">
-                    <li>Зайдите в личный кабинет Wildberries</li>
-                    <li>Перейдите в раздел "Настройки" → "Доступ к API"</li>
-                    <li>Создайте токен с правами:
-                      <ul className="ml-4 mt-1 list-disc list-inside">
-                        <li>Контент</li>
-                        <li>Маркетплейс</li>
-                        <li>Статистика</li>
-                        <li>Аналитика</li>
-                      </ul>
-                    </li>
-                    <li>Скопируйте токен и вставьте в поле выше</li>
-                  </ol>
-                </div>
-
-                <div className="flex justify-end gap-3">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={() => setIsDialogOpen(false)}
-                  >
-                    Отмена
-                  </Button>
-                  <Button
-                    type="submit"
-                    disabled={addStoreMutation.isPending}
-                    data-testid="submit-store-button"
-                  >
-                    {addStoreMutation.isPending ? 'Добавление...' : 'Добавить магазин'}
-                  </Button>
-                </div>
-              </form>
-            </DialogContent>
-          </Dialog>
+                </form>
+              </DialogContent>
+            </Dialog>
+          </div>
         </div>
 
         {/* Stores list */}
+
         {isLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3].map((i) => (
