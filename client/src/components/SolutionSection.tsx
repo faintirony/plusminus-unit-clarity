@@ -8,10 +8,10 @@ const SolutionSection = () => {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             ПлюсМинус дает{' '}
-            <span className="text-success">простые ответы</span>
+            <span className="text-green-600">простые ответы</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Мы автоматически считаем реальную прибыльность каждого товара
+            Мы убрали все лишнее и оставили только то, что действительно нужно для принятия решений
           </p>
         </div>
 
