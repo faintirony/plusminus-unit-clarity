@@ -1,5 +1,8 @@
 import { type User, type InsertUser, type Store, type InsertStore, type Session, type InsertSession, type Product, type InsertProduct } from "@shared/schema";
 import { randomUUID } from "crypto";
+import { users, stores, sessions, products } from "@shared/schema";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
   // Users
@@ -144,4 +147,95 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+// Switch to DatabaseStorage for production
+// export const storage = new MemStorage();
+
+export class DatabaseStorage implements IStorage {
+  // Users
+  async getUser(id: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user || undefined;
+  }
+
+  async getUserByEmail(email: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.email, email));
+    return user || undefined;
+  }
+
+  async createUser(insertUser: InsertUser): Promise<User> {
+    const [user] = await db
+      .insert(users)
+      .values(insertUser)
+      .returning();
+    return user;
+  }
+
+  // Stores
+  async getStoresByUserId(userId: string): Promise<Store[]> {
+    return await db.select().from(stores).where(eq(stores.userId, userId));
+  }
+
+  async getStoreById(id: string): Promise<Store | undefined> {
+    const [store] = await db.select().from(stores).where(eq(stores.id, id));
+    return store || undefined;
+  }
+
+  async createStore(insertStore: InsertStore): Promise<Store> {
+    const [store] = await db
+      .insert(stores)
+      .values(insertStore)
+      .returning();
+    return store;
+  }
+
+  async updateStore(id: string, updates: Partial<InsertStore>): Promise<Store | undefined> {
+    const [store] = await db
+      .update(stores)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(stores.id, id))
+      .returning();
+    return store || undefined;
+  }
+
+  // Sessions
+  async createSession(insertSession: InsertSession): Promise<Session> {
+    const [session] = await db
+      .insert(sessions)
+      .values(insertSession)
+      .returning();
+    return session;
+  }
+
+  async getSessionByToken(token: string): Promise<Session | undefined> {
+    const [session] = await db.select().from(sessions).where(eq(sessions.token, token));
+    return session || undefined;
+  }
+
+  async deleteSession(token: string): Promise<void> {
+    await db.delete(sessions).where(eq(sessions.token, token));
+  }
+
+  // Products
+  async getProductsByUserId(userId: string): Promise<Product[]> {
+    return await db.select().from(products).where(eq(products.userId, userId));
+  }
+
+  async createProduct(insertProduct: InsertProduct): Promise<Product> {
+    const [product] = await db
+      .insert(products)
+      .values(insertProduct)
+      .returning();
+    return product;
+  }
+
+  async updateProduct(id: string, updates: Partial<InsertProduct>): Promise<Product | undefined> {
+    const [product] = await db
+      .update(products)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(products.id, id))
+      .returning();
+    return product || undefined;
+  }
+}
+
+export const storage = new DatabaseStorage();

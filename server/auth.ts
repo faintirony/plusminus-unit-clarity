@@ -52,7 +52,7 @@ const ALGORITHM = 'aes-256-cbc';
 
 export const encryptToken = (token: string): string => {
   const iv = crypto.randomBytes(16);
-  const cipher = crypto.createCipher(ALGORITHM, ENCRYPTION_KEY);
+  const cipher = crypto.createCipheriv(ALGORITHM, Buffer.from(ENCRYPTION_KEY.slice(0, 32)), iv);
   let encrypted = cipher.update(token, 'utf8', 'hex');
   encrypted += cipher.final('hex');
   return iv.toString('hex') + ':' + encrypted;
@@ -62,7 +62,7 @@ export const decryptToken = (encryptedToken: string): string => {
   const textParts = encryptedToken.split(':');
   const iv = Buffer.from(textParts.shift()!, 'hex');
   const encryptedText = textParts.join(':');
-  const decipher = crypto.createDecipher(ALGORITHM, ENCRYPTION_KEY);
+  const decipher = crypto.createDecipheriv(ALGORITHM, Buffer.from(ENCRYPTION_KEY.slice(0, 32)), iv);
   let decrypted = decipher.update(encryptedText, 'hex', 'utf8');
   decrypted += decipher.final('utf8');
   return decrypted;
