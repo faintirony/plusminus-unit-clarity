@@ -45,42 +45,99 @@ const HeroSection = () => {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-primary opacity-20 rounded-2xl blur-3xl"></div>
               <div className="relative bg-card border border-border rounded-2xl shadow-lg w-full mx-auto p-6">
-                <div className="mb-4">
-                  <h3 className="text-lg font-semibold mb-4">Ваши товары</h3>
+                <div className="mb-4 flex items-center justify-between">
+                  <div className="text-lg font-semibold">ПлюсМинус</div>
+                  <div className="flex items-center gap-4 text-sm">
+                    <span><span className="text-success font-medium">Прибыльные: 97</span></span>
+                    <span><span className="text-destructive font-medium">Убыточные: 28</span></span>
+                    <span>Без себестоимости: 2</span>
+                    <span><span className="font-medium">127</span> товаров</span>
+                  </div>
                 </div>
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
-                      <tr className="border-b border-border">
-                        <th className="text-left py-2 px-2 font-medium text-muted-foreground">SKU</th>
-                        <th className="text-left py-2 px-2 font-medium text-muted-foreground">Название</th>
-                        <th className="text-right py-2 px-2 font-medium text-muted-foreground">Цена</th>
-                        <th className="text-right py-2 px-2 font-medium text-muted-foreground">Маржа %</th>
+                      <tr className="border-b border-border text-xs text-muted-foreground">
+                        <th className="text-left py-2 px-3 font-medium"></th>
+                        <th className="text-left py-2 px-3 font-medium">Название</th>
+                        <th className="text-center py-2 px-3 font-medium">ЦЕНА</th>
+                        <th className="text-center py-2 px-3 font-medium">СЕБЕСТОИМОСТЬ</th>
+                        <th className="text-center py-2 px-3 font-medium">МАРЖА ₽</th>
+                        <th className="text-center py-2 px-3 font-medium">МАРЖА %</th>
+                        <th className="text-center py-2 px-3 font-medium">Статус</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className="border-b border-border/50">
-                        <td className="py-3 px-2 text-muted-foreground">123456</td>
-                        <td className="py-3 px-2">Кроссовки Nike Air Max</td>
-                        <td className="py-3 px-2 text-right">₽5 990</td>
-                        <td className="py-3 px-2 text-right">
-                          <span className="text-success font-medium">17.1%</span>
+                      <tr className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                        <td className="py-3 px-3">
+                          <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
+                            👟
+                          </div>
+                        </td>
+                        <td className="py-3 px-3">
+                          <div className="font-medium">Кроссовки Nike Air Max 270</div>
+                          <div className="text-xs text-muted-foreground">WB</div>
+                        </td>
+                        <td className="py-3 px-3 text-center font-medium">₽5 990</td>
+                        <td className="py-3 px-3 text-center">₽3 500</td>
+                        <td className="py-3 px-3 text-center text-success font-medium">₽1 021</td>
+                        <td className="py-3 px-3 text-center text-success font-medium">17.1%</td>
+                        <td className="py-3 px-3 text-center">
+                          <span className="bg-success/10 text-success px-2 py-1 rounded text-xs font-medium">ПРИБЫЛЬНЫЙ</span>
                         </td>
                       </tr>
-                      <tr className="border-b border-border/50">
-                        <td className="py-3 px-2 text-muted-foreground">789012</td>
-                        <td className="py-3 px-2">Платье летнее</td>
-                        <td className="py-3 px-2 text-right">₽2 490</td>
-                        <td className="py-3 px-2 text-right">
-                          <span className="text-danger font-medium">-3.2%</span>
+                      <tr className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                        <td className="py-3 px-3">
+                          <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
+                            👕
+                          </div>
+                        </td>
+                        <td className="py-3 px-3">
+                          <div className="font-medium">Футболка мужская</div>
+                          <div className="text-xs text-muted-foreground">OZON</div>
+                        </td>
+                        <td className="py-3 px-3 text-center font-medium">₽890</td>
+                        <td className="py-3 px-3 text-center">₽650</td>
+                        <td className="py-3 px-3 text-center text-destructive font-medium">₽-94</td>
+                        <td className="py-3 px-3 text-center text-destructive font-medium">-10.6%</td>
+                        <td className="py-3 px-3 text-center">
+                          <span className="bg-destructive/10 text-destructive px-2 py-1 rounded text-xs font-medium">УБЫТОЧНЫЙ</span>
                         </td>
                       </tr>
-                      <tr>
-                        <td className="py-3 px-2 text-muted-foreground">345678</td>
-                        <td className="py-3 px-2">Чехол для телефона</td>
-                        <td className="py-3 px-2 text-right">₽790</td>
-                        <td className="py-3 px-2 text-right">
-                          <span className="text-success font-medium">24.5%</span>
+                      <tr className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                        <td className="py-3 px-3">
+                          <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
+                            📱
+                          </div>
+                        </td>
+                        <td className="py-3 px-3">
+                          <div className="font-medium">Чехол iPhone 15</div>
+                          <div className="text-xs text-muted-foreground">WB</div>
+                        </td>
+                        <td className="py-3 px-3 text-center font-medium">₽1 290</td>
+                        <td className="py-3 px-3 text-center">₽800</td>
+                        <td className="py-3 px-3 text-center text-destructive font-medium">₽-142</td>
+                        <td className="py-3 px-3 text-center text-destructive font-medium">-11.0%</td>
+                        <td className="py-3 px-3 text-center">
+                          <span className="bg-destructive/10 text-destructive px-2 py-1 rounded text-xs font-medium">УБЫТОЧНЫЙ</span>
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-muted/30 transition-colors">
+                        <td className="py-3 px-3">
+                          <div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
+                            🎒
+                          </div>
+                        </td>
+                        <td className="py-3 px-3">
+                          <div className="font-medium">Крем для лица</div>
+                          <div className="text-xs text-muted-foreground">WB</div>
+                        </td>
+                        <td className="py-3 px-3 text-center font-medium">₽3 490</td>
+                        <td className="py-3 px-3 text-center">₽900</td>
+                        <td className="py-3 px-3 text-center text-success font-medium">₽1 401</td>
+                        <td className="py-3 px-3 text-center text-success font-medium">40.1%</td>
+                        <td className="py-3 px-3 text-center">
+                          <span className="bg-success/10 text-success px-2 py-1 rounded text-xs font-medium">ПРИБЫЛЬНЫЙ</span>
                         </td>
                       </tr>
                     </tbody>
