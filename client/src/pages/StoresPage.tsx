@@ -89,7 +89,7 @@ export default function StoresPage() {
                 <span className="text-blue-600 font-medium border-b-2 border-blue-600 pb-4">
                   Магазины
                 </span>
-                <Link href="/products">
+                <Link href="/app/products">
                   <button className="text-gray-500 hover:text-gray-700 font-medium pb-4 transition-colors">
                     Товары
                   </button>

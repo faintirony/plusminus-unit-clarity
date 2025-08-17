@@ -13,6 +13,10 @@ The system is built as a modern full-stack web application with full authenticat
 - Created navigation between Stores and Products sections
 - Implemented secure token validation and management
 - Enhanced user flow for new and existing users
+- Updated landing page Hero section with pixel-perfect ПлюсМинус interface design
+- Fixed routing issue: added redirects for legacy `/product` and `/products` routes to `/app/products`
+- Replaced all landing page text content with exact specifications from original design
+- Integrated real product data and statistics from ПлюсМинус interface screenshots
 
 ## User Preferences
 

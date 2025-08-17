@@ -17,6 +17,20 @@ function Router() {
       <Route path="/login" component={LoginPage} />
       <Route path="/register" component={RegisterPage} />
       
+      {/* Redirect legacy routes */}
+      <Route path="/product">
+        {() => {
+          window.location.replace('/app/products');
+          return null;
+        }}
+      </Route>
+      <Route path="/products">
+        {() => {
+          window.location.replace('/app/products');
+          return null;
+        }}
+      </Route>
+      
       <Route path="/app/*">
         <ProtectedRoute>
           <AppLayout />
