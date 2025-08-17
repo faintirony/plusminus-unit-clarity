@@ -17,7 +17,7 @@ const HeroSection = () => {
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              <span className="text-red-600">Торгуете в</span>{' '}
+              <span className="text-foreground">Торгуете в</span>{' '}
               <span className="text-green-600">плюс</span>{' '}
               <span className="text-foreground">или</span>{' '}
               <span className="text-red-600">минус</span>
