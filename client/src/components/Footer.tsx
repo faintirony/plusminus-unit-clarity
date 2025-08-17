@@ -16,15 +16,11 @@ const Footer = () => {
           
           <div>
             <h3 className="font-semibold mb-4">О продукте</h3>
-            <ul className="space-y-2 text-muted-foreground">
-              <li><a href="#" className="hover:text-foreground transition-colors">Возможности</a></li>
-            </ul>
           </div>
           
           <div>
             <h3 className="font-semibold mb-4">Поддержка</h3>
             <ul className="space-y-2 text-muted-foreground">
-              <li><a href="#" className="hover:text-foreground transition-colors">Справка</a></li>
               <li><a href="#" className="hover:text-foreground transition-colors">Политика конфиденциальности</a></li>
             </ul>
           </div>
