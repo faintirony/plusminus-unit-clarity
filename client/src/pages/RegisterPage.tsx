@@ -41,7 +41,7 @@ export default function RegisterPage() {
       localStorage.setItem('authToken', result.token);
       
       // Redirect to stores page to add API key
-      setLocation('/stores');
+      setLocation('/app/stores');
     },
     onError: (error: any) => {
       const message = error?.message || 'Произошла ошибка при регистрации';

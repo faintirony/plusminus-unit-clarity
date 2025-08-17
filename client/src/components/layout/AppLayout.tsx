@@ -1,12 +1,14 @@
+import { Switch, Route } from "wouter";
 import CompactHeader from "./CompactHeader";
 import ProductsList from "@/components/features/products/ProductsList";
 import InlineEditor from "@/components/features/products/InlineEditor";
+import StoresPage from "@/pages/StoresPage";
 import { Toaster } from "@/components/ui/toaster";
 import { useProducts } from "@/hooks/use-products";
 import { useExport } from "@/hooks/use-export";
 import { useState } from "react";
 
-export default function AppLayout() {
+function ProductsLayout() {
   const { products, filters, setFilters, stats, updateProduct } = useProducts();
   const { exportProducts, isExporting } = useExport();
   const [editingProduct, setEditingProduct] = useState<string | null>(null);
@@ -48,5 +50,15 @@ export default function AppLayout() {
 
       <Toaster />
     </div>
+  );
+}
+
+export default function AppLayout() {
+  return (
+    <Switch>
+      <Route path="/app/stores" component={StoresPage} />
+      <Route path="/app/products" component={ProductsLayout} />
+      <Route path="/app" component={ProductsLayout} />
+    </Switch>
   );
 }

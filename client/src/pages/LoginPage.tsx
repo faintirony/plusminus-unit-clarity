@@ -36,14 +36,14 @@ export default function LoginPage() {
       
       // Check if user has stores/API keys
       if (result.hasStores) {
-        setLocation('/products');
+        setLocation('/app/products');
       } else {
         toast({
           title: 'Добро пожаловать!',
           description: 'Для работы с товарами необходимо добавить API-ключ Wildberries',
           variant: 'default',
         });
-        setLocation('/stores');
+        setLocation('/app/stores');
       }
     },
     onError: (error: any) => {
