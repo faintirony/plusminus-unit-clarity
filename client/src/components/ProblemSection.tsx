@@ -8,7 +8,7 @@ const ProblemSection = () => {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Существующие сервисы{' '}
-            <span className="text-danger">перегружают данными</span>
+            <span className="text-red-600">перегружают данными</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Сложные интерфейсы отнимают время вместо того, чтобы давать четкие ответы
