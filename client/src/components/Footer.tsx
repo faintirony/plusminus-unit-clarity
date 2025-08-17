@@ -1,32 +1,45 @@
+import { MessageCircle } from 'lucide-react';
+
 const Footer = () => {
   return (
-    <footer className="bg-card border-t border-border py-12">
+    <footer className="bg-gray-900 text-white py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-4 gap-8">
-          <div className="lg:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                ПлюсМинус
-              </div>
-            </div>
-            <p className="text-muted-foreground">
-              Увеличиваем выживаемость продавцов на маркетплейсах через понимание юнит-экономики
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Левая колонка */}
+          <div>
+            <h3 className="text-2xl font-bold mb-4">ПлюсМинус</h3>
+            <p className="text-gray-300">
+              Простая юнит-экономика для селлеров маркетплейсов
             </p>
           </div>
           
+          {/* Центральная колонка */}
           <div>
-            <h3 className="font-semibold mb-4">О продукте</h3>
+            <h3 className="font-semibold mb-4">Связаться с нами</h3>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-3">
+                <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                  <MessageCircle className="w-4 h-4 text-white" />
+                </div>
+                <span className="text-gray-300">@ferz_kubanskii</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                  <MessageCircle className="w-4 h-4 text-white" />
+                </div>
+                <span className="text-gray-300">@faintirony</span>
+              </div>
+            </div>
           </div>
           
+          {/* Правая колонка */}
           <div>
-            <h3 className="font-semibold mb-4">Поддержка</h3>
-            <ul className="space-y-2 text-muted-foreground">
-              <li><a href="#" className="hover:text-foreground transition-colors">Политика конфиденциальности</a></li>
-            </ul>
+            <p className="text-gray-300 mb-2">Работаем с 9:00 до 21:00 МСК</p>
+            <p className="text-gray-300">Ответ в Telegram в течение 15 минут</p>
           </div>
         </div>
         
-        <div className="border-t border-border mt-12 pt-8 text-center text-muted-foreground">
+        <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
           <p>&copy; 2025 ПлюсМинус. Все права защищены.</p>
         </div>
       </div>
