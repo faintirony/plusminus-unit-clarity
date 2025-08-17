@@ -1,4 +1,4 @@
-import telegramIcon from "@assets/1200x600wa_1755446517691.png";
+import { MessageCircle } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -18,19 +18,15 @@ const Footer = () => {
             <h3 className="font-semibold mb-4">Связаться с нами</h3>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
-                <img 
-                  src={telegramIcon} 
-                  alt="Telegram" 
-                  className="w-6 h-6 rounded-full"
-                />
+                <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                  <MessageCircle className="w-4 h-4 text-white" />
+                </div>
                 <span className="text-gray-300">@ferz_kubanskii</span>
               </div>
               <div className="flex items-center space-x-3">
-                <img 
-                  src={telegramIcon} 
-                  alt="Telegram" 
-                  className="w-6 h-6 rounded-full"
-                />
+                <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                  <MessageCircle className="w-4 h-4 text-white" />
+                </div>
                 <span className="text-gray-300">@faintirony</span>
               </div>
             </div>
