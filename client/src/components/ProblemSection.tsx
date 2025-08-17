@@ -17,45 +17,39 @@ const ProblemSection = () => {
 
         <div className="grid md:grid-cols-3 gap-8">
           <div className="card-enhanced text-center">
-            <div className="p-8">
-              <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                <BarChart3 className="w-8 h-8" style={{color: '#FF4444'}} />
-              </div>
-              <h3 className="text-xl font-semibold mb-4">
-                45+ отчетов в сервисе аналитики, а простого ответа нет
-              </h3>
-              <p className="text-body" style={{color: '#666666'}}>
-                Теряетесь в море данных и не можете быстро понять какие товары приносят прибыль
-              </p>
+            <div className="card-icon-wrapper bg-red-50">
+              <BarChart3 className="card-icon" style={{color: '#FF4444'}} />
             </div>
+            <h3 className="card-title">
+              45+ отчетов в сервисе аналитики, а простого ответа нет
+            </h3>
+            <p className="card-description" style={{color: '#666666'}}>
+              Теряетесь в море данных и не можете быстро понять какие товары приносят прибыль
+            </p>
           </div>
 
           <div className="card-enhanced text-center">
-            <div className="p-8">
-              <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                <TrendingDown className="w-8 h-8" style={{color: '#FF4444'}} />
-              </div>
-              <h3 className="text-xl font-semibold mb-4">
-                Теряете деньги на убыточных товарах
-              </h3>
-              <p className="text-body" style={{color: '#666666'}}>
-                Продолжаете продвигать товары в минусе, не зная об этом до конца месяца
-              </p>
+            <div className="card-icon-wrapper bg-red-50">
+              <TrendingDown className="card-icon" style={{color: '#FF4444'}} />
             </div>
+            <h3 className="card-title">
+              Теряете деньги на убыточных товарах
+            </h3>
+            <p className="card-description" style={{color: '#666666'}}>
+              Продолжаете продвигать товары в минусе, не зная об этом до конца месяца
+            </p>
           </div>
 
           <div className="card-enhanced text-center">
-            <div className="p-8">
-              <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Clock className="w-8 h-8" style={{color: '#FF4444'}} />
-              </div>
-              <h3 className="text-xl font-semibold mb-4">
-                Тратите часы на анализ вместо продаж
-              </h3>
-              <p className="text-body" style={{color: '#666666'}}>
-                Вместо развития бизнеса сидите в Excel'е и пытаетесь разобраться в цифрах
-              </p>
+            <div className="card-icon-wrapper bg-red-50">
+              <Clock className="card-icon" style={{color: '#FF4444'}} />
             </div>
+            <h3 className="card-title">
+              Тратите часы на анализ вместо продаж
+            </h3>
+            <p className="card-description" style={{color: '#666666'}}>
+              Вместо развития бизнеса сидите в Excel'е и пытаетесь разобраться в цифрах
+            </p>
           </div>
         </div>
       </div>

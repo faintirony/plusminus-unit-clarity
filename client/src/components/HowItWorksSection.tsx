@@ -38,20 +38,18 @@ const HowItWorksSection = () => {
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           {steps.map((step, index) => (
             <div key={index} className="card-enhanced text-center h-full">
-              <div className="p-8">
-                <div className="bg-blue-50 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                  {step.icon}
-                </div>
-                <div className="text-3xl font-bold mb-4" style={{color: '#0066FF'}}>
-                  {step.number}
-                </div>
-                <h3 className="text-xl font-semibold mb-4">
-                  {step.title}
-                </h3>
-                <p className="text-body" style={{color: '#666666'}}>
-                  {step.description}
-                </p>
+              <div className="text-3xl font-bold mb-3" style={{color: '#0066FF'}}>
+                {step.number}
               </div>
+              <div className="card-icon-wrapper bg-blue-50">
+                {step.icon}
+              </div>
+              <h3 className="card-title">
+                {step.title}
+              </h3>
+              <p className="card-description" style={{color: '#666666'}}>
+                {step.description}
+              </p>
             </div>
           ))}
         </div>
