@@ -17,11 +17,13 @@ const HeroSection = () => {
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              Торгуете в{' '}
-              <span className="text-success">плюс</span> или{' '}
-              <span className="text-danger">минус</span>?
+              <span className="text-danger">Торгуете в</span>{' '}
+              <span className="text-success">плюс</span>{' '}
+              <span className="text-foreground">или</span>{' '}
+              <span className="text-danger">минус</span>
+              <span className="text-foreground">?</span>
               <br />
-              Узнайте за 5 минут
+              <span className="text-primary">Узнайте за 5 минут</span>
             </h1>
             
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
