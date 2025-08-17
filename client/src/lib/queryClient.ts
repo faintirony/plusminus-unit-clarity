@@ -8,19 +8,36 @@ async function throwIfResNotOk(res: Response) {
 }
 
 export async function apiRequest(
-  method: string,
   url: string,
-  data?: unknown | undefined,
-): Promise<Response> {
-  const res = await fetch(url, {
-    method,
-    headers: data ? { "Content-Type": "application/json" } : {},
-    body: data ? JSON.stringify(data) : undefined,
-    credentials: "include",
-  });
+  options: RequestInit = {},
+): Promise<any> {
+  const token = localStorage.getItem('authToken');
+  
+  const config: RequestInit = {
+    method: 'GET',
+    headers: {
+      ...(options.body && { 'Content-Type': 'application/json' }),
+      ...(token && { 'Authorization': `Bearer ${token}` }),
+      ...options.headers,
+    },
+    ...options,
+    body: options.body ? JSON.stringify(options.body) : undefined,
+  };
 
-  await throwIfResNotOk(res);
-  return res;
+  const res = await fetch(url, config);
+
+  if (res.status === 401) {
+    localStorage.removeItem('authToken');
+    window.location.href = '/login';
+    return;
+  }
+
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => ({ error: 'Сетевая ошибка' }));
+    throw new Error(errorData.error || `HTTP error! status: ${res.status}`);
+  }
+
+  return res.json();
 }
 
 type UnauthorizedBehavior = "returnNull" | "throw";
@@ -29,12 +46,21 @@ export const getQueryFn: <T>(options: {
 }) => QueryFunction<T> =
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
+    const token = localStorage.getItem('authToken');
     const res = await fetch(queryKey.join("/") as string, {
-      credentials: "include",
+      headers: {
+        ...(token && { 'Authorization': `Bearer ${token}` }),
+      },
     });
 
-    if (unauthorizedBehavior === "returnNull" && res.status === 401) {
-      return null;
+    if (res.status === 401) {
+      if (unauthorizedBehavior === "returnNull") {
+        return null;
+      } else {
+        localStorage.removeItem('authToken');
+        window.location.href = '/login';
+        throw new Error('Unauthorized');
+      }
     }
 
     await throwIfResNotOk(res);

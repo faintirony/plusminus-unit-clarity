@@ -4,7 +4,15 @@
 
 ПлюсМинус is a comprehensive SaaS platform designed to automate unit economics monitoring for marketplace sellers. The application helps Russian e-commerce sellers on platforms like Wildberries and OZON understand their true profitability by automatically calculating margins, commissions, and logistics costs through interactive tables similar to Airtable.
 
-The system is built as a modern full-stack web application that integrates with marketplace APIs to provide real-time profitability analytics, enabling sellers to make data-driven decisions about pricing and product assortment.
+The system is built as a modern full-stack web application with full authentication and store management capabilities. Users can register, login, manage their Wildberries API tokens, and access real-time profitability analytics to make data-driven decisions about pricing and product assortment.
+
+## Recent Changes (Aug 17, 2025)
+
+- Implemented authentication system with registration and login pages
+- Added store management functionality for Wildberries API integration
+- Created navigation between Stores and Products sections
+- Implemented secure token validation and management
+- Enhanced user flow for new and existing users
 
 ## User Preferences
 
