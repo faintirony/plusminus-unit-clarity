@@ -17,18 +17,28 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold mb-4">Связаться с нами</h3>
             <div className="space-y-3">
-              <div className="flex items-center space-x-3">
+              <a 
+                href="https://t.me/ferz_kubanskii" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center space-x-3 text-gray-300 hover:text-blue-400 transition-colors duration-200 cursor-pointer"
+              >
                 <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
                   <MessageCircle className="w-4 h-4 text-white" />
                 </div>
-                <span className="text-gray-300">@ferz_kubanskii</span>
-              </div>
-              <div className="flex items-center space-x-3">
+                <span>@ferz_kubanskii</span>
+              </a>
+              <a 
+                href="https://t.me/faintirony" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center space-x-3 text-gray-300 hover:text-blue-400 transition-colors duration-200 cursor-pointer"
+              >
                 <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
                   <MessageCircle className="w-4 h-4 text-white" />
                 </div>
-                <span className="text-gray-300">@faintirony</span>
-              </div>
+                <span>@faintirony</span>
+              </a>
             </div>
           </div>
           
