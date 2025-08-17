@@ -11,7 +11,7 @@ const ProblemSection = () => {
             <span className="text-danger">перегружают данными</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Сложная аналитика отнимает время, вместо того чтобы давать простые ответы
+            Сложные интерфейсы отнимают время вместо того, чтобы давать четкие ответы
           </p>
         </div>
 
@@ -22,10 +22,10 @@ const ProblemSection = () => {
                 <AlertTriangle className="w-8 h-8 text-danger" />
               </div>
               <h3 className="text-xl font-semibold mb-4">
-                Кто готовы к сложным аналитикам?
+                95% селлеров сдают позиции в первые месяцы
               </h3>
               <p className="text-muted-foreground">
-                А нужно просто знать: какой товар убыточный и что с этим делать?
+                В погоне за оборотами забывают про затраты и торгуют в убыток
               </p>
             </CardContent>
           </Card>
@@ -36,10 +36,10 @@ const ProblemSection = () => {
                 <Clock className="w-8 h-8 text-danger" />
               </div>
               <h3 className="text-xl font-semibold mb-4">
-                Тратите десятки на аналитику но работаете
+                Тратят часы на аналитические дашборды
               </h3>
               <p className="text-muted-foreground">
-                Покупаете дорогие сервисы аналитики, но все равно торгуете интуитивно
+                Вместо одной метрики — десятки графиков и непонятных показателей
               </p>
             </CardContent>
           </Card>
@@ -50,10 +50,10 @@ const ProblemSection = () => {
                 <TrendingDown className="w-8 h-8 text-danger" />
               </div>
               <h3 className="text-xl font-semibold mb-4">
-                Тратите время на анализ вместо принятия решений
+                Тратят тысячи рублей на ненужный функционал
               </h3>
               <p className="text-muted-foreground">
-                Аналитика должна давать простые рекомендации, а не заставлять думать
+                Платят за сложные системы, когда нужен простой ответ: плюс или минус
               </p>
             </CardContent>
           </Card>

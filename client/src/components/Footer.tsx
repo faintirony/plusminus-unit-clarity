@@ -3,7 +3,7 @@ const Footer = () => {
     <footer className="bg-card border-t border-border py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-4 gap-8">
-          <div>
+          <div className="lg:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <div className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
                 ПлюсМинус
@@ -15,29 +15,17 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="font-semibold mb-4">Продукт</h3>
+            <h3 className="font-semibold mb-4">О продукте</h3>
             <ul className="space-y-2 text-muted-foreground">
               <li><a href="#" className="hover:text-foreground transition-colors">Возможности</a></li>
-              <li><a href="#" className="hover:text-foreground transition-colors">Тарифы</a></li>
-              <li><a href="#" className="hover:text-foreground transition-colors">API</a></li>
             </ul>
           </div>
           
           <div>
             <h3 className="font-semibold mb-4">Поддержка</h3>
             <ul className="space-y-2 text-muted-foreground">
-              <li><a href="#" className="hover:text-foreground transition-colors">Помощь</a></li>
-              <li><a href="#" className="hover:text-foreground transition-colors">Документация</a></li>
-              <li><a href="#" className="hover:text-foreground transition-colors">Контакты</a></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h3 className="font-semibold mb-4">Компания</h3>
-            <ul className="space-y-2 text-muted-foreground">
-              <li><a href="#" className="hover:text-foreground transition-colors">О нас</a></li>
-              <li><a href="#" className="hover:text-foreground transition-colors">Блог</a></li>
-              <li><a href="#" className="hover:text-foreground transition-colors">Вакансии</a></li>
+              <li><a href="#" className="hover:text-foreground transition-colors">Справка</a></li>
+              <li><a href="#" className="hover:text-foreground transition-colors">Политика конфиденциальности</a></li>
             </ul>
           </div>
         </div>

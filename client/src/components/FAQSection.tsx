@@ -1,22 +1,34 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { useState } from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 const FAQSection = () => {
+  const [openItems, setOpenItems] = useState<number[]>([]);
+
+  const toggleItem = (index: number) => {
+    setOpenItems(prev => 
+      prev.includes(index) 
+        ? prev.filter(i => i !== index)
+        : [...prev, index]
+    );
+  };
+
   const faqs = [
     {
-      question: "Безопасно ли подключение WB токенов?",
-      answer: "Да, абсолютно безопасно. Мы используем только токены для чтения данных, которые не дают доступа к изменению вашего аккаунта или товаров."
+      question: "Безопасно ли передавать API ключи?",
+      answer: "Да, мы используем современные методы шифрования и храним все данные в соответствии с международными стандартами безопасности. Ваши API ключи не передаются третьим лицам."
     },
     {
-      question: "Какие маркетплейсы поддерживаются?",
-      answer: "Сейчас работаем с Wildberries. В планах добавить OZON, Яндекс.Маркет и другие популярные площадки."
+      question: "Какая стоимость подписки?",
+      answer: "У нас есть бесплатный тарифный план для начинающих селлеров. Для расширенного функционала доступны платные тарифы от 990 рублей в месяц."
     },
     {
       question: "Как быстро обновляются данные?",
-      answer: "Данные обновляются автоматически каждые 24 часа. Вы всегда видите актуальную картину по вашим товарам."
+      answer: "Данные обновляются автоматически каждые 6 часов. В премиум-тарифах доступно обновление каждый час."
     },
     {
-      question: "Что если я торгую 500+ товаров?",
-      answer: "ПлюсМинус отлично работает с любым количеством товаров. Чем больше товаров, тем более ценной становится автоматизация расчетов."
+      question: "Что если у меня больше 1000 товаров?",
+      answer: "Наша система легко справляется с любым количеством товаров. Для больших каталогов рекомендуем премиум-тариф с расширенными возможностями анализа."
     }
   ];
 
@@ -29,27 +41,38 @@ const FAQSection = () => {
             <span className="text-primary">вопросы</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Ответы на главные вопросы о ПлюсМинус, функциональности и процессе подключения
+            Ответы на главные вопросы о ПлюсМинус, функционале и безопасности
           </p>
         </div>
 
-        <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="space-y-4">
-            {faqs.map((faq, index) => (
-              <AccordionItem 
-                key={index} 
-                value={`item-${index}`}
-                className="border border-border rounded-lg px-6"
-              >
-                <AccordionTrigger className="text-left hover:no-underline">
-                  <span className="font-semibold">{faq.question}</span>
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-4">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+        <div className="max-w-3xl mx-auto space-y-4">
+          {faqs.map((faq, index) => (
+            <Card key={index} className="border-border/50 hover:border-border transition-colors">
+              <CardContent className="p-0">
+                <button
+                  onClick={() => toggleItem(index)}
+                  className="w-full p-6 text-left flex items-center justify-between hover:bg-muted/50 transition-colors"
+                  data-testid={`faq-question-${index}`}
+                >
+                  <h3 className="text-lg font-semibold pr-4">
+                    {faq.question}
+                  </h3>
+                  {openItems.includes(index) ? (
+                    <ChevronUp className="w-5 h-5 text-muted-foreground" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 text-muted-foreground" />
+                  )}
+                </button>
+                {openItems.includes(index) && (
+                  <div className="px-6 pb-6" data-testid={`faq-answer-${index}`}>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
     </section>

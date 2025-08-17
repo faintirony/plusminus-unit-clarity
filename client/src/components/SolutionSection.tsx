@@ -7,11 +7,11 @@ const SolutionSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            ПлюсМинус даёт{' '}
+            ПлюсМинус дает{' '}
             <span className="text-success">простые ответы</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Мы анализируем ваши данные и даём конкретные рекомендации без лишней сложности
+            Мы автоматически считаем реальную прибыльность каждого товара
           </p>
         </div>
 
@@ -22,11 +22,10 @@ const SolutionSection = () => {
                 <CheckCircle className="w-8 h-8 text-success" />
               </div>
               <h3 className="text-xl font-semibold mb-4">
-                Один простой дашборд вместо
-                сотни отчётов
+                Одна таблица вместо десятка отчетов
               </h3>
               <p className="text-muted-foreground">
-                Видите все товары и сразу понимаете, какие приносят прибыль
+                Все ваши товары, их себестоимость и маржа в одном месте
               </p>
             </CardContent>
           </Card>
@@ -37,10 +36,10 @@ const SolutionSection = () => {
                 <Target className="w-8 h-8 text-success" />
               </div>
               <h3 className="text-xl font-semibold mb-4">
-                Автоматический расчёт юнит-экономики WB
+                Автоматический расчет по всем SKU
               </h3>
               <p className="text-muted-foreground">
-                Подключите API-ключ и получите полную картину прибыльности
+                Учитываем комиссии WB, логистику и рекламные расходы автоматически
               </p>
             </CardContent>
           </Card>
@@ -51,10 +50,10 @@ const SolutionSection = () => {
                 <Zap className="w-8 h-8 text-success" />
               </div>
               <h3 className="text-xl font-semibold mb-4">
-                Подключение за 5 минут
+                Понятность за 5 минут
               </h3>
               <p className="text-muted-foreground">
-                Быстрая настройка без сложных интеграций и обучения команды
+                Никаких сложных настроек — подключили API и сразу видите результат
               </p>
             </CardContent>
           </Card>

@@ -6,18 +6,18 @@ const HowItWorksSection = () => {
   const steps = [
     {
       icon: <Database className="w-8 h-8 text-primary" />,
-      title: "Подключение за 7 минут",
-      description: "Простой ввод API-ключа WB. Никакой больше ручной работы с данными и таблицами"
+      title: "Подключение за 1 минуту",
+      description: "Добавляете API-ключ Wildberries в личном кабинете"
     },
     {
       icon: <BarChart className="w-8 h-8 text-primary" />,
-      title: "Автоматический расчёт юнит-экономики WB",
-      description: "Система рассчитывает все комиссии, логистику и реальную прибыль по каждому товару"
+      title: "Автоматический расчет всех товаров за 5 минут",
+      description: "Система сама получает данные и считает маржинальность"
     },
     {
       icon: <Target className="w-8 h-8 text-primary" />,
-      title: "Понятные рекомендации на основе данных",
-      description: "Получаете конкретные советы: какие товары убрать, где поднять цены"
+      title: "Анализ рентабельности за 1 минуту",
+      description: "Сразу видите какие товары прибыльные, а какие убыточные"
     }
   ];
 
@@ -25,14 +25,11 @@ const HowItWorksSection = () => {
     <section className="py-16 lg:py-24 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/10">
-            Как это работает
-          </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Подключение за 7 минут
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Простой процесс настройки для получения полной картины вашего бизнеса
+            Быстрая интеграция с вашими данными без сложных настроек и обучения
           </p>
         </div>
 

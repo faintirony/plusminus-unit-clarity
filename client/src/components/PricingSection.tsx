@@ -10,71 +10,23 @@ const PricingSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Часто задаваемые{' '}
-            <span className="text-primary">вопросы</span>
+            Готов узнать, торгуете вы в{' '}
+            <span className="text-success">плюс</span>?
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Ответы на главные вопросы о ПлюсМинус, функциональности и процессе подключения
+            Подключитесь за 7 минут и получите четкую картину по всем товарам
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <Badge className="mb-4 bg-success/10 text-success hover:bg-success/10">
-              🎉 Ограниченное предложение!
-            </Badge>
-          </div>
-          
-          <Card className="border-primary/20 shadow-lg">
-            <CardHeader className="text-center">
-              <CardTitle className="text-2xl mb-2">
-                Готовы узнать, торгуете ли вы в{' '}
-                <span className="text-success">плюс</span>?
-              </CardTitle>
-              <p className="text-muted-foreground">
-                Подключите API-ключи Wildberries и получите анализ прибыльности ваших товаров
-              </p>
-            </CardHeader>
-            
-            <CardContent className="p-8">
-              <div className="grid md:grid-cols-3 gap-8 mb-8">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary mb-2">📋</div>
-                  <div className="text-sm text-muted-foreground">
-                    Проанализируем все товары WB
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary mb-2">⚡</div>
-                  <div className="text-sm text-muted-foreground">
-                    Быстро получите
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary mb-2">💰</div>
-                  <div className="text-sm text-muted-foreground">
-                    Понятная отчёт по каждому товару
-                  </div>
-                </div>
-              </div>
-
-              <div className="text-center">
-                <Link href="/register" data-testid="button-pricing-register">
-                  <Button 
-                    size="lg"
-                    className="w-full md:w-auto bg-gradient-primary hover:shadow-primary transition-all duration-300"
-                  >
-                    Зарегистрироваться в ПлюсМинус
-                  </Button>
-                </Link>
-                <p className="text-sm text-muted-foreground mt-4">
-                  ✅ Подключение API-ключи Wildberries<br/>
-                  ✅ Получите анализ за 5 минут<br/>
-                  ✅ Автоматический расчёт прибыльности товаров
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+        <div className="text-center">
+          <Link href="/register" data-testid="button-pricing-register">
+            <Button 
+              size="lg"
+              className="w-full md:w-auto bg-gradient-primary hover:shadow-primary transition-all duration-300"
+            >
+              Попробовать бесплатно
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
