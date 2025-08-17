@@ -40,9 +40,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     checkAuth();
   }, []);
 
-  const login = (token: string) => {
+  const login = async (token: string) => {
     localStorage.setItem('authToken', token);
-    // In real app, we would decode the token or make API call to get user
+    
+    // Fetch user data after login
+    try {
+      const userData = await apiRequest('/api/auth/me');
+      setUser(userData);
+    } catch (error) {
+      localStorage.removeItem('authToken');
+    }
   };
 
   const logout = () => {

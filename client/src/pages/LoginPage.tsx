@@ -34,16 +34,16 @@ export default function LoginPage() {
       // Store auth token in localStorage
       localStorage.setItem('authToken', result.token);
       
-      // Check if user has stores/API keys
+      // Check if user has stores/API keys and redirect accordingly
       if (result.hasStores) {
-        setLocation('/app/products');
+        window.location.href = '/app/products';
       } else {
         toast({
           title: 'Добро пожаловать!',
           description: 'Для работы с товарами необходимо добавить API-ключ Wildberries',
           variant: 'default',
         });
-        setLocation('/app/stores');
+        window.location.href = '/app/stores';
       }
     },
     onError: (error: any) => {

@@ -31,17 +31,17 @@ export default function RegisterPage() {
       body: data,
     }),
     onSuccess: (result) => {
-      toast({
-        title: 'Регистрация успешна!',
-        description: 'Добро пожаловать в ПлюсМинус',
-        variant: 'default',
-      });
-      
       // Store auth token in localStorage
       localStorage.setItem('authToken', result.token);
       
-      // Redirect to stores page to add API key
-      setLocation('/app/stores');
+      toast({
+        title: 'Регистрация успешна!',
+        description: 'Теперь добавьте API-ключ Wildberries для работы с товарами',
+        variant: 'default',
+      });
+      
+      // Force page reload to trigger auth check
+      window.location.href = '/app/stores';
     },
     onError: (error: any) => {
       const message = error?.message || 'Произошла ошибка при регистрации';
