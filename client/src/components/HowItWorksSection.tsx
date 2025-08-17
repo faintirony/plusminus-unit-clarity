@@ -1,23 +1,26 @@
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, Database, BarChart, Target } from 'lucide-react';
+import { Key, DollarSign, FileText } from 'lucide-react';
 
 const HowItWorksSection = () => {
   const steps = [
     {
-      icon: <Database className="w-8 h-8 text-primary" />,
-      title: "Подключение за 1 минуту",
-      description: "Добавляете API-ключ Wildberries в личном кабинете"
+      number: "01",
+      icon: <Key className="w-8 h-8 text-blue-600" />,
+      title: "Регистрируетесь и создаёте API-ключи WB",
+      description: "Генерируете API-ключи в личном кабинете маркетплейса. Это займет 2 минуты."
     },
     {
-      icon: <BarChart className="w-8 h-8 text-primary" />,
-      title: "Автоматический расчет всех товаров за 5 минут",
-      description: "Система сама получает данные и считает маржинальность"
+      number: "02",
+      icon: <DollarSign className="w-8 h-8 text-blue-600" />,
+      title: "Заполняете себестоимость и видите прибыль",
+      description: "Указываете себестоимость товаров и сразу видите какие в плюсе, а какие в минусе."
     },
     {
-      icon: <Target className="w-8 h-8 text-primary" />,
-      title: "Анализ рентабельности за 1 минуту",
-      description: "Сразу видите какие товары прибыльные, а какие убыточные"
+      number: "03",
+      icon: <FileText className="w-8 h-8 text-blue-600" />,
+      title: "Получаете структуру расходов по каждому товару",
+      description: "В течение 5 минут видите, какие товары убыточные и почему и можете оперативно внести изменения."
     }
   ];
 
@@ -25,40 +28,39 @@ const HowItWorksSection = () => {
     <section className="py-16 lg:py-24 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-blue-600">
             Подключение за 7 минут
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Быстрая интеграция с вашими данными без сложных настроек и обучения
+            Простой процесс настройки без сложных интеграций и долгих ожиданий
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 relative">
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
           {steps.map((step, index) => (
-            <div key={index} className="relative">
-              <Card className="h-full border-primary/20 hover:border-primary/40 transition-all duration-300">
-                <CardContent className="p-8 text-center">
-                  <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                    {step.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-4">
-                    {step.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {step.description}
-                  </p>
-                </CardContent>
-              </Card>
-              
-              {index < steps.length - 1 && (
-                <div className="hidden md:flex absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
-                  <div className="bg-white rounded-full p-2 shadow-lg">
-                    <ArrowRight className="w-4 h-4 text-primary" />
-                  </div>
+            <Card key={index} className="h-full border-blue-200">
+              <CardContent className="p-8 text-center">
+                <div className="bg-blue-50 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                  {step.icon}
                 </div>
-              )}
-            </div>
+                <div className="text-3xl font-bold text-blue-600 mb-4">
+                  {step.number}
+                </div>
+                <h3 className="text-xl font-semibold mb-4">
+                  {step.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {step.description}
+                </p>
+              </CardContent>
+            </Card>
           ))}
+        </div>
+
+        <div className="text-center">
+          <div className="inline-block bg-green-100 text-green-800 px-6 py-3 rounded-lg">
+            • Среднее время подключения: 7 минут
+          </div>
         </div>
       </div>
     </section>
