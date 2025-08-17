@@ -296,7 +296,7 @@ export default function StoresPage() {
                     {store.lastValidatedAt && (
                       <div className="flex justify-between">
                         <span>Проверен:</span>
-                        <span>{new Date(store.lastValidatedAt).toLocaleDateString('ru-RU')}</span>
+                        <span>{store.lastValidatedAt ? new Date(store.lastValidatedAt).toLocaleDateString('ru-RU') : 'Никогда'}</span>
                       </div>
                     )}
                   </div>
