@@ -7,7 +7,7 @@ const Header = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
-            <Link href="/" className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+            <Link href="/" className="text-2xl font-bold text-gray-900">
               ПлюсМинус
             </Link>
           </div>
