@@ -9,6 +9,13 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <div className="animate-fade-in">
+            {/* Blue Label */}
+            <div className="mb-6 flex justify-center lg:justify-start">
+              <span className="inline-block bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-medium">
+                Аналитика для тех, кто не любит аналитику
+              </span>
+            </div>
+            
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
               Торгуете в{' '}
               <span className="text-success">плюс</span> или{' '}
